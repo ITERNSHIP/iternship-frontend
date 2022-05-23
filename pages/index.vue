@@ -3,7 +3,7 @@
     <StudentNavBar />
     <div class="container mx-auto px-6 pt-14">
       <div class="flex flex-row justify-between">
-        <div class="mt-32">
+        <div class="mt-32 mb-32">
           <div>
             <p class="font-bold text-5xl">Collect IT companies</p>
             <p class="font-bold text-5xl">for internships.</p>
@@ -17,7 +17,7 @@
             <!-- <button class="btn btn-info text-white">Go to website</button> -->
           </div>
         </div>
-        <div>
+        <div class="sm:hidden lg:flex">
           <img src="@/static/undraw1.png" alt="##">
         </div>
       </div>

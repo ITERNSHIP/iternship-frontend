@@ -9,11 +9,11 @@
         </div>
       </div>
 
-      <div class="mt-10 flex justify-between">
+      <div class="mt-10 sm:flex lg:flex-row md:justify-between sm:flex-col sm:items-center">
         <nuxt-link to="/student/forms/internship">
           <div class="p-2">
             <div
-              class="h-[379px] w-[450px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
+              class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
             >
               <p class="pl-6 pt-6 text-4xl font-medium">Internship</p>
               <p class="pl-6 pt-6 text-4xl font-medium">Form</p>
@@ -25,7 +25,7 @@
         <nuxt-link to="/student/forms/confirmed">
           <div class="p-2">
             <div
-              class="h-[379px] w-[450px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
+              class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
             >
               <p class="pl-6 pt-6 text-4xl font-medium">Confirmed</p>
               <p class="pl-6 pt-6 text-4xl font-medium">Internship</p>
@@ -37,7 +37,7 @@
 
         <div class="p-2">
           <div
-            class="h-[379px] w-[450px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
+            class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
           >
             <p class="pl-6 pt-6 text-4xl font-medium">Check</p>
             <p class="pl-6 pt-6 text-4xl font-medium">Status</p>

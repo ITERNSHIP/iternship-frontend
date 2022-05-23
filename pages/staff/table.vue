@@ -29,7 +29,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -39,7 +39,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -49,7 +49,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -59,7 +59,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -69,7 +69,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -79,7 +79,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -89,7 +89,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -99,7 +99,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -109,7 +109,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
               <tr>
@@ -119,7 +119,7 @@
                 <td>jirasin.46033@mail.kmutt.ac.th</td>
                 <td>0918566393</td>
                 <td>CompanyA</td>
-                <td>UX Designer</td>
+                <td>PositionB</td>
                 <td>2</td>
               </tr>
             </tbody>
@@ -127,11 +127,13 @@
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-export default {}
+import Footer from '~/components/Footer.vue';
+export default { components: { Footer } }
 </script>
 
 <style></style>

@@ -11,7 +11,7 @@
           <!-- <li class="text-white font-bold">Home</li> -->
           <nuxt-link to="/staff/table" class="text-white font-bold">Table</nuxt-link>
           <!-- <li class="text-white font-bold">Table</li> -->
-          <li class="text-white font-bold">Form check</li>
+          <li class="text-white font-bold">Check</li>
         </ul>
       </div>
       <div class="flex ml-auto space-x-6">
