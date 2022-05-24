@@ -15,7 +15,7 @@
                 >Firstname</label
               >
               <input
-                v-model="confirmedForm.firstname"
+                v-model="confirmedForm.fName"
                 type="text"
                 placeholder="Firstname"
                 class="input input-bordered w-full"
@@ -29,7 +29,7 @@
                 >Lastname</label
               >
               <input
-                v-model="confirmedForm.lastname"
+                v-model="confirmedForm.lName"
                 type="text"
                 placeholder="Lastname"
                 class="input input-bordered w-full"
@@ -65,7 +65,7 @@
                 >Student ID</label
               >
               <input
-                v-model="confirmedForm.studentid"
+                v-model="confirmedForm.studentId"
                 type="text"
                 placeholder="6xxxxxxxxxx"
                 class="input input-bordered w-full"
@@ -79,7 +79,7 @@
                 >Telephone</label
               >
               <input
-                v-model="confirmedForm.telephone"
+                v-model="confirmedForm.phoneNumber"
                 type="text"
                 placeholder="0999999999"
                 class="input input-bordered w-full"
@@ -97,7 +97,7 @@
                 >Company name</label
               >
               <input
-                v-model="confirmedForm.companyname"
+                v-model="confirmedForm.companyName"
                 type="text"
                 placeholder="Company name"
                 class="input input-bordered w-full"
@@ -129,7 +129,7 @@
                 >Duration of training</label
               >
               <input
-                v-model="confirmedForm.duration"
+                v-model="confirmedForm.longTerm"
                 type="text"
                 placeholder="2, 4, 6 month"
                 class="input input-bordered w-full"
@@ -139,9 +139,42 @@
               </p>
             </div>
           </div>
+
+          <!-- Row6 -->
+          <div class="flex mx-3 justify-between pt-5 pb-2 space-x-2">
+            <div class="w-1/2">
+              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
+                >Duration from</label
+              >
+              <input
+                v-model="confirmedForm.durationForm"
+                type="text"
+                placeholder="1 January 2022"
+                class="input input-bordered w-full"
+              />
+              <p v-if="!validateDurationForm" class="text-red-700 mt-2">
+                This field need requied
+              </p>
+            </div>
+            <div class="w-1/2">
+              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
+                >Duration to</label
+              >
+              <input
+                v-model="confirmedForm.durationTo"
+                type="text"
+                placeholder="1 January 2022"
+                class="input input-bordered w-full"
+              />
+              <p v-if="!validateDurationTo" class="text-red-700 mt-2">
+                This field need requied
+              </p>
+            </div>
+          </div>
+
           <div class="flex justify-end mr-5 mt-8">
             <button
-              @click="checkForm"
+              @click="sentInformation"
               class="btn btn-info bottom-0 right-8 text-white w-36 mb-5 hover:outline hover:outline-offset-2 hover:outline-black"
             >
               Send
@@ -151,6 +184,7 @@
         </div>
       </div>
     </div>
+    <pre>{{ confirmedForm }}</pre>
     <Footer />
   </div>
 </template>
@@ -160,14 +194,16 @@ export default {
   data() {
     return {
       confirmedForm: {
-        firstname: '',
-        lastname: '',
+        fName: '',
+        lName: '',
         email: '',
-        studentid: '',
-        telephone: '',
-        companyname: '',
+        studentId: '',
+        phoneNumber: '',
+        companyName: '',
         position: '',
-        duration: '',
+        longTerm: '',
+        durationForm: '',
+        durationTo: '',
       },
       validateFirstname: true,
       validateLastname: true,
@@ -177,26 +213,46 @@ export default {
       validateCompanyName: true,
       validatePosition: true,
       validateDuration: true,
+      validateDurationForm: true,
+      validateDurationTo: true,
     }
   },
 
   methods: {
     checkForm() {
       this.validateFirstname =
-        this.confirmedForm.firstname.length === 0 ? false : true
+        this.confirmedForm.fName.length === 0 ? false : true
       this.validateLastname =
-        this.confirmedForm.lastname.length === 0 ? false : true
+        this.confirmedForm.lName.length === 0 ? false : true
       this.validateEmail = this.confirmedForm.email.length === 0 ? false : true
       this.validateStudentID =
-        this.confirmedForm.studentid.length === 0 ? false : true
+        this.confirmedForm.studentId.length === 0 ? false : true
       this.validateTelephone =
-        this.confirmedForm.telephone.length === 0 ? false : true
+        this.confirmedForm.phoneNumber.length === 0 ? false : true
       this.validateCompanyName =
-        this.confirmedForm.companyname.length === 0 ? false : true
+        this.confirmedForm.companyName.length === 0 ? false : true
       this.validatePosition =
         this.confirmedForm.position.length === 0 ? false : true
       this.validateDuration =
-        this.confirmedForm.duration.length === 0 ? false : true
+        this.confirmedForm.longTerm.length === 0 ? false : true
+      this.validateDurationForm =
+        this.confirmedForm.durationForm.length === 0 ? false : true
+      this.validateDurationTo =
+        this.confirmedForm.durationTo.length === 0 ? false : true
+    },
+
+    sentInformation() {
+      this.checkForm()
+      // console.log(this.confirmedForm);
+      this.$axios
+        .post('/users/createconfirmationForm', this.confirmedForm)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      alert('Sent your information success!!')
     },
   },
 }

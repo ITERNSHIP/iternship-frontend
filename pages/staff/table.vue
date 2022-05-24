@@ -6,7 +6,7 @@
         <p class="font-bold text-6xl">Table</p>
       </div>
 
-      <div class="mt-10">
+      <div class="mt-10 mb-10">
         <div class="overflow-x-auto">
           <table class="table table-compact w-full">
             <thead>
@@ -19,121 +19,44 @@
                 <th>Company</th>
                 <th>Position</th>
                 <th>Duration of training</th>
+                <th>Duration from</th>
+                <th>Duration to</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>4</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>5</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>6</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>7</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>8</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>9</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <th>10</th>
-                <td>62130500121</td>
-                <td>Jirasin Phaobthong</td>
-                <td>jirasin.46033@mail.kmutt.ac.th</td>
-                <td>0918566393</td>
-                <td>CompanyA</td>
-                <td>PositionB</td>
-                <td>2</td>
+              <tr v-for="information in informations" :key="information">
+                <th></th>
+                <td>{{ information.studentId }}</td>
+                <td>{{ information.fName }} {{ information.lName}}</td>
+                <td>{{ information.email }}</td>
+                <td>{{ information.phoneNumber }}</td>
+                <td>{{ information.companyName }}</td>
+                <td>{{ information.position }}</td>
+                <td>{{ information.longTerm }}</td>
+                <td>{{ information.durationForm }}</td>
+                <td>{{ information.durationTo }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+    <!-- <pre>{{ informations }}</pre> -->
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from '~/components/Footer.vue';
-export default { components: { Footer } }
+export default { components: { Footer },
+async asyncData({ $axios  }) {
+  // const ip = await $axios.$get(`${$config.baseURL}/company/getAllCompanyStaff`)
+  // const ip = await $axios.$get($config.baseURL +"/company/getAllCompanyStaff")
+  // return { ip }
+  const informations = await $axios.$get('/users/getAllconfirmation')
+  return { informations }
+}
+}
 </script>
 
 <style></style>
