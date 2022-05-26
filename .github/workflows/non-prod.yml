@@ -64,6 +64,7 @@ jobs:
         uses: JimCronqvist/action-ssh@0.1.1
         with:
           hosts: ${{ secrets.APP_HOST }}
+          username: ${{ secrets.USERNAME }}
           privateKey: ${{ secrets.PRIVATE_KEY }}
           command: |
             docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
