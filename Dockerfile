@@ -1,16 +1,17 @@
 #Build Stage
-FROM node:14-alpine AS builder
+FROM node:14-alpine 
 WORKDIR /usr/src/app
+
 COPY package.json ./
 RUN npm install
+
 COPY . .
 COPY .env .
+
 RUN npm run build
 
-#Production Stage
-FROM nginx:1.21.3-alpine
-WORKDIR /usr/share/nginx/html
-# RUN rm -rf ./*
-COPY  ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /usr/src/app/.nuxt ./
-ENTRYPOINT ["nginx","-g","daemon off;"]
+EXPOSE 3000
+
+ENV NUXT_HOST=0.0.0.0
+
+CMD [ "npm", "start" ]
