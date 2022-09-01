@@ -8,9 +8,9 @@
       <div class="lg:flex mx-12 hidden">
         <ul class="menu menu-horizontal space-x-6 text-white">
           <li><a>หน้าหลัก</a></li>
+          <li><a>จัดการข้อมูล</a></li>
           <li><a>ข่าวสาร</a></li>
-          <li><a>ฟอร์ม</a></li>
-          <li><a>เกี่ยวกับเรา</a></li>
+          <li><a>ดูผู้สมัครฝึกงาน</a></li>
         </ul>
       </div>
 
@@ -33,9 +33,9 @@
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li><a>หน้าหลัก</a></li>
+          <li><a>จัดการข้อมูล</a></li>
           <li><a>ข่าวสาร</a></li>
-          <li><a>ฟอร์ม</a></li>
-          <li><a>เกี่ยวกับเรา</a></li>
+          <li><a>ดูผู้สมัครฝึกงาน</a></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
           <li><a>ออกจากระบบ</a></li>
         </ul>

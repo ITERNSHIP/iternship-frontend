@@ -3,118 +3,32 @@
     <StudentNavBar />
     <div class="container mx-auto px-6 mb-14">
       <div class="mt-16">
-        <p class="font-bold text-6xl">Home</p>
-        <div class="mt-10">
-          <p class="text-3xl font-normal">IT companies for Internship</p>
+        <p class="font-bold lg:text-6xl text-3xl md:text-4xl">หน้าหลัก</p>
+        <div class="mt-5 md:mt-10">
+          <p class="text-lg font-normal md:text-2xl">บริษัทที่เปิดรับนักศึกษาฝึกงาน</p>
         </div>
       </div>
 
-      <div class="mt-10 grid grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div class="p-2">
           <div
             class="card bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
           >
-            <figure>
+            <figure class="h-full w-full">
               <img
                 src="https://api.lorem.space/image/shoes?w=400&h=225"
                 alt="Shoes"
               />
             </figure>
-            <div class="card-body">
-              <h2 class="card-title">Company name</h2>
-              <progress class="progress w-full" value="0" max="100"></progress>
-              <progress class="progress w-full" value="10" max="100"></progress>
-              <progress class="progress w-full" value="40" max="100"></progress>
-              <progress class="progress w-full" value="70" max="100"></progress>
-              <progress
-                class="progress w-full"
-                value="100"
-                max="100"
-              ></progress>
-              <div class="card-actions justify-end mt-2">
-                <button class="btn btn-primary">View</button>
-              </div>
+            <div class="card-body bg-black text-white">
+              <h2 class="card-title">ชื่อบริษัท</h2>
+              <p>เปิดรับนักศึกษาฝึกงาน</p>
+              
             </div>
           </div>
         </div>
 
-        <div class="p-2">
-          <div class="card bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105">
-            <figure>
-              <img
-                src="https://api.lorem.space/image/shoes?w=400&h=225"
-                alt="Shoes"
-              />
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title">Company name</h2>
-              <progress class="progress w-full" value="0" max="100"></progress>
-              <progress class="progress w-full" value="10" max="100"></progress>
-              <progress class="progress w-full" value="40" max="100"></progress>
-              <progress class="progress w-full" value="70" max="100"></progress>
-              <progress
-                class="progress w-full"
-                value="100"
-                max="100"
-              ></progress>
-              <div class="card-actions justify-end mt-2">
-                <button class="btn btn-primary">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="p-2">
-          <div class="card bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105">
-            <figure>
-              <img
-                src="https://api.lorem.space/image/shoes?w=400&h=225"
-                alt="Shoes"
-              />
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title">Company name</h2>
-              <progress class="progress w-full" value="0" max="100"></progress>
-              <progress class="progress w-full" value="10" max="100"></progress>
-              <progress class="progress w-full" value="40" max="100"></progress>
-              <progress class="progress w-full" value="70" max="100"></progress>
-              <progress
-                class="progress w-full"
-                value="100"
-                max="100"
-              ></progress>
-              <div class="card-actions justify-end mt-2">
-                <button class="btn btn-primary">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-2">
-          <div class="card bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105">
-            <figure>
-              <img
-                src="https://api.lorem.space/image/shoes?w=400&h=225"
-                alt="Shoes"
-              />
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title">Company name</h2>
-              <progress class="progress w-full" value="0" max="100"></progress>
-              <progress class="progress w-full" value="10" max="100"></progress>
-              <progress class="progress w-full" value="40" max="100"></progress>
-              <progress class="progress w-full" value="70" max="100"></progress>
-              <progress
-                class="progress w-full"
-                value="100"
-                max="100"
-              ></progress>
-              <div class="card-actions justify-end mt-2">
-                <button class="btn btn-primary">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <Footer />
@@ -125,4 +39,8 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+  p{
+    font-family: 'Prompt', sans-serif !important;
+  }
+  </style>
