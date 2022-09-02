@@ -1,6 +1,6 @@
 <template>
   <div>
-    <StudentNavBar />
+    <HomeNavbar />
     <div class="container mx-auto px-6 pt-14">
       <div class="flex flex-row justify-center md:justify-between">
         <div class="lg:mt-24">
@@ -28,8 +28,10 @@
 </template>
 
 <script>
+import HomeNavbar from '~/components/HomeNavbar.vue';
 export default {
-  name: 'IndexPage',
+    name: "IndexPage",
+    components: { HomeNavbar }
 }
 </script>
 

@@ -16,11 +16,7 @@
             >
               ดูข่าวสาร
             </p>
-            <p
-              class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-            >
-              ดูรายละเอียดของข่าว
-            </p>
+
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >หัวข้อข่าว</label
@@ -64,11 +60,7 @@
             >
               เพิ่มข่าวสาร
             </p>
-            <p
-              class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-            >
-              เพิ่มรายละเอียดของข่าว
-            </p>
+
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >หัวข้อข่าว</label
@@ -96,7 +88,7 @@
     </section>
 
     <section id="edit" v-if="edit">
-        <label
+      <label
         for="modal-edit"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
         >แก้ไข</label
@@ -111,11 +103,7 @@
             >
               แก้ไขข่าวสาร
             </p>
-            <p
-              class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-            >
-            แก้ไขรายละเอียดของข่าว
-            </p>
+
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >หัวข้อข่าว</label
@@ -146,17 +134,17 @@
 
 <script>
 export default {
-    props:{
-        view:{
-            type: Boolean
-        },
-        add:{
-            type: Boolean
-        },
-        edit:{
-            type: Boolean
-        },
-    }
+  props: {
+    view: {
+      type: Boolean,
+    },
+    add: {
+      type: Boolean,
+    },
+    edit: {
+      type: Boolean,
+    },
+  },
 }
 </script>
 

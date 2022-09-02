@@ -2,15 +2,9 @@
   <div>
     <CompanyNavBar />
     <div class="container mx-auto px-6 mb-14">
-      <div class="mt-16">
-        <p class="font-bold lg:text-4xl text-2xl md:text-3xl">ข่าวสาร</p>
-        <div class="mt-5 md:mt-10 flex flex-row justify-between">
-          <p class="text-base font-normal md:text-xl self-center">
-            จัดการข่าวประชาสัมพันธ์
-          </p>
-          <!-- <button class="btn btn-info w-20 md:w-32 text-white">เพิ่ม</button> -->
-          <NewsModal :add="true" />
-        </div>
+      <div class="mt-16 flex flex-row justify-between">
+        <p class="font-bold lg:text-4xl text-2xl md:text-3xl">จัดการข่าวประชาสัมพันธ์</p>
+        <NewsModal :add="true" />
       </div>
 
       <section>

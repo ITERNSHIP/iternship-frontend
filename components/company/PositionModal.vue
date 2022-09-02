@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="view" v-if="view" @click="check">
+    <section id="view" v-if="view">
       <label
         for="modal-view"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
@@ -15,13 +15,9 @@
               <h1
                 class="text-gray-800 text-2xl font-lg font-bold tracking-normal leading-tight mb-4"
               >
-                ดูข้อมูล
+              ดูข้อมูลตำแหน่งที่บริษัทของคุณ
               </h1>
-              <p
-                class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-              >
-                ดูข้อมูลตำแหน่งที่บริษัทของคุณเปิดรับ
-              </p>
+            
               <label
                 class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
                 >ชื่อตำแหน่ง</label
@@ -90,7 +86,7 @@
       </div>
     </section>
 
-    <section id="add" v-if="add" @click="check">
+    <section id="add" v-if="add">
       <label
         for="modal-add"
         class="btn modal-button btn-info text-white w-20 md:w-32"
@@ -105,13 +101,9 @@
               <h1
                 class="text-gray-800 text-2xl font-lg font-bold tracking-normal leading-tight mb-4"
               >
-                เพิ่มข้อมูล
+                เพิ่มข้อมูลตำแหน่งที่บริษัทของคุณ
               </h1>
-              <p
-                class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-              >
-                เพิ่มตำแหน่งที่บริษัทของคุณเปิดรับ
-              </p>
+              
               <label
                 class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
                 >ชื่อตำแหน่ง</label
@@ -175,7 +167,7 @@
       </div>
     </section>
 
-    <section id="edit" v-if="edit" @click="check">
+    <section id="edit" v-if="edit">
       <label
         for="modal-edit"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
@@ -190,13 +182,9 @@
               <h1
                 class="text-gray-800 text-2xl font-lg font-bold tracking-normal leading-tight mb-4"
               >
-                แก้ไขข้อมูล
+                แก้ไขข้อมูลตำแหน่งที่บริษัทของคุณ
               </h1>
-              <p
-                class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-              >
-                แก้ไขตำแหน่งที่บริษัทของคุณเปิดรับ
-              </p>
+              
               <label
                 class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
                 >ชื่อตำแหน่ง</label
@@ -281,11 +269,7 @@ export default {
         type: Boolean,
     }
   },
-  methods:{
-    check(){
-        console.log(this.positionShow);
-    }
-  }
+  
 }
 </script>
 

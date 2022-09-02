@@ -3,12 +3,9 @@
     <StudentNavBar />
     <div class="container mx-auto px-6 mb-14">
       <div class="mt-16">
-        <p class="font-bold lg:text-6xl text-3xl md:text-4xl">ข่าวสาร</p>
-        <div class="mt-5 md:mt-10">
-          <p class="text-lg font-normal md:text-2xl">
-            ข่าวสารต่างๆ เกี่ยวกับบริษัท
-          </p>
-        </div>
+        <p class="font-bold lg:text-6xl text-3xl md:text-4xl">
+          ข่าวสารต่างๆ เกี่ยวกับบริษัท
+        </p>
       </div>
 
       <section class="cursor-pointer">

@@ -15,13 +15,8 @@
               <h1
                 class="text-gray-800 text-2xl font-lg font-bold tracking-normal leading-tight mb-4"
               >
-                เพิ่มข้อมูล
+                เพิ่มข้อมูลความเป็นมาของบริษัท
               </h1>
-              <p
-                class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-              >
-                เพิ่มความเป็นมาของบริษัท
-              </p>
 
               <img
                 src="https://picsum.photos/150/150"
@@ -75,13 +70,8 @@
               <h1
                 class="text-gray-800 text-2xl font-lg font-bold tracking-normal leading-tight mb-4"
               >
-                แก้ไขข้อมูล
+                แก้ไขข้อมูลความเป็นมาของบริษัท
               </h1>
-              <p
-                class="text-gray-800 font-lg font-semibold tracking-normal leading-tight mb-4"
-              >
-              แก้ไขความเป็นมาของบริษัท
-              </p>
 
               <img
                 src="https://picsum.photos/150/150"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <StudentNavBar />
-    <div class="container mx-auto px-6 mb-14">
+    <div class="container mx-auto px-16 mb-14">
       <section>
         <div class="mt-16 md:flex md:gap-x-24">
           <img
@@ -50,6 +50,8 @@
 
 <script>
 import StudentNavBar from '@/components/StudentNavBar'
+
+
 export default {
   components: { StudentNavBar },
 }

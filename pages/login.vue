@@ -5,22 +5,22 @@
     <img src="@/static/logo.png" alt="##" class="w-32 md:w-auto" />
     <div class="flex flex-row gap-2">
       <div
-        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-blue-blue transition-colors cursor-pointer"
-        :class="[loginRole == 'STUDENT' ? 'bg-blue-blue' : 'bg-white']"
+        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-white transition-colors cursor-pointer"
+        :class="[loginRole == 'STUDENT' ? 'bg-white' : 'bg-blue-blue']"
         @click="onRoleClick('STUDENT')"
       >
         นักศึกษา
       </div>
       <div
-        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-blue-blue transition-colors cursor-pointer"
-        :class="[loginRole == 'COMPANY' ? 'bg-blue-blue' : 'bg-white']"
+        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-white transition-colors cursor-pointer"
+        :class="[loginRole == 'COMPANY' ? 'bg-white' : 'bg-blue-blue']"
         @click="onRoleClick('COMPANY')"
       >
         บริษัท
       </div>
       <div
-        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-blue-blue transition-colors cursor-pointer"
-        :class="[loginRole == 'STAFF' ? 'bg-blue-blue' : 'bg-white']"
+        class="h-10 w-24 md:w-32 self-start p-2 rounded-t-md text-center hover:bg-white transition-colors cursor-pointer"
+        :class="[loginRole == 'STAFF' ? 'bg-white' : 'bg-blue-blue']"
         @click="onRoleClick('STAFF')"
       >
         เจ้าหน้าที่
@@ -145,7 +145,7 @@
       </div>
 
       <div class="mt-10">
-        <form action="#">
+        <form action="#" @submit.prevent="companyLogin">
           <div class="flex flex-col mb-6">
             <label
               for="email"
@@ -155,6 +155,7 @@
             <div class="relative">
               <input
                 v-model.trim.lazy="$v.companyEmail.$model"
+                v-model="login.username"
                 id="email"
                 type="email"
                 name="email"
@@ -183,6 +184,8 @@
             >
             <div class="relative">
               <input
+                v-model.trim.lazy="$v.companyPass.$model"
+                v-model="login.password"
                 id="password"
                 type="password"
                 name="password"
@@ -403,6 +406,12 @@ export default {
       // } catch (err) {
       //   console.log(err)
       // }
+    },
+    async companyLogin() {
+      let response = await this.$axios.$post('/company/login', this.login, {
+        withCredentials: true,
+      })
+      console.log(response);
     },
   },
 
