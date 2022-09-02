@@ -99,6 +99,11 @@ export default {
     PositionModal,
     HistoryModal,
   },
+  data() {
+    return {
+        
+    }
+  },
 }
 </script>
 

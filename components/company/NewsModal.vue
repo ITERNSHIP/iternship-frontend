@@ -66,18 +66,26 @@
               >หัวข้อข่าว</label
             >
             <input
-              class="mb-5 mt-2 text-gray-600 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+              v-model.trim.lazy="$v.newsHeader.$model"
+              v-model = "news.header"
+              class="mt-2 text-gray-600 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
               placeholder="หัวข้อข่าว"
             />
 
+            <p class="text-error mb-5" v-if="!$v.newsHeader.required && $v.newsHeader.$dirty">กรุณาระบุหัวข้อข่าว</p>
+
             <label
-              class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
+              class="text-gray-800 text-sm font-normal leading-tight tracking-normal mt-5"
               >รายละเอียดของข่าว</label
             >
             <textarea
-              class="mb-3 mt-2 text-gray-600 min-h-[400px] font-normal w-full h-10 pl-3 text-sm border-gray-300 rounded border"
+              v-model.trim.lazy="$v.newsDetail.$model"
+              v-model="news.detail"
+              class="mt-2 text-gray-600 min-h-[400px] font-normal w-full h-10 pl-3 text-sm border-gray-300 rounded border"
               placeholder="พิมพ์รายละเอียดของข่าวที่นี่"
             />
+
+            <p class="text-error mb-5" v-if="!$v.newsDetail.required && $v.newsDetail.$dirty">กรุณาระบุรายละเอียดของข่าว</p>
           </div>
           <div class="modal-action flex items-center justify-end w-full">
             <label class="btn btn-info text-white">เพิ่ม</label>
@@ -133,6 +141,7 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
 export default {
   props: {
     view: {
@@ -144,6 +153,27 @@ export default {
     edit: {
       type: Boolean,
     },
+  },
+
+  data() {
+    return {
+      newsHeader: null,
+      newsDetail: null,
+      news:{
+        header: "",
+        detail: "",
+      },
+    }
+  },
+
+  validations: {
+      newsHeader: {
+        required,
+      },
+      newsDetail: {
+        required,
+      },
+    
   },
 }
 </script>
