@@ -7,15 +7,15 @@
       </div>
       <div class="lg:flex mx-12 hidden">
         <ul class="menu menu-horizontal space-x-6 text-white">
-          <li><a>หน้าหลัก</a></li>
-          <li><a>ข่าวสาร</a></li>
-          <li><a>ฟอร์ม</a></li>
+          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
           <li><a>เกี่ยวกับเรา</a></li>
         </ul>
       </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-6">
-        <button class="btn btn-info text-white w-32">เข้าสู่ระบบ</button>
+        <nuxt-link to="/login" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
         <!-- <button class="btn text-white w-32">ออกจากระบบ</button> -->
       </div>
     </div>
@@ -32,9 +32,9 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><a>หน้าหลัก</a></li>
-          <li><a>ข่าวสาร</a></li>
-          <li><a>ฟอร์ม</a></li>
+          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
           <li><a>เกี่ยวกับเรา</a></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
           <li><a>ออกจากระบบ</a></li>

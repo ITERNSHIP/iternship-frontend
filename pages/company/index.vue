@@ -7,26 +7,40 @@
       </div>
 
       <div class="mt-5 md:mt-10">
-        <div class="flex flex-col lg:flex-row gap-3 ">
-          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
-            <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg ">
-              <p class="p-6 text-white text-xl lg:text-4xl font-medium">จัดการข้อมูลบริษัท</p>
+        <div class="flex flex-col lg:flex-row gap-3">
+          <nuxt-link
+            to="/company/companyAccountManagement"
+            class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black"
+          >
+            <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">
+                จัดการข้อมูลบริษัท
+              </p>
             </div>
             <div class="bg-black-gray h-20 w-auto rounded-b-lg">
               <p class="p-6 text-white">จัดการข้อมูลบริษัทของคุณ</p>
             </div>
-          </div>
-          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+          </nuxt-link>
+          <nuxt-link
+            to="/company/companyNewsManagement"
+            class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black"
+          >
             <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
-              <p class="p-6 text-white text-xl lg:text-4xl font-medium">ข่าวสารของบริษัท</p>
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">
+                ข่าวสารของบริษัท
+              </p>
             </div>
             <div class="bg-black-gray h-20 w-auto rounded-b-lg">
               <p class="p-6 text-white">จัดการข่าวสารบริษัทของคุณ</p>
             </div>
-          </div>
-          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+          </nuxt-link>
+          <div
+            class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black"
+          >
             <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
-              <p class="p-6 text-white text-xl lg:text-4xl font-medium">ดูผู้สมัครฝึกงาน</p>
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">
+                ดูผู้สมัครฝึกงาน
+              </p>
             </div>
             <div class="bg-black-gray h-20 w-auto rounded-b-lg">
               <p class="p-6 text-white">ดูผู้ที่สนใจฝึกงานกับบริษัทของคุณ</p>
@@ -45,7 +59,7 @@ import Footer from '~/components/Footer.vue'
 export default {
   components: {
     CompanyNavBar,
-    Footer
+    Footer,
   },
 }
 </script>
