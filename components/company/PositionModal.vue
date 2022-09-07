@@ -2,12 +2,12 @@
   <div>
     <section id="view" v-if="view">
       <label
-        for="modal-view"
+        :for="Position.recruitId"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
         >ดู</label
       >
       <!-- Put this part before </body> tag -->
-      <input type="checkbox" id="modal-view" class="modal-toggle" />
+      <input type="checkbox" :id="Position.recruitId" class="modal-toggle" />
       <div class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
           <div class="container">
@@ -23,7 +23,7 @@
                 >ชื่อตำแหน่ง</label
               >
               <input
-                v-model="position.name"
+                v-model="Position.title"
                 class="mb-5 mt-2 text-black font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -34,7 +34,7 @@
                 >รายละเอียดของงาน</label
               >
               <textarea
-                v-model="position.detail"
+                v-model="Position.jobDetail"
                 class="mb-5 mt-2 text-black min-h-[100px] font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -45,7 +45,7 @@
                 >สวัสดิการ</label
               >
               <textarea
-                v-model="position.benefit"
+                v-model="Position.welfare"
                 class="mb-5 mt-2 text-black min-h-[100px] font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -56,7 +56,7 @@
                 >สถานที่ปฎิบัติงาน</label
               >
               <textarea
-                v-model="position.location"
+                v-model="Position.location"
                 class="mb-5 mt-2 text-black min-h-[100px] font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -67,7 +67,7 @@
                 >ติดต่อ</label
               >
               <textarea
-                v-model="position.contact"
+                v-model="Position.contact"
                 class="mb-5 mt-2 text-black min-h-[100px] font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -78,7 +78,7 @@
                 >ระยะเวลาในการฝึกงาน (เดือน)</label
               >
               <input
-                v-model="position.duration"
+                v-model="Position.longTerm"
                 class="mb-5 mt-2 text-black font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
                 readonly
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="modal-action">
-            <label for="modal-view" class="btn">กลับ</label>
+            <label :for="Position.recruitId" class="btn">กลับ</label>
           </div>
         </div>
       </div>
@@ -116,17 +116,17 @@
               >
               <input
                 v-model.trim.lazy="$v.positionName.$model"
-                v-model="position.name"
+                v-model="position.title"
                 class="mt-2 mb-5 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
 
-              <p
+              <!-- <p
                 class="text-error mb-5"
                 v-if="!$v.positionName.required && $v.positionName.$dirty"
               >
                 กรุณาระบุชื่อตำแหน่ง
-              </p>
+              </p> -->
 
               <label
                 class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
@@ -134,7 +134,7 @@
               >
               <textarea
                 v-model.trim.lazy="$v.positionDetail.$model"
-                v-model="position.detail"
+                v-model="position.jobDetail"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -152,7 +152,7 @@
               >
               <textarea
                 v-model.trim.lazy="$v.positionBenefit.$model"
-                v-model="position.benefit"
+                v-model="position.welfare"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -208,7 +208,7 @@
               >
               <input
                 v-model.trim.lazy="$v.positionDuration.$model"
-                v-model="position.duration"
+                v-model="position.longTerm"
                 class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -224,7 +224,9 @@
             </div>
           </div>
           <div class="modal-action flex items-center justify-end w-full">
-            <label class="btn btn-info text-white">เพิ่ม</label>
+            <label class="btn btn-info text-white" @click="clickAddPosition"
+              >เพิ่ม</label
+            >
             <label for="modal-add" class="btn">กลับ</label>
           </div>
         </div>
@@ -233,12 +235,16 @@
 
     <section id="edit" v-if="edit">
       <label
-        for="modal-edit"
+        :for="`${editPosition.recruitId}-edit`"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
         >แก้ไข</label
       >
       <!-- Put this part before </body> tag -->
-      <input type="checkbox" id="modal-edit" class="modal-toggle" />
+      <input
+        type="checkbox"
+        :id="`${editPosition.recruitId}-edit`"
+        class="modal-toggle"
+      />
       <div class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
           <div class="container">
@@ -254,6 +260,7 @@
                 >ชื่อตำแหน่ง</label
               >
               <input
+                v-model="editPosition.title"
                 class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -263,6 +270,7 @@
                 >รายละเอียดของงาน</label
               >
               <textarea
+                v-model="editPosition.jobDetail"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -272,6 +280,7 @@
                 >สวัสดิการ</label
               >
               <textarea
+                v-model="editPosition.welfare"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -281,6 +290,7 @@
                 >สถานที่ปฎิบัติงาน</label
               >
               <textarea
+                v-model="editPosition.location"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -290,6 +300,7 @@
                 >ติดต่อ</label
               >
               <textarea
+                v-model="editPosition.contact"
                 class="mb-5 mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
@@ -299,14 +310,19 @@
                 >ระยะเวลาในการฝึกงาน (เดือน)</label
               >
               <input
+                v-model="editPosition.longTerm"
                 class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                 placeholder=""
               />
             </div>
           </div>
           <div class="modal-action flex items-center justify-end w-full">
-            <label class="btn btn-info text-white">แก้ไข</label>
-            <label for="modal-edit" class="btn">กลับ</label>
+            <label class="btn btn-info text-white" @click="clickEditPosition"
+              >แก้ไข</label
+            >
+            <label :for="`${editPosition.recruitId}-edit`" class="btn"
+              >กลับ</label
+            >
           </div>
         </div>
       </div>
@@ -320,6 +336,7 @@ export default {
   data() {
     return {}
   },
+
   props: {
     positionShow: {
       type: String,
@@ -333,24 +350,33 @@ export default {
     view: {
       type: Boolean,
     },
+    Position: {
+      type: Object,
+    },
+    editPosition: {
+      type: Object,
+    },
   },
 
   data() {
     return {
-      positionName: null,
       positionDetail: null,
       positionBenefit: null,
       positionLocation: null,
       positionContact: null,
       positionDuration: null,
       position: {
-        name: '',
-        detail: '',
-        benefit: '',
+        title: '',
+        jobDetail: '',
+        welfare: '',
         location: '',
         contact: '',
-        duration: '',
+        longTerm: '',
+        company: {
+          companyId: this.$store.state.company.companyId,
+        },
       },
+      getOnePosition: {},
     }
   },
 
@@ -374,6 +400,49 @@ export default {
       required,
     },
   },
+
+  methods: {
+    clickAddPosition() {
+      if (this.$v.$invalid) {
+        this.$v.$touch()
+        alert('กรุณากรอกข้อมูลให้ครบ')
+        return
+      }
+      this.$emit('clickAddPosition', this.position)
+      // this.$axios
+      //   .post('/company/createrecruit', this.position)
+      //   .then((res) => {
+      //     console.log(res)
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
+    },
+    clickEditPosition() {
+      let editPosition = {
+        title: this.editPosition.title,
+        jobDetail: this.editPosition.jobDetail,
+        welfare: this.editPosition.welfare,
+        location: this.editPosition.location,
+        contact: this.editPosition.contact,
+        longTerm: this.editPosition.longTerm,
+      }
+      this.$emit('clickEditPosition', {
+        editPosition,
+        recruitId: this.editPosition.recruitId,
+      })
+    },
+  },
+
+  // async mounted() {
+  //   let Position = await this.$axios.get(`/company/${this.recruitId}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+  //     },
+  //   })
+  //   this.position = Position
+  //   console.log("🚀 ~ file: PositionModal.vue ~ line 414 ~ mounted ~ Position", Position)
+  // },
 }
 </script>
 

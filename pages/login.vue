@@ -155,7 +155,7 @@
             <div class="relative">
               <input
                 v-model.trim.lazy="$v.companyEmail.$model"
-                v-model="login.username"
+                v-model="login.email"
                 id="email"
                 type="email"
                 name="email"
@@ -411,7 +411,16 @@ export default {
       let response = await this.$axios.$post('/company/login', this.login, {
         withCredentials: true,
       })
-      console.log(response);
+      let { companyId, companyName } = response
+      localStorage.setItem('companyId', companyId)
+      localStorage.setItem('companyName', companyName)
+      // this.$store.dispatch('company/setCompanyId', companyId)
+      // this.$store.dispatch('company/setCompanyName', companyName)
+      console.log(localStorage.getItem("companyId"))
+      console.log(localStorage.getItem("companyName"))
+      alert('เข้าสู่ระบบสำเร็จ')
+      console.log("Login success!!");
+      this.$router.push('/company')
     },
   },
 

@@ -15,8 +15,8 @@
       </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-6">
-        <nuxt-link to="/login" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
-        <!-- <button class="btn text-white w-32">ออกจากระบบ</button> -->
+        <nuxt-link to="/login" class="btn btn-info text-white w-32" v-if="!isLogin">เข้าสู่ระบบ</nuxt-link>
+        <button class="btn text-white w-32">ออกจากระบบ</button>
       </div>
     </div>
 
@@ -44,7 +44,22 @@
 </template>
 
 <script scoped>
-export default {}
+export default {
+  
+  data() {
+    return {
+      isLogin: false,
+    }
+  }, 
+  mounted() {
+    let companyId = localStorage.getItem('companyId')
+    if (companyId) {
+      this.isLogin = true
+    }
+  },
+}
+ 
+
 </script>
 
 <style></style>

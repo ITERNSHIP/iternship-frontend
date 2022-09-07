@@ -90,4 +90,7 @@ export default {
       BaseURL: process.env.BASE_URL
     }
   },
+
+  ssr: false,
+  mode: 'spa',
 }
