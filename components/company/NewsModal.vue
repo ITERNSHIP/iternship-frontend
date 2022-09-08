@@ -22,7 +22,7 @@
               >หัวข้อข่าว</label
             >
             <input
-            v-model="viewNew.newstitle"
+            v-model="viewNew.title"
               class="mb-5 mt-2 text-gray-600 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
               placeholder=""
               readonly
@@ -129,7 +129,7 @@
               >หัวข้อข่าว</label
             >
             <input
-            v-model="editNew.newstitle"
+            v-model="editNew.title"
               class="mb-5 mt-2 text-gray-600 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
               placeholder="หัวข้อข่าว"
             />
@@ -215,7 +215,7 @@ export default {
 
     clickEditNew(){
       let sentEditNew = {
-        newstitle: this.editNew.newstitle,
+        newstitle: this.editNew.title,
         newsDetail: this.editNew.newsDetail,
         companyName: this.$store.state.company.companyName,
       }

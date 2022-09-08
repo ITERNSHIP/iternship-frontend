@@ -6,7 +6,7 @@
         <p class="font-bold lg:text-4xl text-2xl md:text-3xl">
           จัดการข้อมูลบริษัทของคุณ
         </p>
-        <HistoryModal :add="true" />
+        <HistoryModal :add="true" v-if="companyResult.companyDetail == null" />
       </div>
 
       <!-- <div>
@@ -17,6 +17,10 @@
         </div>
       </div> -->
 
+      <!-- <div class="mt-5 md:mt-10 rounded-lg bg-slate-200 h-[200px] w-auto justify-items-center text-center " v-if="companyResult.companyDetail == null">
+          ไม่มีข้อมูล
+      </div> -->
+
       <div
         class="mt-5 md:mt-10 rounded-lg bg-slate-200 h-auto w-auto justify-items-center"
       >
@@ -24,23 +28,14 @@
           <img
             src="https://picsum.photos/400/400"
             alt="//"
-            class="p-5 block ml-auto mr-auto w-2/4 rounded-lg"
+            class="p-5 block ml-auto mr-auto w-2/4 rounded-lg lg:w-1/4 lg:ml-0 lg:mr-0"
           />
           <div>
             <p class="p-5 text-lg font-normal md:text-2xl md:font-bold">
               ความเป็นมาของบริษัท
             </p>
             <p class="p-5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              {{ companyResult.companyDetail }}
             </p>
           </div>
         </div>
@@ -48,7 +43,7 @@
         <!-- <button class="btn btn-primary w-20 md:w-32 text-white m-3">
             แก้ไข
           </button> -->
-        <HistoryModal :edit="true" class="p-5 flex justify-end" />
+        <HistoryModal :edit="true" :editHistory="companyResult" @clickEditHistory="editHistory" class="p-5 flex justify-end" />
       </div>
 
       <div class="mt-10 bg-black h-1 w-auto rounded-lg"></div>
@@ -117,6 +112,7 @@ export default {
       company: {
         companyId: this.$store.state.company.companyId,
       },
+      companyResult: {},
     }
   },
 
@@ -186,11 +182,39 @@ export default {
       this.$router.push('/company/companyAccountManagement')
       location.reload()
     },
+
+    async editHistory(value){
+      console.log(value)
+      await this.$axios.$post(`/company/updateCompanyDetailById/${localStorage.getItem("companyId")}`, value,{
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      })
+      .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      alert('แก้ไขประวัติสำเร็จ')
+      this.$router.push('/company/companyAccountManagement')
+      location.reload()
+      console.log("🚀 ~ file: companyAccountManagement.vue ~ line 197 ~ editHistory ~ e", e)
+    }
+
+
+
   },
   async mounted() {
-    let positionsResult = await this.$axios.$get('/company/getAllRecruit', {
+    const accessToken = this.$cookiz.get('jwt')
+    const companyId = localStorage.getItem('companyId')
+    console.log("🚀 ~ file: companyAccountManagement.vue ~ line 185 ~ mounted ~ accessToken", accessToken)
+    let positionsResult = await this.$axios.$get('company/findRecruitById', {
+      params:{
+        companyId: companyId
+      },
       headers: {
-        Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
     this.positions = positionsResult
@@ -202,6 +226,14 @@ export default {
       '🚀 ~ file: companyAccountManagement.vue ~ line 173 ~ mounted ~ this.positions',
       this.positions
     )
+
+    let companyResult = await this.$axios.$get(`/company/getCompanyStaffById/${companyId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    console.log("🚀 ~ file: companyAccountManagement.vue ~ line 212 ~ mounted ~ companyResult", companyResult)
+    this.companyResult = companyResult
   },
 }
 </script>

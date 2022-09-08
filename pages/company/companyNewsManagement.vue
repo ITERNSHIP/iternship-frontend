@@ -24,7 +24,7 @@
           v-for="oneNews in allNews" :key="oneNews.newsId"
           class="mt-2 p-4 h-auto lg:h-16 w-auto border-2 border-gray-400 rounded-lg flex flex-col md:flex-row md:justify-between"
         >
-          <p class="text-blue-blue md:pt-2 lg:pt-0">{{ oneNews.newstitle }}</p>
+          <p class="text-blue-blue md:pt-2 lg:pt-0">{{ oneNews.title }}</p>
           <div
             class="flex flex-col gap-2 md:flex-row md:items-center mt-3 md:mt-0"
           >
@@ -128,7 +128,10 @@ export default {
   },
 
   async mounted() {
-    let newsResult = await this.$axios.$get('/company/getAllNews' ,{
+    let newsResult = await this.$axios.$get('/company/findAllNewsbyCompany/' ,{
+      params:{
+        companyName: this.$store.state.company.companyName
+      },
       headers:{
         Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
       }

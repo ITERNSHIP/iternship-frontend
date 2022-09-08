@@ -57,12 +57,16 @@
 
     <section id="edit" v-if="edit">
       <label
-        for="modal-history-edit"
+        :for="`${editHistory.companyId}-edit`"
         class="btn modal-button btn-primary w-full md:w-20 py-1"
         >แก้ไข</label
       >
       <!-- Put this part before </body> tag -->
-      <input type="checkbox" id="modal-history-edit" class="modal-toggle" />
+      <input
+        type="checkbox"
+        :id="`${ editHistory.companyId }-edit`"
+        class="modal-toggle"
+      />
       <div class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
           <div class="container">
@@ -97,14 +101,17 @@
                 >ความเป็นมาของบริษัท</label
               >
               <textarea
+                v-model="editHistory.companyDetail"
                 class="mb-5 mt-2 text-black min-h-[200px] font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-100"
                 placeholder=""
               />
             </div>
           </div>
           <div class="modal-action flex items-center justify-end w-full">
-            <label class="btn btn-info text-white">แก้ไข</label>
-            <label for="modal-history-edit" class="btn">ยกเลิก</label>
+            <label class="btn btn-info text-white" @click="clickEditHistory">แก้ไข</label>
+            <label :for="`${ editHistory.companyId }-edit`" class="btn"
+              >ยกเลิก</label
+            >
           </div>
         </div>
       </div>
@@ -114,14 +121,29 @@
 
 <script>
 export default {
-    props:{
-        add:{
-            type: Boolean
-        },
-        edit:{
-            type: Boolean
-        }
-    }
+  props: {
+    add: {
+      type: Boolean,
+    },
+    edit: {
+      type: Boolean,
+    },
+    editHistory: {
+      type: Object,
+    },
+  },
+
+  methods: {
+    clickEditHistory() {
+      let c = {
+        companyDetail: this.editHistory.companyDetail,
+      };
+      console.log("🚀 ~ file: HistoryModal.vue ~ line 141 ~ clickEditHistory ~ c", c)
+      this.$emit("clickEditHistory", c);
+      
+
+    },
+  },
 }
 </script>
 
