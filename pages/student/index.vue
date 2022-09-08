@@ -10,7 +10,7 @@
       </div>
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <div class="p-2">
+        <nuxt-link :to="`/student/company/${ company.companyId }`" class="p-2" v-for="company in companyResults" :key="company.companyId">
           <div
             class="card bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
           >
@@ -21,12 +21,12 @@
               />
             </figure>
             <div class="card-body bg-black text-white">
-              <h2 class="card-title">ชื่อบริษัท</h2>
+              <h2 class="card-title">{{ company.companyName }}</h2>
               <p>เปิดรับนักศึกษาฝึกงาน</p>
               
             </div>
           </div>
-        </div>
+        </nuxt-link>
 
 
       </div>
@@ -36,7 +36,26 @@
 </template>
 
 <script>
-export default {}
+export default {
+
+  data(){
+    return {
+      companyResults: [],
+    }
+  },
+  
+  async mounted() {
+    const accessToken = this.$cookiz.get('jwt')
+    let allCompanyResults = await this.$axios.$get('/users/getAllCompany', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    this.companyResults = allCompanyResults
+    
+    
+  },
+}
 </script>
 
 <style>

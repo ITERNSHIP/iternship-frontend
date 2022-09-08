@@ -16,7 +16,7 @@
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-6">
         <nuxt-link to="/login" class="btn btn-info text-white w-32" v-if="!isLogin">เข้าสู่ระบบ</nuxt-link>
-        <button class="btn text-white w-32">ออกจากระบบ</button>
+        <button class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
           <li><nuxt-link to="/company/companyNewsManagement">ข่าวสาร</nuxt-link></li>
           <li><a>ดูผู้สมัครฝึกงาน</a></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
-          <li><a>ออกจากระบบ</a></li>
+          <li><a @click="logout">ออกจากระบบ</a></li>
         </ul>
       </div>
   </div>
@@ -51,6 +51,15 @@ export default {
       isLogin: false,
     }
   }, 
+  methods:{
+    logout(){
+      this.$cookiz.remove('jwt')
+      localStorage.clear()
+      alert('ออกจากระบบสำเร็จ')
+      this.$router.push('/')
+    }
+  },
+
   mounted() {
     let companyId = localStorage.getItem('companyId')
     if (companyId) {

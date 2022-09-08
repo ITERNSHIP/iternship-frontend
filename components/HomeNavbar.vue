@@ -7,7 +7,7 @@
       </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-6">
-        <button class="btn btn-info text-white w-32">เข้าสู่ระบบ</button>
+        <nuxt-link to="/login" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
         <!-- <button class="btn text-white w-32">ออกจากระบบ</button> -->
       </div>
     </div>
@@ -24,7 +24,7 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><a>เข้าสู่ระบบ</a></li>
+          <li><nuxt-link to="/login">เข้าสู่ระบบ</nuxt-link></li>
           <li><a>ออกจากระบบ</a></li>
         </ul>
       </div>

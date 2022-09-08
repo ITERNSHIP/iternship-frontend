@@ -15,8 +15,8 @@
       </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-6">
-        <nuxt-link to="/login" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
-        <!-- <button class="btn text-white w-32">ออกจากระบบ</button> -->
+        <nuxt-link to="/login" v-if="!`${this.$cookiz.get('jwt')}`" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
+        <button v-if="`${this.$cookiz.get('jwt')}`" class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
     </div>
 
@@ -44,7 +44,15 @@
 </template>
 
 <script scoped>
-export default {}
+export default {
+  methods: {
+    logout() {
+      this.$cookiz.remove('jwt')
+      this.$router.push('/')
+      alert('ออกจากระบบสำเร็จ')
+    },
+  },
+}
 </script>
 
 <style></style>
