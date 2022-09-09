@@ -199,7 +199,7 @@ export default {
       alert('แก้ไขประวัติสำเร็จ')
       this.$router.push('/company/companyAccountManagement')
       location.reload()
-      console.log("🚀 ~ file: companyAccountManagement.vue ~ line 197 ~ editHistory ~ e", e)
+      
     }
 
 

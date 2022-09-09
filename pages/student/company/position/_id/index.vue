@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import { throws } from 'assert'
+
 import StudentNavBar from '~/components/StudentNavBar.vue'
 export default {
   components: { StudentNavBar },
@@ -115,7 +115,7 @@ export default {
   async mounted() {
     const accessToken = this.$cookiz.get('jwt')
     const id = this.$route.params.id
-    const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
+    // const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
     
     console.log(this.$route.params.id)
     let getPosition = await this.$axios.$get(`/users/getRecruitById/${id}`, {
@@ -125,13 +125,14 @@ export default {
     })
     
     this.position = getPosition
+    console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ getPosition", getPosition)
     this.company = getPosition.company
-    this.companyId = this.company.companyId
-    console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ this.company", this.company)
+    this.companyId = getPosition.company.companyId
+    // console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ this.company", this.company)
 
     let getAnotherPosition = await this.$axios.$get('/users/findRecruitById', {
       params: {
-          companyId: companyId
+          companyId: getPosition.company.companyId
         },
       headers: {
         Authorization: `Bearer ${accessToken}`,
