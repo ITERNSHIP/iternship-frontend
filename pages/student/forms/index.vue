@@ -3,54 +3,43 @@
     <StudentNavBar />
     <div class="container mx-auto px-6 mb-14">
       <div class="mt-16">
-        <p class="font-bold text-6xl">Forms</p>
-        <div class="mt-10">
-          <p class="text-3xl font-normal">Select your form</p>
+        <p class="font-bold lg:text-6xl text-3xl md:text-4xl">ฟอร์ม</p>
+        <div class="mt-5 md:mt-10">
+          <p class="text-lg font-normal md:text-2xl">เลือกฟอร์มของคุณ</p>
         </div>
       </div>
 
-      <div class="mt-10 sm:flex lg:flex-row md:justify-between sm:flex-col sm:items-center">
-        <nuxt-link to="/student/forms/internship">
-          <div class="p-2">
-            <div
-              class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
-            >
-              <p class="pl-6 pt-6 text-4xl font-medium">Internship</p>
-              <p class="pl-6 pt-6 text-4xl font-medium">Form</p>
-              <p class="absolute bottom-0 right-6">Picture</p>
+      <div class="mt-5 md:mt-10">
+        <div class="flex flex-col lg:flex-row gap-3 ">
+          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+            <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg ">
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">สมัครฝึกงาน</p>
+            </div>
+            <div class="bg-black-gray h-20 w-auto rounded-b-lg">
+              <p class="p-6 text-white">สมัครฝึกงานกับบริษัทที่คุณสนใจ</p>
             </div>
           </div>
-        </nuxt-link>
-
-        <nuxt-link to="/student/forms/confirmed">
-          <div class="p-2">
-            <div
-              class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
-            >
-              <p class="pl-6 pt-6 text-4xl font-medium">Confirmed</p>
-              <p class="pl-6 pt-6 text-4xl font-medium">Internship</p>
-              <p class="pl-6 pt-6 text-4xl font-medium">Form</p>
-              <p class="absolute bottom-0 right-6">Picture</p>
+          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+            <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">ยืนยันได้บริษัทฝึกงาน</p>
+            </div>
+            <div class="bg-black-gray h-20 w-auto rounded-b-lg">
+              <p class="p-6 text-white">ยืนยันการได้บริษัทฝึกงานของคุณ</p>
             </div>
           </div>
-        </nuxt-link>
-
-        <div class="p-2">
-          <div
-            class="h-[379px] xl:w-[450px] lg:w-[310px] bg-blue-blue rounded-md relative hover:outline hover:outline-offset-2 hover:outline-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"
-          >
-            <p class="pl-6 pt-6 text-4xl font-medium">Check</p>
-            <p class="pl-6 pt-6 text-4xl font-medium">Status</p>
-            <p class="pl-6 pt-6 text-2xl font-medium text-gray-800">
-              (Internship form)
-            </p>
-            <p class="absolute bottom-0 right-6">Picture</p>
+          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+            <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
+              <p class="p-6 text-white text-xl lg:text-4xl font-medium">ตรวจสอบสถานะการสมัครฝึกงาน</p>
+            </div>
+            <div class="bg-black-gray h-20 w-auto rounded-b-lg">
+              <p class="p-6 text-white">ตรวจสอบสถานะการสมัครบริษัทของคุณ</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <Footer />
+    <Footer class="mt-40" />
   </div>
 </template>
 

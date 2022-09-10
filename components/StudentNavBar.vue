@@ -1,22 +1,22 @@
 <template>
-  <div class="navbar bg-black-gray rounded-none">
-    <div class="container mx-auto px-6 sm:flex sm:justify-between">
-      <div class="flex">
-        <img src="@/static/logo.png" alt="##" class="w-16" />
+  <div class="navbar bg-black-gray rounded-none justify-between">
+    <div class="container mx-auto pl-6">
+      <div class="flex cursor-pointer ">
+        <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
+        <img src="@/static/logo.png" alt="##" class="w-16">
       </div>
-      <div class="md:flex mx-12 sm:hidden">
-        <ul class="menu menu-horizontal space-x-12">
-          <nuxt-link to="/student" class="text-white font-bold">Home</nuxt-link>
-          <li class="text-white font-bold">News</li>
-          <nuxt-link to="/student/forms" class="text-white font-bold"
-            >Forms</nuxt-link
-          >
-          <li class="text-white font-bold">About</li>
+      <div class="lg:flex mx-12 hidden">
+        <ul class="menu menu-horizontal space-x-6 text-white">
+          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><a>เกี่ยวกับเรา</a></li>
         </ul>
       </div>
-      <div class="md:flex ml-auto space-x-6 sm:hidden">
-        <button class="btn btn-info text-white">Login</button>
-        <button class="btn text-white">Logout</button>
+
+      <div class="lg:flex ml-auto space-x-6 hidden pr-6">
+        <nuxt-link to="/login" v-if="!`${this.$cookiz.get('jwt')}`" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
+        <button v-if="`${this.$cookiz.get('jwt')}`" class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
 
       <!-- Mobile Hambeger -->
@@ -49,11 +49,40 @@
         </ul>
       </div>
     </div>
+
+    <div class="dropdown dropdown-end cursor-pointer lg:hidden pr-6">
+        <button tabindex="0">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/7711/7711100.png"
+            class="h-5 w-5"
+            alt="hambuger"
+          />
+        </button>
+        <ul
+          tabindex="0"
+          class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><a>เกี่ยวกับเรา</a></li>
+          <!-- <li><a>เข้าสู่ระบบ</a></li> -->
+          <li><a>ออกจากระบบ</a></li>
+        </ul>
+      </div>
   </div>
 </template>
 
-<script>
-export default {}
+<script scoped>
+export default {
+  methods: {
+    logout() {
+      this.$cookiz.remove('jwt')
+      this.$router.push('/')
+      alert('ออกจากระบบสำเร็จ')
+    },
+  },
+}
 </script>
 
 <style></style>

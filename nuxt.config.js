@@ -12,14 +12,20 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+  {
+    rel : 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
+  }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    './plugins/vuevalidate.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,8 +41,41 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/auth-next',
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
+  
+  // auth: {
+  //   redirect: {
+  //     login: "/login",
+  //     logout: "/login",
+  //     callback: "/login",
+  //     home: false,
+  //   },
+  //   strategies: {
+  //     cookie: { 
+  //       cookie:{
+  //         name: "XSRF-TOKEN"
+  //       },
+  //       token: {
+  //         property: "data.access_token",
+  //         required: true,
+  //         type: "Bearer",
+  //       },
+  //       user: {
+  //         property: "data",
+  //       },
+  //       endpoints: {
+  //         login: {
+  //           url: "/users/login",
+  //           method: "post",
+  //         },
+  //         logout: { url: "/users/logout", method: "delete" },
+  //         user: { url: "/v1/settings", method: "get" },
+  //       },
+  //     },
+  //   },
+  // },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -46,6 +85,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
   publicRuntimeConfig: {
     // baseURL: process.env.BASE_URL,
     axios: {
@@ -53,7 +93,6 @@ export default {
     }
   },
 
-  privateRuntimeConfig: {
-    
-  },
+  ssr: false,
+  mode: 'spa',
 }
