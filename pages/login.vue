@@ -418,9 +418,14 @@ export default {
       let response = await this.$axios.$post('/company/login', this.login, {
         withCredentials: true,
       })
+      this.$cookiz.set('jwt', response.accessToken, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+      })
       let { companyId, companyName } = response
       localStorage.setItem('companyId', companyId)
       localStorage.setItem('companyName', companyName)
+
       // this.$store.dispatch('company/setCompanyId', companyId)
       // this.$store.dispatch('company/setCompanyName', companyName)
       console.log(localStorage.getItem("companyId"))
