@@ -398,6 +398,10 @@ export default {
         '🚀 ~ file: login.vue ~ line 392 ~ userLogin ~ response',
         response
       )
+      this.$cookiz.set('jwt', response.accessToken, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+      })
       alert('เข้าสู่ระบบสำเร็จ')
       console.log("Login success!!");
       this.$router.push('/student')
