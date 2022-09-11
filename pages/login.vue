@@ -391,20 +391,28 @@ export default {
       this.loginRole = role
     },
     async userLogin() {
-      let response = await this.$axios.$post('/users/login', this.login, {
-        withCredentials: true,
-      })
-      console.log(
-        '🚀 ~ file: login.vue ~ line 392 ~ userLogin ~ response',
-        response
-      )
-      this.$cookiz.set('jwt', response.accessToken, {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7,
-      })
-      alert('เข้าสู่ระบบสำเร็จ')
-      console.log("Login success!!");
-      this.$router.push('/student')
+      let response = await this.$axios
+        .$post('/users/login', this.login, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          console.log("🚀 ~ file: login.vue ~ line 399 ~ .then ~ response", response)
+          console.log("🚀 ~ file: login.vue ~ line 402 ~ .then ~ response.message", response.message)
+          if (response.message == 'success') { 
+            this.$cookiz.set('jwt', response.accessToken, {
+              path: '/',
+              maxAge: 60 * 60 * 24 * 7,
+            })
+            alert('เข้าสู่ระบบสำเร็จ')
+            console.log('Login success!!')
+            this.$router.push('/student')
+          }
+        }).catch((error) => {
+          console.log("🚀 ~ file: login.vue ~ line 417 ~ .catch ~ error", error)
+          alert('รหัสนักศึกษาหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+        })
+      // console.log("🚀 ~ file: login.vue ~ line 414 ~ userLogin ~ response", response)
+      
 
       // try {
       //    await this.$auth.loginWith('cookie', { data: this.login })
@@ -422,17 +430,31 @@ export default {
         path: '/',
         maxAge: 60 * 60 * 24 * 7,
       })
-      let { companyId, companyName } = response
+      if (response.message == 'success') {
+        let { companyId, companyName } = response
       localStorage.setItem('companyId', companyId)
       localStorage.setItem('companyName', companyName)
+      console.log(localStorage.getItem('companyId'))
+      console.log(localStorage.getItem('companyName'))
+      alert('เข้าสู่ระบบสำเร็จ')
+      console.log('Login success!!')
+      this.$router.push('/company')
+      }
+      else {
+        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+      }
+      // let { companyId, companyName } = response
+      // localStorage.setItem('companyId', companyId)
+      // localStorage.setItem('companyName', companyName)
 
       // this.$store.dispatch('company/setCompanyId', companyId)
       // this.$store.dispatch('company/setCompanyName', companyName)
-      console.log(localStorage.getItem("companyId"))
-      console.log(localStorage.getItem("companyName"))
-      alert('เข้าสู่ระบบสำเร็จ')
-      console.log("Login success!!");
-      this.$router.push('/company')
+
+      // console.log(localStorage.getItem('companyId'))
+      // console.log(localStorage.getItem('companyName'))
+      // alert('เข้าสู่ระบบสำเร็จ')
+      // console.log('Login success!!')
+      // this.$router.push('/company')
     },
   },
 

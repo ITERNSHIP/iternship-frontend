@@ -10,7 +10,7 @@
           </div>
           <div class="mt-10">
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">บริษัทที่อยู่ในเว็บไซต์นี้รวบรวมมาจาก</p>
-            <p class="font-normal md:text-start md:text-lg lg:text-2xl">นักศึกษาเทคโนโลยีวารวนเทศ (SIT)</p>
+            <p class="font-normal md:text-start md:text-lg lg:text-2xl">นักศึกษาเทคโนโลยีสารสนเทศ (SIT)</p>
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">ที่ได้รับประสบการณ์การฝึกงาน</p>
           </div>
           <div class="mt-10 text-center md:text-left">
