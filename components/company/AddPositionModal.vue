@@ -229,7 +229,7 @@ export default {
         // this.addPositionData.openingDate = dayjs().format('DD/MM/YYYY')
         return
       }
-      this.addPositionData.openingDate = dayjs().format('DD/MM/YYYY')
+      this.addPositionData.openingDate = dayjs().format('YYYY-MM-DD')
       this.$emit('addPosition', this.addPositionData)
     },
   },

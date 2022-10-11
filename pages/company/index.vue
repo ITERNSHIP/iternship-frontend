@@ -135,12 +135,11 @@
               <p class="font-bold lg:text-2xl text-lg md:text-xl mb-3">
                 การประกาศงาน
               </p>
-              <AddPositionModal
-                @addPosition="addPosition"
-              ></AddPositionModal>
+              <AddPositionModal @addPosition="addPosition"></AddPositionModal>
             </div>
 
-            <div class="flex flex-col mt-4 gap-4 mb-8">
+            <div class="flex flex-col mt-4 gap-4 mb-8" v-for="position in positions" :key="position.recruitId
+">
               <!-- <div
                 class="w-full border-2 rounded-xl h-auto p-8 cursor-pointer hover:outline hover:outline-offset-2 hover:outline-black"
               >
@@ -155,10 +154,8 @@
                   </div>
                 </div>
               </div> -->
-              <p>ไม่มีข้อมูล</p>
-              <ViewPositionModal></ViewPositionModal>
-              <ViewPositionModal></ViewPositionModal>
-              <ViewPositionModal></ViewPositionModal>
+              <ViewPositionModal :Position="position" @editPosition="editPosition"></ViewPositionModal>
+              <p v-if="positions.length == 0">ไม่มีข้อมูล</p>
             </div>
           </div>
         </div>
@@ -236,6 +233,7 @@ import ViewPositionModal from '~/components/company/ViewPositionModal.vue'
 import ViewInternshipModal from '~/components/company/ViewInternshipModal.vue'
 import ApprovedModal from '~/components/company/ApprovedModal.vue'
 import EditHistoryModal from '~/components/company/EditHistoryModal.vue'
+import dayjs from 'dayjs'
 export default {
   components: {
     CompanyNavBar,
@@ -251,6 +249,7 @@ export default {
     return {
       changePage: 'MANAGEMENT',
       toggleView: false,
+      positions:[],
     }
   },
 
@@ -279,6 +278,43 @@ export default {
           console.log(err)
         })
     },
+
+    async editPosition(value) {
+      let { positionForEdit, recruitId } = value
+      await this.$axios.$put(`/company/updateRec/${recruitId}`, positionForEdit, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('แก้ไขสำเร็จ')
+        this.$router.push('/company')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  },
+
+  async mounted() {
+    const accessToken = this.$cookiz.get('jwt')
+    const companyId = localStorage.getItem('companyId')
+    let positionsResult = await this.$axios.$get('/company/findRecruitById', {
+      params: {
+        companyId: companyId,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    positionsResult.map((position) => {
+      position.showOpeningDate = dayjs(position.openingDate).format('DD/MM/YYYY')
+      position.showStartDate = dayjs(position.startDate).format('DD/MM/YYYY')
+      position.showEndDate = dayjs(position.endDate).format('DD/MM/YYYY')
+    })
+    console.log("🚀 ~ file: index.vue ~ line 315 ~ positionsResult.map ~ positionsResult", positionsResult)
+    this.positions = await positionsResult
+    
   },
 }
 </script>
