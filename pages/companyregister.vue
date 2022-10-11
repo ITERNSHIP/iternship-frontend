@@ -17,71 +17,97 @@
             <div>
               <input
                 v-model.trim.lazy="$v.email.$model"
+                v-model="companyRegisterForm.email"
                 type="email"
                 placeholder="อีเมล"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-              v-if="!$v.email.required && $v.email.$dirty"
-              class="text-error mt-2">กรุณาระบุอีเมล</p>
+                v-if="!$v.email.required && $v.email.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุอีเมล
+              </p>
               <p
-              v-if="!$v.email.email && $v.email.$dirty"
-              class="text-error mt-2">กรุณาระบุอีเมลให้ถูกต้อง</p>
+                v-if="!$v.email.email && $v.email.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุอีเมลให้ถูกต้อง
+              </p>
             </div>
 
             <div class="mt-3">
               <input
                 v-model.trim.lazy="$v.password.$model"
+                v-model="companyRegisterForm.password"
                 type="password"
                 placeholder="รหัสผ่าน"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.password.required && $v.password.$dirty"
-              class="text-error mt-2">กรุณาระบุรหัสผ่าน</p>
-              <p 
-              v-if="!$v.password.minLength && $v.password.$dirty"
-              class="text-error mt-2">กรุณาระบุรหัสผ่านอย่างน้อย 6 ตัวขึ้นไป</p>
+              <p
+                v-if="!$v.password.required && $v.password.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสผ่าน
+              </p>
+              <p
+                v-if="!$v.password.minLength && $v.password.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสผ่านอย่างน้อย 6 ตัวขึ้นไป
+              </p>
             </div>
 
             <div class="mt-3">
               <input
                 v-model.trim.lazy="$v.companyName.$model"
+                v-model="companyRegisterForm.companyName"
                 type="text"
                 placeholder="ชื่อบริษัท"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.companyName.required && $v.companyName.$dirty"
-              class="text-error mt-2">กรุณาระบุชื่อบริษัท</p>
+              <p
+                v-if="!$v.companyName.required && $v.companyName.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อบริษัท
+              </p>
             </div>
           </div>
 
           <div class="mt-8">
             <div class="mt-3">
               <input
-                v-model="$v.contractName.$model"
+                v-model.trim.lazy="$v.contractName.$model"
+                v-model="companyRegisterForm.contactName"
                 type="text"
                 placeholder="ชื่อผู้ติดต่อ"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.contractName.required && $v.contractName.$dirty"
-              class="text-error mt-2">กรุณาระบุชื่อผู้ติดต่อ</p>
+              <p
+                v-if="!$v.contractName.required && $v.contractName.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อผู้ติดต่อ
+              </p>
             </div>
             <div class="mt-3">
               <input
-                v-model="$v.phone.$model"
+                v-model.trim.lazy="$v.phone.$model"
+                v-model="companyRegisterForm.phoneNumber"
                 type="number"
                 placeholder="โทรศัพท์"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.phone.required && $v.phone.$dirty"
-              class="text-error mt-2">กรุณาระบุโทรศัพท์</p>
-              <p 
+              <p
+                v-if="!$v.phone.required && $v.phone.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุโทรศัพท์
+              </p>
+              <!-- <p 
               v-if=" $v.phone.minLength && $v.phone.$dirty"
-              class="text-error mt-2">กรุณาระบุโทรศัพท์ให้ถูกต้อง</p>
+              class="text-error mt-2 text-sm">กรุณาระบุโทรศัพท์ให้ถูกต้อง</p> -->
             </div>
           </div>
 
@@ -109,66 +135,84 @@
         </form>
       </div>
       <div class="mt-8 flex items-center justify-center">
-        <span>เป็นสมาชิกอยู่แล้ว ? <nuxt-link to="/login"><span class="text-blue-blue">เข้าสู่ระบบ</span></nuxt-link></span>
+        <span
+          >เป็นสมาชิกอยู่แล้ว ?
+          <nuxt-link to="/login"
+            ><span class="text-blue-blue">เข้าสู่ระบบ</span></nuxt-link
+          ></span
+        >
       </div>
     </div>
+    {{ companyRegisterForm }}
   </div>
 </template>
 
 <script>
-import {
-  required,
-  numeric,
-  email,
-  minLength,
-} from 'vuelidate/lib/validators'
+import { required, numeric, email, minLength } from 'vuelidate/lib/validators'
 export default {
-    data(){
-        return {
-            email: null,
-            password: null,
-            companyName: null,
-            contractName: null,
-            phone: null,
-            agree: false,
-        }
-    },
-    validations: {
-        email: {
-            required,
-            email
-        },
-        password: {
-            required,
-            minLength: minLength(6)
-        },
-        companyName: {
-            required
-        },
-        contractName: {
-            required
-        },
-        phone: {
-            required,
-            numeric,
-            minLength: minLength(10),
-        },
-    },
-
-    methods: {
-         onSubmit() {
-            this.$v.$touch()
-            if (this.$v.$invalid) {
-                alert('กรุณากรอกข้อมูลให้ครบถ้วน')
-                return
-            }
-            if (this.agree === false) {
-                alert('กรุณายอมรับนโยบายความเป็นส่วนตัว')
-                return
-            }
-            alert('สมัครสมาชิกสำเร็จ')
-        }
+  data() {
+    return {
+      companyRegisterForm: {
+        email: '',
+        password: '',
+        companyName: '',
+        contactName: '',
+        phoneNumber: '',
+      },
+      email: null,
+      password: null,
+      companyName: null,
+      contractName: null,
+      phone: null,
+      agree: false,
     }
+  },
+  validations: {
+    email: {
+      required,
+      email,
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+    },
+    companyName: {
+      required,
+    },
+    contractName: {
+      required,
+    },
+    phone: {
+      required,
+      numeric,
+      // minLength: minLength(10),
+    },
+  },
+
+  methods: {
+    async onSubmit() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        return
+      }
+      if (this.agree === false) {
+        alert('กรุณายอมรับนโยบายความเป็นส่วนตัว')
+        return
+      }
+      await this.$axios.$post('/company/cnstaff', this.companyRegisterForm, {
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res.message)
+        alert('สมัครสมาชิกสำเร็จ')
+        this.$router.push('/login')
+      }).catch((err) => {
+        console.log(err.response.message)
+        alert(err.response.message)
+      })
+      // alert('สมัครสมาชิกสำเร็จ')
+    },
+  },
 }
 </script>
 
@@ -180,7 +224,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 </style>
