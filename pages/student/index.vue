@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <StudentNavBar />
     <div class="container mx-auto px-6 mb-14">
       <div class="mt-16">
@@ -31,36 +31,147 @@
 
       </div>
     </div>
-    <!-- <pre>{{ companies }}</pre> -->
     <Footer />
+  </div> -->
+
+  <div>
+    <StudentNavBar />
+    <div class="flex flex-col px-8 pt-8">
+      <div>
+        <p class="font-bold lg:text-3xl text-xl md:text-2xl mb-4">
+          บริษัทและงานที่เปิดรับนักศึกษาฝึกงาน
+        </p>
+      </div>
+      <div
+        class="flex xse:flex-row flex-col items-center gap-2 justify-between"
+      >
+        <div class="xse:w-96 w-full">
+          <label for="table-search" class="sr-only">Search</label>
+          <div class="relative mt-1">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <svg
+                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="table-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="ค้นหาบริษัทและงาน"
+            />
+          </div>
+        </div>
+        <div class="flex gap-4 mt-0 justify-start xse:w-fit w-full">
+          <div
+            class="border-2 rounded-xl w-28 p-2 text-center cursor-pointer hover:bg-blue-blue transition-colors"
+            @click="onClickView(false)"
+            :class="[
+              toggleView ? 'bg-white text-black' : 'bg-blue-blue text-white',
+            ]"
+          >
+            <p>บริษัท</p>
+          </div>
+          <div
+            class="border-2 rounded-xl w-28 p-2 text-center cursor-pointer hover:bg-blue-blue transition-colors"
+            @click="onClickView(true)"
+            :class="[
+              toggleView ? 'bg-blue-blue text-white' : 'bg-white text-black',
+            ]"
+          >
+            <p>งาน</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 mb-8 bg-gray-200 h-1 w-auto rounded-lg"></div>
+      <div v-if="!toggleView" class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid">
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+          </div>
+        </div>
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h1 class="card-title text-white bg-black-gray">ชื่อบริษัท</h1>
+          </div>
+        </div>
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+          </div>
+        </div>
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+          </div>
+        </div>
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+          </div>
+        </div>
+        <div class="card w-auto bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" />
+          </figure>
+          <div class="card-body bg-black-gray">
+            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import StudentNavBar from '~/components/StudentNavBar.vue'
+import Footer from '~/components/Footer.vue'
 export default {
+  components: { StudentNavBar, Footer },
 
-  data(){
+  data() {
     return {
-      companyResults: [],
+      toggleView: false,
     }
   },
-  
-  async mounted() {
-    const accessToken = this.$cookiz.get('jwt')
-    let allCompanyResults = await this.$axios.$get('/users/getAllCompany', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    this.companyResults = allCompanyResults
-    
-    
+
+  methods: {
+    onClickView(b) { 
+      this.toggleView = b
+    },
   },
 }
 </script>
 
 <style>
-  p{
-    font-family: 'Prompt', sans-serif !important;
-  }
-  </style>
+p {
+  font-family: 'Prompt', sans-serif !important;
+}
+</style>

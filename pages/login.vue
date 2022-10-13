@@ -39,7 +39,7 @@
 
       <div class="mt-10">
         <form action="#" @submit.prevent="userLogin">
-          <div class="flex flex-col mb-6">
+          <!-- <div class="flex flex-col mb-6">
             <label
               for="email"
               class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
@@ -105,10 +105,11 @@
             >
               กรุณาระบุรหัสผ่าน
             </p>
-          </div>
+          </div> -->
 
           <div class="flex w-full">
-            <button
+            <a
+              href="https://std-sso-fe.sit.kmutt.ac.th/login?response_type=code&client_id=TQ8A3gws&redirect_uri=http://localhost:8081/users/get&state=1234"
               type="submit"
               class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
             >
@@ -128,7 +129,7 @@
                   />
                 </svg>
               </span>
-            </button>
+            </a>
           </div>
         </form>
       </div>

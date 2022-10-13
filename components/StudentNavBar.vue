@@ -1,6 +1,6 @@
 <template>
   <div class="navbar bg-black-gray rounded-none justify-between">
-    <div class="container mx-auto pl-6">
+    <div class="px-4 w-full">
       <div class="flex cursor-pointer ">
         <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
         <img src="@/static/logo.png" alt="##" class="w-16">
@@ -14,13 +14,13 @@
         </ul>
       </div>
 
-      <div class="lg:flex ml-auto space-x-6 hidden pr-6">
+      <div class="lg:flex ml-auto space-x-6 hidden pr-2">
         <nuxt-link to="/login" v-if="!`${this.$cookiz.get('jwt')}`" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
         <button v-if="`${this.$cookiz.get('jwt')}`" class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
 
       <!-- Mobile Hambeger -->
-      <div class="dropdown dropdown-left flex flex-none md:hidden">
+      <!-- <div class="dropdown dropdown-left flex flex-none md:hidden">
         <button tabindex="0" class="btn-square btn-info">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
           >
           <li class="text-black  font-bold">About</li>
         </ul>
-      </div>
+      </div> -->
     </div>
 
     <div class="dropdown dropdown-end cursor-pointer lg:hidden pr-6">
