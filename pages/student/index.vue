@@ -94,48 +94,11 @@
         </div>
       </div>
       <div class="mt-8 mb-8 bg-gray-200 h-1 w-auto rounded-lg"></div>
-      <div v-if="!toggleView" class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid">
-        <div class="card w-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" />
-          </figure>
-          <div class="card-body bg-black-gray">
-            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
-          </div>
-        </div>
-        <div class="card w-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" />
-          </figure>
-          <div class="card-body bg-black-gray">
-            <h1 class="card-title text-white bg-black-gray">ชื่อบริษัท</h1>
-          </div>
-        </div>
-        <div class="card w-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" />
-          </figure>
-          <div class="card-body bg-black-gray">
-            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
-          </div>
-        </div>
-        <div class="card w-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" />
-          </figure>
-          <div class="card-body bg-black-gray">
-            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
-          </div>
-        </div>
-        <div class="card w-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" />
-          </figure>
-          <div class="card-body bg-black-gray">
-            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
-          </div>
-        </div>
-        <div class="card w-auto bg-base-100 shadow-xl">
+      <div
+        v-if="!toggleView"
+        class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid"
+      >
+        <div class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure>
             <img src="https://placeimg.com/400/225/arch" />
           </figure>
@@ -144,6 +107,24 @@
           </div>
         </div>
       </div>
+      <div class="min-h-screen">
+        <div v-if="toggleView" class="grid lg:grid-cols-3 gap-4 mb-8">
+        <div class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+          <figure class="px-3 py-3 h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40 self-center">
+            <img
+              src="https://placeimg.com/255/225/arch"
+              alt="Shoes"
+              class="rounded-xl"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">ชื่องาน</h2>
+            <p>ชื่อบริษัท</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      
     </div>
 
     <Footer></Footer>
@@ -163,7 +144,7 @@ export default {
   },
 
   methods: {
-    onClickView(b) { 
+    onClickView(b) {
       this.toggleView = b
     },
   },

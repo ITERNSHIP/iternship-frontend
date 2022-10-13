@@ -1,230 +1,357 @@
 <template>
   <div>
     <StudentNavBar />
-    <div class="container mx-auto px-6 mb-14">
-      <div class="mt-16">
-        <p class="font-bold text-6xl">Internship Form</p>
-      </div>
-
-      <div class="mt-10 relative">
-        <div class="bg-gray-200 h-auto w-full rounded-lg">
-          <!-- Row1 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Firstname</label
-              >
+    <div
+      class="bg-slate-200 min-h-screen flex flex-col items-center justify-center"
+    >
+      <div
+        class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-xl w-full max-w-3xl my-8"
+      >
+        <div
+          class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800"
+        >
+          ฟอร์มสมัครฝึกงาน
+        </div>
+        <div class="mt-10">
+          <form action="#" @submit.prevent="onSubmit">
+            <div class="space-y-1 mb-2">
+              <span>ชื่อจริง</span>
               <input
-                v-model="forms.firstname"
+                v-model.trim.lazy="$v.fname.$model"
+                v-model="sentInternshipForm.fname"
                 type="text"
-                placeholder="Firstname"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateFirstname" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.fname.required && $v.fname.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อจริง
               </p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Lastname</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>นามสกุล</span>
               <input
-                v-model="forms.lastname"
+                v-model.trim.lazy="$v.lname.$model"
+                v-model="sentInternshipForm.lname"
                 type="text"
-                placeholder="Lastname"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateLastname" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.lname.required && $v.lname.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุนามสกุล
               </p>
             </div>
-          </div>
-
-          <!-- Row2 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Email</label
+            <div class="space-y-1 mb-2">
+              <span>เพศ</span>
+              <select
+                v-model.trim.lazy="$v.sex.$model"
+                v-model="sentInternshipForm.sex"
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
-              <input
-                v-model="forms.email"
-                type="text"
-                placeholder="Email"
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validateEmail" class="text-red-700 mt-2">
-                This field need requied
+                <option value="ชาย">ชาย</option>
+                <option value="หญิง">หญิง</option>
+              </select>
+              <p
+                v-if="!$v.sex.required && $v.sex.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเพศ
               </p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Telephone</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>โทรศัพท์</span>
               <input
-                v-model="forms.telephone"
-                type="text"
-                placeholder="0999999999"
-                class="input input-bordered w-full"
+                v-model.trim.lazy="$v.phone.$model"
+                v-model="sentInternshipForm.phone"
+                type="number"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateTelephone" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.phone.required && $v.phone.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุโทรศัพท์
               </p>
             </div>
-          </div>
-
-          <!-- Row3 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Year</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>เกรดเฉลี่ย</span>
               <input
-                v-model="forms.year"
+                v-model.trim.lazy="$v.gpax.$model"
+                v-model="sentInternshipForm.gpax"
                 type="text"
-                placeholder="1, 2, 3, 4"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateYear" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.gpax.required && $v.gpax.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเกรดเฉลี่ย
+              </p>
+              <p
+                v-if="
+                  !($v.gpax.maxValue && $v.gpax.minValue && $v.gpax.required) &&
+                  $v.gpax.$dirty
+                "
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเกรดเฉลี่ยให้ถูกต้อง
               </p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >GPAX</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>อีเมล</span>
               <input
-                v-model="forms.gpax"
-                type="text"
-                placeholder="x.xx"
-                class="input input-bordered w-full"
+                v-model.trim.lazy="$v.email.$model"
+                v-model="sentInternshipForm.email"
+                type="email"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateGpax" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.email.required && $v.email.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุอีเมล
+              </p>
+              <p
+                v-if="!$v.email.email && $v.email.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุอีเมลให้ถูกต้อง
               </p>
             </div>
-          </div>
-
-          <!-- Row4 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Company name</label
-              >
-              <input
-                v-model="forms.companyname"
+            <div class="space-y-1 mb-2">
+              <span>ที่อยู่</span>
+              <textarea
+                v-model.trim.lazy="$v.address.$model"
+                v-model="sentInternshipForm.address"
                 type="text"
-                placeholder="Company name"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base min-h-[100px] placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateCompanyName" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.address.required && $v.address.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุที่อยู่
               </p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Position name</label
+            <div class="space-y-1 mb-2">
+              <span>บริษัทที่จะยื่นสมัคร</span>
+              <select
+                v-model.trim.lazy="$v.company.$model"
+                v-model="sentInternshipForm.company"
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
-              <input
-                v-model="forms.position"
-                type="text"
-                placeholder="Software Developer, UX/UI Designer, BA, etc."
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validatePosition" class="text-red-700 mt-2">
-                This field need requied
+                <option value="บริษัท A">บริษัท A</option>
+                <option value="บริษัท B">บริษัท B</option>
+              </select>
+              <p
+                v-if="!$v.company.required && $v.company.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุบริษัทที่จะยื่นสมัคร
               </p>
             </div>
-          </div>
-
-          <!-- Row5 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >My address</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>งานที่จะยื่นสมัคร</span>
               <input
-                v-model="forms.myaddress"
+                v-model.trim.lazy="$v.job.$model"
+                v-model="sentInternshipForm.job"
                 type="text"
-                placeholder="My address"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateMyAddress" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.job.required && $v.job.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุงานที่จะยื่นสมัคร
               </p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >My resume (Link)</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่ต้องการเริ่มต้นฝึกงาน</span>
               <input
-                v-model="forms.myresume"
-                type="text"
-                placeholder="Link Google Drive"
-                class="input input-bordered w-full"
+                v-model.trim.lazy="$v.start.$model"
+                v-model="sentInternshipForm.start"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateMyResume" class="text-red-700 mt-2">
-                This field need requied
+              <p
+                v-if="!$v.start.required && $v.start.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเดือนที่ต้องการเริ่มต้นฝึกงาน
               </p>
             </div>
-          </div>
-
-          <div class="flex justify-end mr-8 mt-8">
-            <button
-              @click="checkForm"
-              class="btn btn-info bottom-0 right-8 text-white w-36 mb-5 hover:outline hover:outline-offset-2 hover:outline-black"
-            >
-              Send
-            </button>
-          </div>
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่ต้องการจบฝึกงาน</span>
+              <input
+                v-model.trim.lazy="$v.end.$model"
+                v-model="sentInternshipForm.end"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.end.required && $v.end.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเดือนที่ต้องการจบฝึกงาน
+              </p>
+            </div>
+            <div class="space-y-1 mb-2">
+              <span>ผลงาน (Link Google Drive)</span>
+              <input
+                v-model.trim.lazy="$v.resume.$model"
+                v-model="sentInternshipForm.resume"
+                type="text"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.resume.required && $v.resume.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุผลงาน
+              </p>
+            </div>
+            <div class="mt-8 flex-row">
+              <input
+                type="checkbox"
+                v-model="agree"
+                class="checkbox checkbox-xs mr-2"
+              />
+              <span
+                >ยอมรับ
+                <span class="text-blue-blue">นโยบายความเป็นส่วนตัว </span>ของ
+                INTERNSHIP</span
+              >
+            </div>
+            <div class="flex w-full mt-8">
+              <button
+                type="submit"
+                class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded-xl py-2 w-full transition duration-150 ease-in"
+              >
+                <span class="mr-2 uppercase">ยืนยัน</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
+import {
+  required,
+  numeric,
+  email,
+  decimal,
+  minValue,
+  maxValue,
+} from 'vuelidate/lib/validators'
+import StudentNavBar from '~/components/StudentNavBar.vue'
 export default {
+  components: { StudentNavBar },
   data() {
     return {
-      forms: {
-        firstname: '',
-        lastname: '',
-        email: '',
-        telephone: '',
-        year: '',
+      sentInternshipForm: {
+        fname: '',
+        lname: '',
+        sex: '',
+        phone: '',
         gpax: '',
-        companyname: '',
-        position: '',
-        myaddress: '',
-        myresume: '',
+        email: '',
+        address: '',
+        company: '',
+        job: '',
+        start: '',
+        end: '',
+        resume: '',
       },
-      validateFirstname: true,
-      validateLastname: true,
-      validateEmail: true,
-      validateTelephone: true,
-      validateYear: true,
-      validateGpax: true,
-      validateCompanyName: true,
-      validatePosition: true,
-      validateMyAddress: true,
-      validateMyResume: true,
+      fname: '',
+      lname: '',
+      sex: '',
+      phone: '',
+      gpax: '',
+      email: '',
+      address: '',
+      company: '',
+      job: '',
+      start: '',
+      end: '',
+      resume: '',
+      agree: false,
     }
   },
 
+  validations: {
+    fname: {
+      required,
+    },
+    lname: {
+      required,
+    },
+    sex: {
+      required,
+    },
+    phone: {
+      required,
+      numeric,
+      // minLength: minLength(10),
+    },
+    gpax: {
+      required,
+      decimal,
+      minValue: minValue(0),
+      maxValue: maxValue(4),
+    },
+    email:{
+      required,
+      email,
+    },
+    address:{
+      required,
+    },
+    company:{
+      required,
+    },
+    job:{
+      required,
+    },
+    start:{
+      required,
+    },
+    end:{
+      required,
+    },
+    resume:{
+      required,
+    },
+  },
+
   methods: {
-    checkForm() {
-      this.validateFirstname = this.forms.firstname.length === 0 ? false : true
-      this.validateLastname = this.forms.lastname.length === 0 ? false : true
-      this.validateEmail = this.forms.email.length === 0 ? false : true
-      this.validateTelephone = this.forms.telephone.length === 0 ? false : true
-      this.validateYear = this.forms.year.length === 0 ? false : true
-      this.validateGpax = this.forms.gpax.length === 0 ? false : true
-      this.validateCompanyName =
-        this.forms.companyname.length === 0 ? false : true
-      this.validatePosition = this.forms.position.length === 0 ? false : true
-      this.validateMyAddress = this.forms.myaddress.length === 0 ? false : true
-      this.validateMyResume = this.forms.myresume.length === 0 ? false : true
+    onSubmit() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // console.log(this.sentInternshipForm)
+        return
+      }
+      if (this.agree === false) {
+        alert('กรุณายอมรับนโยบายความเป็นส่วนตัว')
+        return
+      }
+      alert(this.sentInternshipForm)
     },
   },
 }
