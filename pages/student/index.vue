@@ -148,6 +148,7 @@ export default {
       this.toggleView = b
     },
   },
+
 }
 </script>
 
