@@ -233,6 +233,7 @@ export default {
         contact: this.Position.contact,
         startDate: this.Position.startDate,
         endDate: this.Position.endDate,
+        openingDate: this.Position.openingDate,
       }
     }
   },
@@ -255,7 +256,7 @@ export default {
       delete this.Position.showOpeningDate
       delete this.Position.showStartDate
       delete this.Position.showEndDate
-      this.positionForEdit.openingDate = dayjs().format('DD/MM/YYYY')
+      this.positionForEdit.openingDate = dayjs().format('YYYY-MM-DD')
       this.$emit('editPosition', {positionForEdit: this.positionForEdit, recruitId: this.Position.recruitId})
     },
 

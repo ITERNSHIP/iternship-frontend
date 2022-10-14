@@ -280,7 +280,7 @@ export default {
     },
 
     async editPosition(value) {
-      let { positionForEdit, recruitId } = value
+      let { positionForEdit, recruitId } = value      
       await this.$axios.$put(`/company/updateRec/${recruitId}`, positionForEdit, {
         headers: {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,

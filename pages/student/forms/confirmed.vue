@@ -1,261 +1,186 @@
 <template>
   <div>
     <StudentNavBar />
-    <div class="container mx-auto px-6 mb-14">
-      <div class="mt-16">
-        <p class="font-bold text-6xl">Confirmed Internship Form</p>
-      </div>
+    <div
+      class="bg-slate-200 min-h-screen flex flex-col items-center justify-center"
+    >
+      <div
+        class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-xl w-full max-w-3xl my-8"
+      >
+        <div
+          class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800"
+        >
+          ฟอร์มยืนยันได้บริษัทฝึกงาน
+        </div>
+        <div class="mt-10">
+          <form action="#" @submit.prevent="onSubmit">
+            <div class="space-y-1 mb-2">
+              <span>ชื่อจริง</span>
+              <input
+                type="text"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p class="text-error mt-2 text-sm">กรุณาระบุชื่อจริง</p>
+            </div>
 
-      <div class="mt-10 relative">
-        <div class="bg-gray-200 h-auto w-full rounded-lg p-5">
-          <!-- Row1 -->
-          <div class="flex mx-3 justify-between pt-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Firstname</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>นามสกุล</span>
               <input
-                v-model="confirmedForm.fName"
                 type="text"
-                placeholder="Firstname"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateFirstname" class="text-red-700 mt-2">
-                This field need requied
-              </p>
+              <p class="text-error mt-2 text-sm">กรุณาระบุนามสกุล</p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Lastname</label
-              >
-              <input
-                v-model="confirmedForm.lName"
-                type="text"
-                placeholder="Lastname"
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validateLastname" class="text-red-700 mt-2">
-                This field need requied
-              </p>
-            </div>
-          </div>
 
-          <!-- Row2 -->
-          <div class="flex pt-5 pb-2">
-            <div class="w-full mx-3">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Email</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>รหัสนักศึกษา</span>
               <input
-                v-model="confirmedForm.email"
-                type="text"
-                placeholder="Email"
-                class="input input-bordered w-full"
+                type="number"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateEmail" class="text-red-700 mt-2">
-                This field need requied
-              </p>
+              <p class="text-error mt-2 text-sm">กรุณาระบุรหัสนักศึกษา</p>
             </div>
-          </div>
 
-          <!-- Row3 -->
-          <div class="flex mx-3 justify-between pt-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Student ID</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>ชื่อบริษัทที่นักศึกษาไปฝึกงาน</span>
               <input
-                v-model="confirmedForm.studentId"
                 type="text"
-                placeholder="6xxxxxxxxxx"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateStudentID" class="text-red-700 mt-2">
-                This field need requied
-              </p>
+              <p class="text-error mt-2 text-sm">กรุณาระบุชื่อบริษัท</p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Telephone</label
-              >
-              <input
-                v-model="confirmedForm.phoneNumber"
-                type="text"
-                placeholder="0999999999"
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validateTelephone" class="text-red-700 mt-2">
-                This field need requied
-              </p>
-            </div>
-          </div>
 
-          <!-- Row4 -->
-          <div class="flex mx-3 justify-between pt-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Company name</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>ตำแหน่งงานที่นักศึกษาไปฝึกงาน</span>
               <input
-                v-model="confirmedForm.companyName"
                 type="text"
-                placeholder="Company name"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateCompanyName" class="text-red-700 mt-2">
-                This field need requied
-              </p>
+              <p class="text-error mt-2 text-sm">กรุณาระบุตำแหน่งงาน</p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Position name</label
-              >
-              <input
-                v-model="confirmedForm.position"
-                type="text"
-                placeholder="Position name"
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validatePosition" class="text-red-700 mt-2">
-                This field need requied
-              </p>
-            </div>
-          </div>
 
-          <!-- Row5 -->
-          <div class="flex pt-5 pb-2">
-            <div class="w-full mx-3">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Duration of training</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่เริ่มต้นฝึกงาน</span>
               <input
-                v-model="confirmedForm.longTerm"
-                type="text"
-                placeholder="2, 4, 6 month"
-                class="input input-bordered w-full"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateDuration" class="text-red-700 mt-2">
-                This field need requied
+              <p class="text-error mt-2 text-sm">
+                กรุณาระบุเดือนที่เริ่มต้นฝึกงาน
               </p>
             </div>
-          </div>
 
-          <!-- Row6 -->
-          <div class="flex mx-3 justify-between pt-5 pb-2 space-x-2">
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Duration from</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่จบฝึกงาน</span>
               <input
-                v-model="confirmedForm.durationForm"
-                type="text"
-                placeholder="1 January 2022"
-                class="input input-bordered w-full"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p v-if="!validateDurationForm" class="text-red-700 mt-2">
-                This field need requied
-              </p>
+              <p class="text-error mt-2 text-sm">กรุณาระบุเดือนที่จบฝึกงาน</p>
             </div>
-            <div class="w-1/2">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Duration to</label
-              >
-              <input
-                v-model="confirmedForm.durationTo"
-                type="text"
-                placeholder="1 January 2022"
-                class="input input-bordered w-full"
-              />
-              <p v-if="!validateDurationTo" class="text-red-700 mt-2">
-                This field need requied
-              </p>
-            </div>
-          </div>
 
-          <div class="flex justify-end mr-5 mt-8">
-            <button
-              @click="sentInformation"
-              class="btn btn-info bottom-0 right-8 text-white w-36 mb-5 hover:outline hover:outline-offset-2 hover:outline-black"
-            >
-              Send
-            </button>
-          </div>
-          <!-- <button @click="checkForm" class="btn btn-info absolute bottom-0 right-8 text-white w-36 mb-5 hover:outline hover:outline-offset-2 hover:outline-black" >Send</button> -->
+            <div class="flex w-full mt-8">
+              <button
+                type="submit"
+                class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded-xl py-2 w-full transition duration-150 ease-in"
+              >
+                <span class="mr-2 uppercase">ส่งฟอร์ม</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <pre>{{ confirmedForm }}</pre>
     <Footer />
   </div>
 </template>
 
 <script>
+import {
+  required,
+  numeric,
+  minLength,
+} from 'vuelidate/lib/validators'
+import StudentNavBar from '~/components/StudentNavBar.vue'
+import Footer from '~/components/Footer.vue'
 export default {
+  components: { StudentNavBar, Footer },
   data() {
     return {
       confirmedForm: {
-        fName: '',
-        lName: '',
-        email: '',
-        studentId: '',
-        phoneNumber: '',
-        companyName: '',
-        position: '',
-        longTerm: '',
-        durationForm: '',
-        durationTo: '',
+        fname: this.firstname,
+        lname: this.lastname,
+        studentID: this.studentID,
+        company: this.company,
+        position: this.position,
+        start: this.startMonth,
+        end: this.endMonth,
       },
-      validateFirstname: true,
-      validateLastname: true,
-      validateEmail: true,
-      validateStudentID: true,
-      validateTelephone: true,
-      validateCompanyName: true,
-      validatePosition: true,
-      validateDuration: true,
-      validateDurationForm: true,
-      validateDurationTo: true,
+      firstname: '',
+      lastname: '',
+      studentID: '',
+      companyName: '',
+      position: '',
+      startMonth: '',
+      endMonth: '',
     }
   },
-
   methods: {
-    checkForm() {
-      this.validateFirstname =
-        this.confirmedForm.fName.length === 0 ? false : true
-      this.validateLastname =
-        this.confirmedForm.lName.length === 0 ? false : true
-      this.validateEmail = this.confirmedForm.email.length === 0 ? false : true
-      this.validateStudentID =
-        this.confirmedForm.studentId.length === 0 ? false : true
-      this.validateTelephone =
-        this.confirmedForm.phoneNumber.length === 0 ? false : true
-      this.validateCompanyName =
-        this.confirmedForm.companyName.length === 0 ? false : true
-      this.validatePosition =
-        this.confirmedForm.position.length === 0 ? false : true
-      this.validateDuration =
-        this.confirmedForm.longTerm.length === 0 ? false : true
-      this.validateDurationForm =
-        this.confirmedForm.durationForm.length === 0 ? false : true
-      this.validateDurationTo =
-        this.confirmedForm.durationTo.length === 0 ? false : true
+    onSubmit() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // console.log(this.sentInternshipForm)
+        return
+      }
     },
+  },
 
-    sentInformation() {
-      this.checkForm()
-      // console.log(this.confirmedForm);
-      this.$axios
-        .post('/users/createconfirmationForm', this.confirmedForm)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-      alert('Sent your information success!!')
+  validations: {
+    firstname: {
+      required,
+    },
+    lastname: {
+      required,
+    },
+    studentID: {
+      required,
+      numeric,
+      minLength: minLength(11)
+    },
+    companyName: {
+      required,
+    },
+    position: {
+      required,
+    },
+    startMonth: {
+      required,
+    },
+    endMonth: {
+      required,
     },
   },
 }
 </script>
 
-<style></style>
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+</style>
