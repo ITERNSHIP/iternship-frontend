@@ -92,13 +92,18 @@
           </p>
           <div class="min-w-full h-auto bg-slate-100 p-9 rounded-xl">
             <div class="flex flex-row gap-4 lg:gap-12">
-              <img
+              <img v-if="companyInfo.imageName == null"
                 src="@/static/logo.png"
                 alt="##"
                 class="w-20 h-20 md:w-40 md:h-40 lg:w-60 lg:h-60 rounded-xl"
               />
+              <img v-else
+                :src="companyInfo.imageName"
+                alt="##"
+                class="w-20 h-20 md:w-40 md:h-40 lg:w-60 lg:h-60 rounded-xl"
+              />
               <div class="flex flex-col gap-2 md:justify-center lg:gap-4">
-                <p class="font-bold md:text-xl lg:text-2xl">Company A</p>
+                <p class="font-bold md:text-xl lg:text-2xl">{{ companyInfo.companyName }}</p>
                 <!-- <button class="btn btn-primary rounded-xl">แก้ไขรูปภาพ</button> -->
                 <label for="upload-logo" class="btn btn-primary rounded-xl"
                   >แก้ไขรูปภาพ</label
@@ -120,7 +125,8 @@
             <div
               class="min-w-full h-auto bg-slate-100 p-9 rounded-xl flex flex-col"
             >
-              <p>ไม่มีข้อมูล</p>
+              <p v-if="companyInfo.companyDetail == null">ไม่มีข้อมูล</p>
+              <p v-else>{{ companyInfo.companyDetail }}</p>
               <!-- <button class="btn btn-primary self-end mt-3 rounded-xl w-20">
                 แก้ไข
               </button> -->
@@ -154,7 +160,7 @@
                   </div>
                 </div>
               </div> -->
-              <ViewPositionModal :Position="position" @editPosition="editPosition"></ViewPositionModal>
+              <ViewPositionModal :Position="position" @editPosition="editPosition" @deletePosition="deletePosition"></ViewPositionModal>
               <p v-if="positions.length == 0">ไม่มีข้อมูล</p>
             </div>
           </div>
@@ -199,7 +205,8 @@
                 </div>
               </div>
             </div> -->
-            <ViewInternshipModal></ViewInternshipModal>
+            <p v-if="!this.positions">ไม่มีข้อมูล</p>
+            <ViewInternshipModal v-else></ViewInternshipModal>
           </div>
 
           <div class="flex flex-col mt-4 gap-4 mb-8" v-if="toggleView">
@@ -250,6 +257,7 @@ export default {
       changePage: 'MANAGEMENT',
       toggleView: false,
       positions:[],
+      companyInfo:{},
     }
   },
 
@@ -293,12 +301,44 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
-    }
+    },
+
+    deletePosition(id) {
+      var r = confirm('ต้องการลบตำแหน่งนี้ใช่หรือไม่')
+      if (r == true) {
+        this.$axios
+        .$delete(`/company/deleteRecru/${id}`, {
+          headers: {
+            Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+          },
+        })
+        .then((res) => {
+          console.log(res)
+          alert('ลบสำเร็จ')
+          this.$router.push('/company')
+          location.reload()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+      location.reload()
+    },
   },
 
   async mounted() {
     const accessToken = this.$cookiz.get('jwt')
     const companyId = localStorage.getItem('companyId')
+
+    let companyResult = await this.$axios.$get(`/company/getCompanyStaffById/${companyId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.companyInfo = companyResult
+    console.log("🚀 ~ file: index.vue ~ line 310 ~ mounted ~ companyResult", companyResult)
+
+
     let positionsResult = await this.$axios.$get('/company/findRecruitById', {
       params: {
         companyId: companyId,
@@ -314,7 +354,6 @@ export default {
     })
     console.log("🚀 ~ file: index.vue ~ line 315 ~ positionsResult.map ~ positionsResult", positionsResult)
     this.positions = await positionsResult
-    
   },
 }
 </script>

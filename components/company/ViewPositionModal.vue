@@ -11,9 +11,9 @@
             <p class="text-error">ปิดรับสมัคร: {{ Position.showEndDate }}</p>
             <p class="text-gray-400">แก้ไขเมื่อ: {{ Position.showOpeningDate }}</p>
           </div>
-          <div class="btn self-center">
+          <!-- <div class="btn self-center">
             <img src="@/assets/icons8-trash.svg" alt="#" />
-          </div>
+          </div> -->
         </div>
       </label>
       <input type="checkbox" :id="Position.recruitId" class="modal-toggle" />
@@ -193,7 +193,7 @@
               v-if="!isEdit"
               >แก้ไข</label
             >
-            <label class="btn btn-error text-white" v-if="!isEdit">ลบ</label>
+            <label class="btn btn-error text-white" v-if="!isEdit" @click="deletePosition(Position.recruitId)">ลบ</label>
             <label class="btn btn-info text-white" v-if="isEdit" @click="editPosition">บันทึก</label>
             <label :for="Position.recruitId" class="btn" @click="closeModal">ยกเลิก</label>
           </div>
@@ -271,6 +271,10 @@ export default {
         startDate: this.Position.startDate,
         endDate: this.Position.endDate,
       }
+    },
+
+    deletePosition(id){
+      this.$emit('deletePosition', id)
     }
   },
 
