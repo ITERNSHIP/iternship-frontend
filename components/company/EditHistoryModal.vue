@@ -19,13 +19,13 @@
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >ประวัติความเป็นมา</label
             >
-            <textarea
+            <textarea v-model="companyDetail"
               class="mt-2 text-gray-600 min-h-[250px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
             />
           </div>
 
           <div class="modal-action flex items-center justify-end w-full">
-            <label class="btn btn-info text-white">แก้ไข</label>
+            <label class="btn btn-info text-white" @click="editCompanyDetail">แก้ไข</label>
             <label for="edit" class="btn">กลับ</label>
           </div>
         </div>
@@ -35,7 +35,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+   data() {
+    return {
+      companyDetail:''
+    }
+  },
+   methods: {
+    editCompanyDetail(){
+      this.$emit("sent-detail",this.companyDetail)
+    }
+   }
+}
 </script>
 
 <style></style>

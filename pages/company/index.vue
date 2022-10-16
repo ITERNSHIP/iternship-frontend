@@ -108,7 +108,7 @@
                 <label for="upload-logo" class="btn btn-primary rounded-xl"
                   >แก้ไขรูปภาพ</label
                 >
-                <input
+                <input @change="changepic"
                   id="upload-logo"
                   type="file"
                   accept="image/png, image/gif, image/jpeg"
@@ -131,7 +131,7 @@
                 แก้ไข
               </button> -->
               <EditHistoryModal
-                class="self-end mt-3 rounded-xl"
+                class="self-end mt-3 rounded-xl" @sent-detail = "editCompanyDetail"
               ></EditHistoryModal>
             </div>
           </div>
@@ -324,6 +324,40 @@ export default {
       }
       location.reload()
     },
+     async editCompanyDetail(value) {
+      // console.log("test",value)
+      const data = {companyDetail:value}   
+      await this.$axios.$post(`/company/updateCompanyDetailById/${localStorage.getItem('companyId')}`, data, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('แก้ไขประวัติของบริษัทสำเร็จ')
+        this.$router.push('/company')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    async changepic(value){
+      console.log(value.target.files[0])
+      let data = new FormData()
+      data.append("image",value.target.files[0])
+      await this.$axios.$post(`/company/uploadOne/${localStorage.getItem('companyId')}`, data, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('แก้ไขรูปภาพสำเร็จ')
+        this.$router.push('/company')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+
   },
 
   async mounted() {
@@ -336,6 +370,8 @@ export default {
       },
     })
     this.companyInfo = companyResult
+    //แก้ hardcode ด้วย ไอ้หน้า หมี
+    this.companyInfo.imageName = 'http://localhost:8081' + "/company/getpic/" + this.companyInfo.imageName
     console.log("🚀 ~ file: index.vue ~ line 310 ~ mounted ~ companyResult", companyResult)
 
 
