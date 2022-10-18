@@ -370,9 +370,10 @@ export default {
       },
     })
     this.companyInfo = companyResult
-    //แก้ hardcode ด้วย ไอ้หน้า หมี
-    this.companyInfo.imageName = 'http://localhost:8081' + "/company/getpic/" + this.companyInfo.imageName
-    console.log("🚀 ~ file: index.vue ~ line 310 ~ mounted ~ companyResult", companyResult)
+    console.log(this.companyInfo.imageName)
+    //แก้ hardcode ด้วย ไอ้หน้า หมี    
+    // this.companyInfo.imageName = 'http://localhost:8081' + "/company/getpic/" + this.companyInfo.imageName
+    // console.log("🚀 ~ file: index.vue ~ line 310 ~ mounted ~ companyResult", companyResult)
 
 
     let positionsResult = await this.$axios.$get('/company/findRecruitById', {
