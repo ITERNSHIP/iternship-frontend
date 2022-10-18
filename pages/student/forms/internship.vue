@@ -17,14 +17,14 @@
             <div class="space-y-1 mb-2">
               <span>ชื่อจริง</span>
               <input
-                v-model.trim.lazy="$v.fname.$model"
-                v-model="sentInternshipForm.fname"
+                v-model.trim.lazy="$v.fName.$model"
+                v-model="sentInternshipForm.fName"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.fname.required && $v.fname.$dirty"
+                v-if="!$v.fName.required && $v.fName.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุชื่อจริง
@@ -265,7 +265,7 @@ export default {
   data() {
     return {
       sentInternshipForm: {
-        fname: '',
+        fName: '',
         lname: '',
         sex: '',
         phone: '',
@@ -277,8 +277,11 @@ export default {
         start: '',
         end: '',
         resume: '',
+        user:{
+          userId:''
+        }
       },
-      fname: '',
+      fName: '',
       lname: '',
       sex: '',
       phone: '',
@@ -295,7 +298,7 @@ export default {
   },
 
   validations: {
-    fname: {
+    fName: {
       required,
     },
     lname: {
@@ -351,7 +354,23 @@ export default {
         alert('กรุณายอมรับนโยบายความเป็นส่วนตัว')
         return
       }
-      alert(this.sentInternshipForm)
+      this.sentitsform()
+    },
+    async sentitsform() {
+      const data = this.sentInternshipForm
+          console.log(data)
+      await this.$axios.$post(`/users/createRegis`, data, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+        this.$router.push('/users')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
     },
   },
 }

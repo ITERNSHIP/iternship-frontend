@@ -98,18 +98,18 @@
         v-if="!toggleView"
         class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid"
       >
-        <div class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <div v-for="company in listCompany" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure>
-            <img src="https://placeimg.com/400/225/arch" />
+            <img :src="company.imageName" />
           </figure>
           <div class="card-body bg-black-gray">
-            <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+            <h2 class="card-title text-white bg-black-gray">{{company.companyName}}</h2>
           </div>
         </div>
       </div>
       <div class="min-h-screen">
         <div v-if="toggleView" class="grid lg:grid-cols-3 gap-4 mb-8">
-        <div class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <div v-for="recruite in listRecruite" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure class="px-3 py-3 h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40 self-center">
             <img
               src="https://placeimg.com/255/225/arch"
@@ -118,8 +118,8 @@
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">ชื่องาน</h2>
-            <p>ชื่อบริษัท</p>
+            <h2 class="card-title">{{recruite.title}}</h2>
+            <p>{{recruite.company.companyName}}</p>
           </div>
         </div>
       </div>
@@ -140,6 +140,8 @@ export default {
   data() {
     return {
       toggleView: false,
+      listCompany:[],
+      listRecruite:[]
     }
   },
 
@@ -148,7 +150,22 @@ export default {
       this.toggleView = b
     },
   },
-
+async mounted() {
+      const accessToken = localStorage.getItem('accessToken')
+      let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+     this.listCompany =  allCompany
+      let allRecruite = await this.$axios.$get(`/users/getAllRecruit`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+     this.listRecruite =  allRecruite
+     console.log(this.listRecruite)
+}
 }
 </script>
 
