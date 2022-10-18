@@ -41,7 +41,9 @@ export default {
       .then((res) => {
         console.log('🚀 ~ file: index.vue ~ line 162 ~ mounted ~ res', res)
         localStorage.setItem('accessToken', res.accessToken)
+        localStorage.setItem('userId', res.userId)
         console.log(localStorage.getItem('accessToken'))
+        console.log(localStorage.getItem('userId'))
       })
       .then(() => {
         setTimeout(this.changePage, 2000)
