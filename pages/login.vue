@@ -435,25 +435,47 @@ export default {
       // }
     },
     async companyLogin() {
-      let response = await this.$axios.$post('/company/login', this.login, {
-        withCredentials: true,
-      })
-      this.$cookiz.set('jwt', response.accessToken, {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7,
-      })
-      if (response.message == 'success') {
-        let { companyId, companyName } = response
-        localStorage.setItem('companyId', companyId)
-        localStorage.setItem('companyName', companyName)
-        console.log(localStorage.getItem('companyId'))
-        console.log(localStorage.getItem('companyName'))
-        alert('เข้าสู่ระบบสำเร็จ')
-        console.log('Login success!!')
-        this.$router.push('/company')
-      } else {
-        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
-      }
+      await this.$axios
+        .$post('/company/login', this.login, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          // console.log(res)
+          let { companyId, companyName } = res
+          this.$cookiz.set('jwt', res.accessToken, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7,
+          })
+          localStorage.setItem('companyId', companyId)
+          localStorage.setItem('companyName', companyName)
+          //   console.log(localStorage.getItem('companyId'))
+          //  console.log(localStorage.getItem('companyName'))
+          alert('เข้าสู่ระบบสำเร็จ')
+          this.$router.push('/company')
+        })
+        .catch((err) => {
+          console.log(err)
+          alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+        })
+
+      // this.$cookiz.set('jwt', response.accessToken, {
+      //   path: '/',
+      //   maxAge: 60 * 60 * 24 * 7,
+      // })
+
+      // if (response.message == 'success') {
+      //   let { companyId, companyName } = response
+      //   localStorage.setItem('companyId', companyId)
+      //   localStorage.setItem('companyName', companyName)
+      //   console.log(localStorage.getItem('companyId'))
+      //   console.log(localStorage.getItem('companyName'))
+      //   alert('เข้าสู่ระบบสำเร็จ')
+      //   console.log('Login success!!')
+      //   this.$router.push('/company')
+      // } else {
+      //   alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+      // }
+
       // let { companyId, companyName } = response
       // localStorage.setItem('companyId', companyId)
       // localStorage.setItem('companyName', companyName)

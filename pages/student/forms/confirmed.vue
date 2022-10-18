@@ -17,61 +17,109 @@
             <div class="space-y-1 mb-2">
               <span>ชื่อจริง</span>
               <input
+                v-model.trim.lazy="$v.firstname.$model"
+                v-model = "confirmedForm.fname"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุชื่อจริง</p>
+              <p
+                v-if="!$v.firstname.required && $v.firstname.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อจริง
+              </p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>นามสกุล</span>
               <input
+                v-model.trim.lazy="$v.lastname.$model"
+                v-model = "confirmedForm.lname"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุนามสกุล</p>
+              <p
+                v-if="!$v.lastname.required && $v.lastname.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุนามสกุล
+              </p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>รหัสนักศึกษา</span>
               <input
+                v-model.trim.lazy="$v.studentID.$model"
+                v-model = "confirmedForm.studentID"
                 type="number"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุรหัสนักศึกษา</p>
+              <p
+                v-if="!$v.studentID.required && $v.studentID.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสนักศึกษา
+              </p>
+
+              <p
+                v-if="!$v.studentID.numeric && $v.studentID.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
+
+              <p
+                v-if="!$v.studentID.minLength && $v.studentID.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
+
             </div>
 
             <div class="space-y-1 mb-2">
               <span>ชื่อบริษัทที่นักศึกษาไปฝึกงาน</span>
               <input
+                v-model.trim.lazy="$v.companyName.$model"
+                v-model = "confirmedForm.company"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุชื่อบริษัท</p>
+              <p 
+              v-if="!$v.companyName.required && $v.companyName.$dirty"
+              class="text-error mt-2 text-sm">กรุณาระบุชื่อบริษัท</p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>ตำแหน่งงานที่นักศึกษาไปฝึกงาน</span>
               <input
+                v-model.trim.lazy="$v.position.$model"
+                v-model = "confirmedForm.position"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุตำแหน่งงาน</p>
+              <p
+              v-if="!$v.position.required && $v.position.$dirty"
+              class="text-error mt-2 text-sm">กรุณาระบุตำแหน่งงาน</p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>เดือนที่เริ่มต้นฝึกงาน</span>
               <input
+                v-model.trim.lazy="$v.startMonth.$model"
+                v-model = "confirmedForm.start"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">
+              <p 
+              v-if="!$v.startMonth.required && $v.startMonth.$dirty"
+              class="text-error mt-2 text-sm">
                 กรุณาระบุเดือนที่เริ่มต้นฝึกงาน
               </p>
             </div>
@@ -79,11 +127,15 @@
             <div class="space-y-1 mb-2">
               <span>เดือนที่จบฝึกงาน</span>
               <input
+                v-model.trim.lazy="$v.endMonth.$model"
+                v-model = "confirmedForm.end"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p class="text-error mt-2 text-sm">กรุณาระบุเดือนที่จบฝึกงาน</p>
+              <p 
+              v-if="!$v.endMonth.required && $v.endMonth.$dirty"
+              class="text-error mt-2 text-sm">กรุณาระบุเดือนที่จบฝึกงาน</p>
             </div>
 
             <div class="flex w-full mt-8">
@@ -103,11 +155,7 @@
 </template>
 
 <script>
-import {
-  required,
-  numeric,
-  minLength,
-} from 'vuelidate/lib/validators'
+import { required, numeric, minLength } from 'vuelidate/lib/validators'
 import StudentNavBar from '~/components/StudentNavBar.vue'
 import Footer from '~/components/Footer.vue'
 export default {
@@ -115,13 +163,13 @@ export default {
   data() {
     return {
       confirmedForm: {
-        fname: this.firstname,
-        lname: this.lastname,
-        studentID: this.studentID,
-        company: this.company,
-        position: this.position,
-        start: this.startMonth,
-        end: this.endMonth,
+        fname: '',
+        lname: '',
+        studentID: '',
+        company: '',
+        position: '',
+        start: '',
+        end: '',
       },
       firstname: '',
       lastname: '',
@@ -140,6 +188,7 @@ export default {
         // console.log(this.sentInternshipForm)
         return
       }
+      console.log(this.confirmedForm);
     },
   },
 
@@ -153,7 +202,7 @@ export default {
     studentID: {
       required,
       numeric,
-      minLength: minLength(11)
+      minLength: minLength(11),
     },
     companyName: {
       required,
