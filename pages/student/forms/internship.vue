@@ -33,14 +33,14 @@
             <div class="space-y-1 mb-2">
               <span>นามสกุล</span>
               <input
-                v-model.trim.lazy="$v.lname.$model"
-                v-model="sentInternshipForm.lname"
+                v-model.trim.lazy="$v.lName.$model"
+                v-model="sentInternshipForm.lName"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.lname.required && $v.lname.$dirty"
+                v-if="!$v.lName.required && $v.lName.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุนามสกุล
@@ -49,15 +49,15 @@
             <div class="space-y-1 mb-2">
               <span>เพศ</span>
               <select
-                v-model.trim.lazy="$v.sex.$model"
-                v-model="sentInternshipForm.sex"
+                v-model.trim.lazy="$v.gender.$model"
+                v-model="sentInternshipForm.gender"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
                 <option value="ชาย">ชาย</option>
                 <option value="หญิง">หญิง</option>
               </select>
               <p
-                v-if="!$v.sex.required && $v.sex.$dirty"
+                v-if="!$v.gender.required && $v.gender.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุเพศ
@@ -66,21 +66,21 @@
             <div class="space-y-1 mb-2">
               <span>โทรศัพท์</span>
               <input
-                v-model.trim.lazy="$v.phone.$model"
-                v-model="sentInternshipForm.phone"
+                v-model.trim.lazy="$v.phoneNumber.$model"
+                v-model="sentInternshipForm.phoneNumber"
                 type="number"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.phone.required && $v.phone.$dirty"
+                v-if="!$v.phoneNumber.required && $v.phoneNumber.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุโทรศัพท์
               </p>
 
               <p
-                v-if="!$v.phone.minLength && $v.phone.$dirty"
+                v-if="!$v.phoneNumber.minLength && $v.phoneNumber.$dirty"
                 class="text-error mt-2 text-sm"
               >
               กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
@@ -89,22 +89,22 @@
             <div class="space-y-1 mb-2">
               <span>เกรดเฉลี่ย</span>
               <input
-                v-model.trim.lazy="$v.gpax.$model"
-                v-model="sentInternshipForm.gpax"
+                v-model.trim.lazy="$v.grade.$model"
+                v-model="sentInternshipForm.grade"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.gpax.required && $v.gpax.$dirty"
+                v-if="!$v.grade.required && $v.grade.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุเกรดเฉลี่ย
               </p>
               <p
                 v-if="
-                  !($v.gpax.maxValue && $v.gpax.minValue && $v.gpax.required) &&
-                  $v.gpax.$dirty
+                  !($v.grade.maxValue && $v.grade.minValue && $v.grade.required) &&
+                  $v.grade.$dirty
                 "
                 class="text-error mt-2 text-sm"
               >
@@ -152,15 +152,15 @@
             <div class="space-y-1 mb-2">
               <span>บริษัทที่จะยื่นสมัคร</span>
               <select
-                v-model.trim.lazy="$v.company.$model"
-                v-model="sentInternshipForm.company"
+                v-model.trim.lazy="$v.companyName.$model"
+                v-model="sentInternshipForm.companyName"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
                 <option value="บริษัท A">บริษัท A</option>
                 <option value="บริษัท B">บริษัท B</option>
               </select>
               <p
-                v-if="!$v.company.required && $v.company.$dirty"
+                v-if="!$v.companyName.required && $v.companyName.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุบริษัทที่จะยื่นสมัคร
@@ -169,14 +169,14 @@
             <div class="space-y-1 mb-2">
               <span>งานที่จะยื่นสมัคร</span>
               <input
-                v-model.trim.lazy="$v.job.$model"
-                v-model="sentInternshipForm.job"
+                v-model.trim.lazy="$v.position.$model"
+                v-model="sentInternshipForm.position"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.job.required && $v.job.$dirty"
+                v-if="!$v.position.required && $v.position.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุงานที่จะยื่นสมัคร
@@ -185,14 +185,14 @@
             <div class="space-y-1 mb-2">
               <span>เดือนที่ต้องการเริ่มต้นฝึกงาน</span>
               <input
-                v-model.trim.lazy="$v.start.$model"
-                v-model="sentInternshipForm.start"
+                v-model.trim.lazy="$v.startDate.$model"
+                v-model="sentInternshipForm.startDate"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.start.required && $v.start.$dirty"
+                v-if="!$v.startDate.required && $v.startDate.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุเดือนที่ต้องการเริ่มต้นฝึกงาน
@@ -201,14 +201,14 @@
             <div class="space-y-1 mb-2">
               <span>เดือนที่ต้องการจบฝึกงาน</span>
               <input
-                v-model.trim.lazy="$v.end.$model"
-                v-model="sentInternshipForm.end"
+                v-model.trim.lazy="$v.endDate.$model"
+                v-model="sentInternshipForm.endDate"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.end.required && $v.end.$dirty"
+                v-if="!$v.endDate.required && $v.endDate.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุเดือนที่ต้องการจบฝึกงาน
@@ -274,32 +274,32 @@ export default {
     return {
       sentInternshipForm: {
         fName: '',
-        lname: '',
-        sex: '',
-        phone: '',
-        gpax: '',
+        lName: '',
+        gender: '',
+        phoneNumber: '',
+        grade: '',
         email: '',
         address: '',
-        company: '',
-        job: '',
-        start: '',
-        end: '',
+        companyName: '',
+        position: '',
+        startDate: '',
+        endDate: '',
         resume: '',
         user:{
-          userId:''
+          userId: `${localStorage.getItem('userId')}`
         }
       },
       fName: '',
-      lname: '',
-      sex: '',
-      phone: '',
-      gpax: '',
+      lName: '',
+      gender: '',
+      phoneNumber: '',
+      grade: '',
       email: '',
       address: '',
-      company: '',
-      job: '',
-      start: '',
-      end: '',
+      companyName: '',
+      position: '',
+      startDate: '',
+      endDate: '',
       resume: '',
       agree: false,
     }
@@ -309,18 +309,18 @@ export default {
     fName: {
       required,
     },
-    lname: {
+    lName: {
       required,
     },
-    sex: {
+    gender: {
       required,
     },
-    phone: {
+    phoneNumber: {
       required,
       numeric,
       minLength: minLength(10),
     },
-    gpax: {
+    grade: {
       required,
       decimal,
       minValue: minValue(0),
@@ -333,16 +333,16 @@ export default {
     address:{
       required,
     },
-    company:{
+    companyName:{
       required,
     },
-    job:{
+    position:{
       required,
     },
-    start:{
+    startDate:{
       required,
     },
-    end:{
+    endDate:{
       required,
     },
     resume:{
@@ -369,12 +369,12 @@ export default {
           console.log(data)
       await this.$axios.$post(`/users/createRegis`, data, {
         headers: {
-          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
       }).then((res) => {
         console.log(res)
         alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
-        this.$router.push('/users')
+        this.$router.push('/student')
         location.reload()
       }).catch((err) => {
         console.log(err)
