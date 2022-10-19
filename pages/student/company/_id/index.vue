@@ -45,7 +45,7 @@
   </div> -->
   <div>
     <StudentNavBar />
-    <div class="flex flex-col px-8 pt-8 md:px-16">
+    <div class="flex flex-col px-8 pt-8 md:px-24">
       <section>
         <div class="mt-8 md:flex md:gap-x-24">
           <img
