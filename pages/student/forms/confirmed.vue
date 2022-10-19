@@ -18,7 +18,7 @@
               <span>ชื่อจริง</span>
               <input
                 v-model.trim.lazy="$v.firstname.$model"
-                v-model = "confirmedForm.fname"
+                v-model="confirmedForm.fName"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -35,7 +35,7 @@
               <span>นามสกุล</span>
               <input
                 v-model.trim.lazy="$v.lastname.$model"
-                v-model = "confirmedForm.lname"
+                v-model="confirmedForm.lName"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -51,75 +51,99 @@
             <div class="space-y-1 mb-2">
               <span>รหัสนักศึกษา</span>
               <input
-                v-model.trim.lazy="$v.studentID.$model"
-                v-model = "confirmedForm.studentID"
+                v-model.trim.lazy="$v.studentId.$model"
+                v-model="confirmedForm.studentId"
                 type="number"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.studentID.required && $v.studentID.$dirty"
+                v-if="!$v.studentId.required && $v.studentId.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุรหัสนักศึกษา
               </p>
 
               <p
-                v-if="!$v.studentID.numeric && $v.studentID.$dirty"
+                v-if="!$v.studentId.numeric && $v.studentId.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
               </p>
 
               <p
-                v-if="!$v.studentID.minLength && $v.studentID.$dirty"
+                v-if="!$v.studentId.minLength && $v.studentId.$dirty"
                 class="text-error mt-2 text-sm"
               >
                 กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
               </p>
-
             </div>
 
             <div class="space-y-1 mb-2">
               <span>ชื่อบริษัทที่นักศึกษาไปฝึกงาน</span>
               <input
                 v-model.trim.lazy="$v.companyName.$model"
-                v-model = "confirmedForm.company"
+                v-model="confirmedForm.companyName"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.companyName.required && $v.companyName.$dirty"
-              class="text-error mt-2 text-sm">กรุณาระบุชื่อบริษัท</p>
+              <p
+                v-if="!$v.companyName.required && $v.companyName.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อบริษัท
+              </p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>ตำแหน่งงานที่นักศึกษาไปฝึกงาน</span>
               <input
                 v-model.trim.lazy="$v.position.$model"
-                v-model = "confirmedForm.position"
+                v-model="confirmedForm.position"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-              v-if="!$v.position.required && $v.position.$dirty"
-              class="text-error mt-2 text-sm">กรุณาระบุตำแหน่งงาน</p>
+                v-if="!$v.position.required && $v.position.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุตำแหน่งงาน
+              </p>
+            </div>
+
+            <div class="space-y-1 mb-2">
+              <span>ระยะเวลา</span>
+              <select 
+                v-model.trim.lazy="$v.longTerm.$model"
+                v-model="confirmedForm.longTerm"
+              class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                <option value="2 เดือน">2 เดือน</option>
+                <option value="4 เดือน">4 เดือน</option>
+                <option value="6 เดือน">6 เดือน</option>
+              </select>
+              <p
+                v-if="!$v.longTerm.required && $v.longTerm.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุระยะเวลาฝึกงาน
+              </p>
             </div>
 
             <div class="space-y-1 mb-2">
               <span>เดือนที่เริ่มต้นฝึกงาน</span>
               <input
                 v-model.trim.lazy="$v.startMonth.$model"
-                v-model = "confirmedForm.start"
+                v-model="confirmedForm.durationForm"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.startMonth.required && $v.startMonth.$dirty"
-              class="text-error mt-2 text-sm">
+              <p
+                v-if="!$v.startMonth.required && $v.startMonth.$dirty"
+                class="text-error mt-2 text-sm"
+              >
                 กรุณาระบุเดือนที่เริ่มต้นฝึกงาน
               </p>
             </div>
@@ -128,14 +152,17 @@
               <span>เดือนที่จบฝึกงาน</span>
               <input
                 v-model.trim.lazy="$v.endMonth.$model"
-                v-model = "confirmedForm.end"
+                v-model="confirmedForm.durationTo"
                 type="date"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-              <p 
-              v-if="!$v.endMonth.required && $v.endMonth.$dirty"
-              class="text-error mt-2 text-sm">กรุณาระบุเดือนที่จบฝึกงาน</p>
+              <p
+                v-if="!$v.endMonth.required && $v.endMonth.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเดือนที่จบฝึกงาน
+              </p>
             </div>
 
             <div class="flex w-full mt-8">
@@ -163,21 +190,26 @@ export default {
   data() {
     return {
       confirmedForm: {
-        fname: '',
-        lname: '',
-        studentID: '',
-        company: '',
+        fName: '',
+        lName: '',
+        studentId: '',
+        companyName: '',
         position: '',
-        start: '',
-        end: '',
+        durationForm: '',
+        durationTo: '',
+        longTerm:'',
+        user: {
+          userId: `${localStorage.getItem('userId')}`,
+        },
       },
       firstname: '',
       lastname: '',
-      studentID: '',
+      studentId: '',
       companyName: '',
       position: '',
       startMonth: '',
       endMonth: '',
+      longTerm:'',
     }
   },
   methods: {
@@ -188,7 +220,26 @@ export default {
         // console.log(this.sentInternshipForm)
         return
       }
-      console.log(this.confirmedForm);
+      this.sentconfirmedForm()
+    },
+    async sentconfirmedForm() {
+      const data = this.confirmedForm
+      console.log(data)
+      await this.$axios
+        .$post(`/users/createconfirmationForm`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((res) => {
+          console.log(res)
+          alert('ส่งฟอร์มยืนยันการฝึกงานสำเร็จ')
+          this.$router.push('/student')
+          location.reload()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 
@@ -199,7 +250,7 @@ export default {
     lastname: {
       required,
     },
-    studentID: {
+    studentId: {
       required,
       numeric,
       minLength: minLength(11),
@@ -216,6 +267,9 @@ export default {
     endMonth: {
       required,
     },
+    longTerm:{
+      required,
+    }
   },
 }
 </script>
