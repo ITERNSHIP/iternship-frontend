@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <StudentNavBar />
     <div class="container mx-auto px-16 mb-14">
       <section>
@@ -42,53 +42,100 @@
         </section>
       </section>
     </div>
+  </div> -->
+  <div>
+    <StudentNavBar />
+    <div class="flex flex-col px-8 pt-8 md:px-16">
+      <section>
+        <div class="mt-8 md:flex md:gap-x-24">
+          <img
+            src="@/static/logo.png"
+            alt=""
+            class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[360px] md:w-[360px]"
+          />
+          <h1
+            class="text-center mt-5 md:mt-0 font-bold lg:text-4xl text-xl md:text-2xl md:self-center"
+          >
+            ใส่ชื่อบริษัทตรงนี้
+          </h1>
+        </div>
+      </section>
+
+      <section>
+        <div class="mt-4 md:mt-8">
+          <p class="text-lg font-medium md:text-2xl">ความเป็นมาของบริษัท</p>
+        </div>
+
+        <div class="mt-2 md:mt-4">
+          <p class="text-sm font-normal md:text-lg">ใส่คำอธิบายบริษัทตรงนี้</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mt-4 md:mt-8">
+          <p class="text-lg font-medium md:text-2xl">ตำแหน่งที่เปิดรับ</p>
+        </div>
+        <section class="mt-2 md:mt-4">
+          <h1 class="text-sm font-normal md:text-lg">ไม่มีข้อมูล</h1>
+        </section>
+        <section class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
+          <nuxt-link
+            to="/student/company/position/1"
+            class="mt-2 md:mt-4 p-4 h-auto w-auto  rounded-lg flex flex-col  md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
+          >
+            <p class="text-white">ใส่ตำแหน่งที่เปิดรับตรงนี้</p>
+            <p class="text-error">ปิดรับสมัคร: ใส่วันปิดตรงนี้</p>
+          </nuxt-link>
+          
+        </section>
+      </section>
+    </div>
+
+    <Footer class="mt-8" />
   </div>
 </template>
 
 <script>
 import StudentNavBar from '@/components/StudentNavBar'
-
+import Footer from '~/components/Footer.vue'
 
 export default {
-  components: { StudentNavBar },
+  components: { StudentNavBar, Footer },
 
-  data(){
-    return{
-      oneCompany:{},
-      positions:[]
+  data() {
+    return {
+      // oneCompany: {},
+      // positions: [],
     }
-
   },
 
-  async mounted(){
+  async mounted() {
     // get route params
-    const accessToken = this.$cookiz.get('jwt')
-    console.log(this.$route.params.id)
-    const id = this.$route.params.id
-    let getThisCompany = await this.$axios.$get('/users/findCompanyDetailById', {
-      params:{
-        companyId: id
-      },
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    if(getThisCompany){
-      this.oneCompany = getThisCompany[0]
-    }
-    console.log("🚀 ~ file: index.vue ~ line 67 ~ mounted ~ getThisCompany", getThisCompany)
-
-    let getPositionsInCompany = await this.$axios.$get('/users/findRecruitById', {
-      params:{
-        companyId: id
-      },
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    this.positions = getPositionsInCompany
-    
-  }
+    //   const accessToken = this.$cookiz.get('jwt')
+    //   console.log(this.$route.params.id)
+    //   const id = this.$route.params.id
+    //   let getThisCompany = await this.$axios.$get('/users/findCompanyDetailById', {
+    //     params:{
+    //       companyId: id
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`
+    //     }
+    //   })
+    //   if(getThisCompany){
+    //     this.oneCompany = getThisCompany[0]
+    //   }
+    //   console.log("🚀 ~ file: index.vue ~ line 67 ~ mounted ~ getThisCompany", getThisCompany)
+    //   let getPositionsInCompany = await this.$axios.$get('/users/findRecruitById', {
+    //     params:{
+    //       companyId: id
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`
+    //     }
+    //   })
+    //   this.positions = getPositionsInCompany
+  },
 }
 </script>
 

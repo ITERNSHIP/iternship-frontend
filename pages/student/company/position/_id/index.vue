@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <StudentNavBar />
     <div class="container mx-auto px-16 mb-14">
       <section>
@@ -95,52 +95,58 @@
         </section>
       </section>
     </div>
+  </div> -->
+  <div>
+    test
   </div>
 </template>
 
 <script>
 
 import StudentNavBar from '~/components/StudentNavBar.vue'
+// export default {
+//   components: { StudentNavBar },
+
+//   data() {
+//     return {
+//       position: {},
+//       company: {},
+//       anotherPosition: [],
+//     }
+//   },
+
+//   async mounted() {
+//     const accessToken = this.$cookiz.get('jwt')
+//     const id = this.$route.params.id
+//     // const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
+    
+//     console.log(this.$route.params.id)
+//     let getPosition = await this.$axios.$get(`/users/getRecruitById/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     })
+    
+//     this.position = getPosition
+//     console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ getPosition", getPosition)
+//     this.company = getPosition.company
+//     this.companyId = getPosition.company.companyId
+//     // console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ this.company", this.company)
+
+//     let getAnotherPosition = await this.$axios.$get('/users/findRecruitById', {
+//       params: {
+//           companyId: getPosition.company.companyId
+//         },
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//     })
+//     this.anotherPosition = getAnotherPosition
+//     console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~ getAnotherPosition", getAnotherPosition)
+//   },
+// }
 export default {
-  components: { StudentNavBar },
 
-  data() {
-    return {
-      position: {},
-      company: {},
-      anotherPosition: [],
-    }
-  },
-
-  async mounted() {
-    const accessToken = this.$cookiz.get('jwt')
-    const id = this.$route.params.id
-    // const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
-    
-    console.log(this.$route.params.id)
-    let getPosition = await this.$axios.$get(`/users/getRecruitById/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    
-    this.position = getPosition
-    console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ getPosition", getPosition)
-    this.company = getPosition.company
-    this.companyId = getPosition.company.companyId
-    // console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ this.company", this.company)
-
-    let getAnotherPosition = await this.$axios.$get('/users/findRecruitById', {
-      params: {
-          companyId: getPosition.company.companyId
-        },
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    this.anotherPosition = getAnotherPosition
-    console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~ getAnotherPosition", getAnotherPosition)
-  },
 }
 </script>
 
