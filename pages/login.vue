@@ -109,7 +109,7 @@
 
           <div class="flex w-full">
             <a
-              href="https://std-sso-fe.sit.kmutt.ac.th/login?response_type=code&client_id=TQ8A3gws&redirect_uri=http://localhost:3000/redirect&state=1234"
+              href="https://std-sso-fe.sit.kmutt.ac.th/login?response_type=code&client_id=TQ8A3gws&redirect_uri=https://dev.iternship.net/redirect&state=1234"
               type="submit"
               class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
             >
