@@ -156,8 +156,9 @@
                 v-model="sentInternshipForm.companyName"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
-                <option value="บริษัท A">บริษัท A</option>
-                <option value="บริษัท B">บริษัท B</option>
+                <option  v-for="comName in listCompanyName" :key="comName.companyName" :value="comName.companyName">
+                  {{comName.companyName}}
+                  </option>
               </select>
               <p
                 v-if="!$v.companyName.required && $v.companyName.$dirty"
@@ -302,6 +303,7 @@ export default {
       endDate: '',
       resume: '',
       agree: false,
+      listCompanyName:[],
     }
   },
 
@@ -380,6 +382,18 @@ export default {
         console.log(err)
       })
     },
+  },
+  async mounted() {
+    const accessToken = localStorage.getItem('accessToken')
+        console.log(accessToken)
+    let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.listCompanyName = allCompany
+
+    console.log(this.listCompanyName)
   },
 }
 </script>
