@@ -7,8 +7,8 @@
       </div>
       <div class="lg:flex mx-12 hidden">
         <ul class="menu menu-horizontal space-x-6 text-white">
-          <li><nuxt-link to="/">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/">จัดการข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
           <li><nuxt-link to="/">ดูงานที่เปิดรับ</nuxt-link></li>
           <li><a>นักศึกษาที่ได้บริษัทฝึกงาน</a></li>
         </ul>
@@ -62,8 +62,8 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><nuxt-link to="/">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/">จัดการข่าวสาร</nuxt-link></li>
+          <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
+          <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
           <li><nuxt-link to="/">ดูงานที่เปิดรับ</nuxt-link></li>
           <li><a>นักศึกษาที่ได้บริษัทฝึกงาน</a></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
