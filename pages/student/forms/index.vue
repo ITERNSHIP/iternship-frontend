@@ -27,14 +27,14 @@
               <p class="p-6 text-white">ยืนยันการได้บริษัทฝึกงานของคุณ</p>
             </div>
           </nuxt-link>
-          <div class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+          <nuxt-link to="/student/statusInternship" class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
             <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
               <p class="p-6 text-white text-xl lg:text-2xl font-medium">ตรวจสอบสถานะการสมัครฝึกงาน</p>
             </div>
             <div class="bg-black-gray h-20 w-auto rounded-b-lg">
               <p class="p-6 text-white">ตรวจสอบสถานะการสมัครบริษัทของคุณ</p>
             </div>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
