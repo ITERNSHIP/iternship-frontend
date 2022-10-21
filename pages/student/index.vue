@@ -98,22 +98,20 @@
         v-if="!toggleView"
         class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid"
       >
-        <div v-for="company in listCompany" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <nuxt-link  :to="`/student/company/${company.companyId}`" v-for="company in listCompany" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure>
             <img :src="company.imageName" />
           </figure>
           <div class="card-body bg-black-gray">
             <h2 class="card-title text-white bg-black-gray">{{company.companyName}}</h2>
           </div>
-        </div>
+        </nuxt-link>
       </div>
       <div class="min-h-screen">
         <div v-if="toggleView" class="grid lg:grid-cols-3 gap-4 mb-8">
-        <div v-for="recruite in listRecruite" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <nuxt-link  :to="`/student/company/position/${recruite.recruitId}`" v-for="recruite in listRecruite" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure class="px-3 py-3 h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40 self-center">
-            <img
-              src="https://placeimg.com/255/225/arch"
-              alt="Shoes"
+            <img :src="recruite.company.imageName"
               class="rounded-xl"
             />
           </figure>
@@ -121,7 +119,7 @@
             <h2 class="card-title">{{recruite.title}}</h2>
             <p>{{recruite.company.companyName}}</p>
           </div>
-        </div>
+        </nuxt-link>
       </div>
       </div>
       

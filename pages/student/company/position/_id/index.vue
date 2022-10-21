@@ -101,8 +101,7 @@
     <div class="flex flex-col px-8 pt-8 md:px-24">
       <section>
         <div class="mt-8 md:flex md:gap-x-24">
-          <img
-            src="@/static/logo.png"
+          <img :src="positionData.company.imageName"
             alt=""
             class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[250px] md:w-[250px] lg:h-[360px] lg:w-[360px]"
           />
@@ -110,9 +109,11 @@
             <h1
               class="text-center mt-5 md:mt-0 font-bold lg:text-4xl text-xl md:text-2xl md:self-center"
             >
-              ใส่ชื่อบริษัทตรงนี้
+              {{positionData.company.companyName}}
             </h1>
+            <nuxt-link  :to="`/student/company/${positionData.company.companyId}`">
             <u class="hidden lg:flex">ดูรายละเอียดบริษัท</u>
+            </nuxt-link>
           </div>
         </div>
       </section>
@@ -123,7 +124,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่ตำแหน่งงานตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.title}}</p>
         </div>
       </section>
 
@@ -133,7 +134,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่รายละเอียดของงานตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.jobDetail}}</p>
         </div>
       </section>
 
@@ -143,7 +144,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่สวัสดิการของบริษัทตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.welfare}}</p>
         </div>
       </section>
 
@@ -153,7 +154,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่สถานที่ปฎิบัติงานตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.location}}</p>
         </div>
       </section>
 
@@ -163,7 +164,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่ช่องทางติดต่อบริษัทตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.contact}}</p>
         </div>
       </section>
 
@@ -173,7 +174,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่วันเปิดรับสมัครตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.startDate}}</p>
         </div>
       </section>
 
@@ -183,7 +184,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">ใส่วันปิดรับสมัครตรงนี้</p>
+          <p class="text-sm font-normal md:text-lg">{{position.endDate}}</p>
         </div>
       </section>
 
@@ -191,16 +192,16 @@
         <div class="mt-4 md:mt-8">
           <p class="text-lg font-medium md:text-2xl">ตำแหน่งอื่นๆ ที่เปิดรับในบริษัทนี้</p>
         </div>
-        <section class="mt-2 md:mt-4">
+        <section v-if="anotherPositions.length <= 0 " class="mt-2 md:mt-4">
           <h1 class="text-sm font-normal md:text-lg">ไม่มีข้อมูล</h1>
         </section>
-        <section class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
+        <section v-else v-for="anotherPosition in anotherPositions" :key="anotherPosition.recruitId" class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
           <nuxt-link
             to="/student/company/position/1"
             class="mt-2 md:mt-4 p-4 h-auto w-auto  rounded-lg flex flex-col  md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
           >
-            <p class="text-white">ใส่ตำแหน่งที่เปิดรับตรงนี้</p>
-            <p class="text-error">ปิดรับสมัคร: ใส่วันปิดตรงนี้</p>
+            <p class="text-white">{{anotherPosition.title}}</p>
+            <p class="text-error">ปิดรับสมัคร: {{anotherPosition.endDate}}</p>
           </nuxt-link>
         </section>
       </section>
@@ -216,47 +217,56 @@ import StudentNavBar from '~/components/StudentNavBar.vue'
 import Footer from '~/components/Footer.vue';
 // export default {
 //   components: { StudentNavBar },
+export default {
+  components: { StudentNavBar, Footer },
 
-//   data() {
-//     return {
-//       position: {},
-//       company: {},
-//       anotherPosition: [],
-//     }
-//   },
-
-//   async mounted() {
-//     const accessToken = this.$cookiz.get('jwt')
-//     const id = this.$route.params.id
+  data() {
+    return {
+      positionData: {
+        company: {
+        companyName:''
+      }
+      },
+      anotherPositions: [],
+    }
+  },
+computed: {
+  position(){
+    return this.positionData?this.positionData:{}
+  }
+},
+  async mounted() {
+      const accessToken = localStorage.getItem('accessToken')
+    const id = this.$route.params.id
 //     // const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
 
-//     console.log(this.$route.params.id)
-//     let getPosition = await this.$axios.$get(`/users/getRecruitById/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     })
+    // console.log(this.$route.params.id)
+    let getPosition = await this.$axios.$get(`/users/getRecruitById/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
 
-//     this.position = getPosition
-//     console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ getPosition", getPosition)
+    this.positionData = getPosition
+    // console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ getPosition", getPosition)
 //     this.company = getPosition.company
 //     this.companyId = getPosition.company.companyId
 //     // console.log("🚀 ~ file: index.vue ~ line 128 ~ mounted ~ this.company", this.company)
 
-//     let getAnotherPosition = await this.$axios.$get('/users/findRecruitById', {
-//       params: {
-//           companyId: getPosition.company.companyId
-//         },
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     })
-//     this.anotherPosition = getAnotherPosition
-//     console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~ getAnotherPosition", getAnotherPosition)
+    let getAnotherPosition = await this.$axios.$get('/users/findRecruitById', {
+      params: {
+          companyId: getPosition.company.companyId
+        },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    let filterpos = getAnotherPosition.filter(pos =>pos.recruitId != id)
+     this.anotherPositions = filterpos
+    // this.anotherPositions = getAnotherPosition
+    console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~ getAnotherPosition", getAnotherPosition)
 //   },
-// }
-export default {
-  components: { StudentNavBar, Footer },
+}
 }
 </script>
 
