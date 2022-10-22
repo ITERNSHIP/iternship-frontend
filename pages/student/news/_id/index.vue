@@ -24,7 +24,7 @@
     <StudentNavBar />
     <div class="flex flex-col px-8 pt-8">
       <div>
-        <p class="font-bold lg:text-3xl text-2xl md:text-4xl text-blue-blue">หัวข้อข่าวตรงนี้</p>
+        <p class="font-bold lg:text-3xl text-2xl md:text-4xl text-blue-blue">{{oneNews.newstitle}}</p>
       </div>
 
       <div class="mt-4 lg:mt-8">
@@ -32,7 +32,7 @@
       </div>
 
       <div class="mt-2">
-        <p class="text-sm font-normal md:text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam ducimus nemo perferendis iusto, laborum sed voluptates ipsa natus corrupti, aut adipisci quae sapiente ab ullam repellat odit, harum nisi!</p>
+        <p class="text-sm font-normal md:text-lg">{{oneNews.newsDetail}}</p>
       </div>
 
       <nuxt-link to="/student/news" class="btn lg:w-1/12 mt-4 lg:mt-8 w-1/5 rounded-xl">กลับ</nuxt-link>
@@ -43,31 +43,31 @@
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
 import Footer from '~/components/Footer.vue'
-// export default {
-//   components: { StudentNavBar, Footer },
-
-//   data() {
-//     return {
-//       oneNews: {},
-//     }
-//   },
-
-//   async mounted() {
-//     const id = this.$route.params.id
-//     const accessToken = this.$cookiz.get('jwt')
-//     let getThisnew = await this.$axios.$get(`/users/getNewsById/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     })
-//     // console.log("🚀 ~ file: index.vue ~ line 39 ~ mounted ~ getThisnew", getThisnew)
-//     this.oneNews = getThisnew
-//   },
-// }
-
 export default {
   components: { StudentNavBar, Footer },
+
+  data() {
+    return {
+      oneNews: {},
+    }
+  },
+
+  async mounted() {
+    const id = this.$route.params.id
+      const accessToken = localStorage.getItem('accessToken')
+    let getThisnew = await this.$axios.$get(`/users/getNewsById/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.oneNews = getThisnew
+    console.log("🚀 ~ file: index.vue ~ line 64 ~ mounted ~  this.oneNews",  this.oneNews)
+  },
 }
+
+// export default {
+//   components: { StudentNavBar, Footer },
+// }
 </script>
 
 <style></style>

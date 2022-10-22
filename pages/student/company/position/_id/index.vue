@@ -197,7 +197,7 @@
         </section>
         <section v-else v-for="anotherPosition in anotherPositions" :key="anotherPosition.recruitId" class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
           <nuxt-link
-            to="/student/company/position/1"
+            :to="`/student/company/position/${anotherPosition.recruitId}`"
             class="mt-2 md:mt-4 p-4 h-auto w-auto  rounded-lg flex flex-col  md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
           >
             <p class="text-white">{{anotherPosition.title}}</p>
