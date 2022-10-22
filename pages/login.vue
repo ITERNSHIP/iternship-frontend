@@ -251,7 +251,7 @@
       </div>
 
       <div class="mt-10">
-        <form action="#">
+        <form action="#" @submit.prevent="staffLogin">
           <div class="flex flex-col mb-6">
             <label
               for="email"
@@ -261,6 +261,7 @@
             <div class="relative">
               <input
                 v-model.trim.lazy="$v.staffEmail.$model"
+                v-model="staffLoginData.email"
                 id="email"
                 type="email"
                 name="email"
@@ -290,6 +291,7 @@
             <div class="relative">
               <input
                 v-model.trim.lazy="$v.staffPass.$model"
+                v-model="staffLoginData.password"
                 id="password"
                 type="password"
                 name="password"
@@ -362,6 +364,10 @@ export default {
         username: '',
         password: '',
       },
+      staffLoginData:{
+        email: '',
+        password: '',
+      }
     }
   },
   validations: {
@@ -463,31 +469,39 @@ export default {
       //   maxAge: 60 * 60 * 24 * 7,
       // })
 
-      // if (response.message == 'success') {
-      //   let { companyId, companyName } = response
-      //   localStorage.setItem('companyId', companyId)
-      //   localStorage.setItem('companyName', companyName)
-      //   console.log(localStorage.getItem('companyId'))
-      //   console.log(localStorage.getItem('companyName'))
-      //   alert('เข้าสู่ระบบสำเร็จ')
-      //   console.log('Login success!!')
-      //   this.$router.push('/company')
-      // } else {
-      //   alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
-      // }
+    },
 
-      // let { companyId, companyName } = response
-      // localStorage.setItem('companyId', companyId)
-      // localStorage.setItem('companyName', companyName)
+    async staffLogin() {
+      this.$v.$touch()
+      if (this.$v.staffEmail.$invalid && this.$v.staffPass.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        return
+      }else{
+        await this.$axios
+        .$post('/staff/login', this.staffLoginData, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          // console.log(res)
+          let { accessToken } = res
+          localStorage.setItem('accessToken', accessToken)
+          alert('เข้าสู่ระบบสำเร็จ')
+          this.$router.push('/staff')
+        })
+        .catch((err) => {
+          console.log(err.response.data.statusCode)
+          if (err.response.data.statusCode == '400'){
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+          }
+          // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+        })
+      }
+    
+      // this.$cookiz.set('jwt', response.accessToken, {
+      //   path: '/',
+      //   maxAge: 60 * 60 * 24 * 7,
+      // })
 
-      // this.$store.dispatch('company/setCompanyId', companyId)
-      // this.$store.dispatch('company/setCompanyName', companyName)
-
-      // console.log(localStorage.getItem('companyId'))
-      // console.log(localStorage.getItem('companyName'))
-      // alert('เข้าสู่ระบบสำเร็จ')
-      // console.log('Login success!!')
-      // this.$router.push('/company')
     },
   },
 

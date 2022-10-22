@@ -9,8 +9,8 @@
         <ul class="menu menu-horizontal space-x-6 text-white">
           <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/">ดูงานที่เปิดรับ</nuxt-link></li>
-          <li><a>นักศึกษาที่ได้บริษัทฝึกงาน</a></li>
+          <li><nuxt-link to="/staff/seeopenjobs">ดูงานที่เปิดรับ</nuxt-link></li>
+          <li><nuxt-link to="/staff/table">นักศึกษาที่ได้บริษัทฝึกงาน</nuxt-link></li>
         </ul>
       </div>
 
@@ -64,8 +64,8 @@
         >
           <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/">ดูงานที่เปิดรับ</nuxt-link></li>
-          <li><a>นักศึกษาที่ได้บริษัทฝึกงาน</a></li>
+          <li><nuxt-link to="/staff/seeopenjobs">ดูงานที่เปิดรับ</nuxt-link></li>
+          <li><nuxt-link to="/staff/table">นักศึกษาที่ได้บริษัทฝึกงาน</nuxt-link></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
           <li><a>ออกจากระบบ</a></li>
         </ul>

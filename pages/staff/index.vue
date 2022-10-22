@@ -68,7 +68,7 @@
               <p class="p-6 text-white">จัดการข้อมูลข่าวประชาสัมพันธ์</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="" class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+          <nuxt-link to="/staff/seeopenjobs" class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
             <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
               <p class="p-6 text-white text-xl lg:text-2xl font-medium">ดูงานที่เปิดรับทั้งหมด</p>
             </div>
@@ -76,7 +76,7 @@
               <p class="p-6 text-white">ดูงานที่เปิดรับนักศึกษาฝึกงานทั้งหมดในระบบ</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="" class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
+          <nuxt-link to="/staff/table" class="cursor-pointer lg:w-4/12 shadow-xl rounded-lg hover:outline hover:outline-offset-2 hover:outline-black">
             <div class="bg-blue-blue h-28 lg:h-44 w-auto rounded-t-lg">
               <p class="p-6 text-white text-xl lg:text-2xl font-medium">รายชื่อนักศึกษาที่ได้บริษัทฝึกงาน</p>
             </div>
