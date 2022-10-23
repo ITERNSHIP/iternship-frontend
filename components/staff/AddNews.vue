@@ -20,7 +20,7 @@
           >
           <input
           v-model.trim.lazy="$v.validateTitle.$model"
-          v-model="news.title"
+          v-model="news.newstitle"
             class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
             placeholder="พิมพ์หัวข้อข่าวประชาสัมพันธ์ที่นี่"
           />
@@ -35,7 +35,7 @@
           >
           <textarea
           v-model.trim.lazy="$v.validateDetail.$model"
-          v-model="news.detail"
+          v-model="news.newsDetail"
             class="mt-2 text-gray-600 min-h-[200px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
             placeholder="พิมพ์รายละเอียดของข่าวประชาสัมพันธ์ที่นี่"
           />
@@ -55,13 +55,15 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import { required } from 'vuelidate/lib/validators'
 export default {
   data(){
     return {
       news: {
-        title: '',
-        detail: ''
+        newstitle: '',
+        newsDetail: '',
+        openDate: ''
       },
       validateTitle: null,
       validateDetail: null,
@@ -75,6 +77,7 @@ export default {
         return
       }
       //emit event to parent component
+      this.news.openDate = dayjs().format('YYYY-MM-DD')
       this.$emit('add-news', this.news)
     }
   },

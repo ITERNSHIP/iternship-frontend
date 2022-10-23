@@ -47,52 +47,37 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>company</th>
-                <th>location</th>
-                <th>Last Login</th>
-                <th>Favorite Color</th>
+                <th>รหัสนักศึกษา</th>
+                <th>ชื่อ - นามสกุล</th>
+                <th>ชื่อบริษัท</th>
+                <th>ตำแหน่งงาน</th>
+                <th>ระยะเวลาในการฝึก</th>
+                <th>เริ่มฝึกงาน</th>
+                <th>จบฝึกงาน</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-for="(student, i) in studentInfo" :key="student.confirmationId">
               <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Littel, Schaden and Vandervort</td>
-                <td>Canada</td>
-                <td>12/16/2020</td>
-                <td>Blue</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Zemlak, Daniel and Leannon</td>
-                <td>United States</td>
-                <td>12/5/2020</td>
-                <td>Purple</td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Carroll Group</td>
-                <td>China</td>
-                <td>8/15/2020</td>
-                <td>Red</td>
+                <th>{{ i+1 }}</th>
+                <td>{{ student.studentId }}</td>
+                <td>{{ student.fName }} {{ student.lName }}</td>
+                <td>{{ student.companyName }}</td>
+                <td>{{ student.position }}</td>
+                <td>{{ student.longTerm }}</td>
+                <td>{{ student.durationForm }}</td>
+                <td>{{ student.durationTo }}</td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>company</th>
-                <th>location</th>
-                <th>Last Login</th>
-                <th>Favorite Color</th>
+                <th>รหัสนักศึกษา</th>
+                <th>ชื่อ - นามสกุล</th>
+                <th>ชื่อบริษัท</th>
+                <th>ตำแหน่งงาน</th>
+                <th>ระยะเวลาในการฝึก</th>
+                <th>เริ่มฝึกงาน</th>
+                <th>จบฝึกงาน</th>
               </tr>
             </tfoot>
           </table>
@@ -120,6 +105,25 @@ import StaffNavBar from '../../components/StaffNavBar.vue'
 import Footer from '~/components/Footer.vue'
 export default {
   components: { StaffNavBar, Footer },
+  data() {
+    return {
+      studentInfo: [],
+    }
+  },
+  async mounted() {
+    let accessToken = localStorage.getItem('accessToken')
+    if (accessToken == null) {
+      this.$router.push('/staff/login')
+    }
+    let studentConfirmResults = await this.$axios.$get('/staff/getAllconfirmation', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      }
+    })
+    this.studentInfo = studentConfirmResults
+    console.log("🚀 ~ file: table.vue ~ line 124 ~ mounted ~ this.studentInfo", this.studentInfo)
+    console.log(this.studentInfo.length);
+  },
 }
 </script>
 

@@ -5,38 +5,60 @@
       <div class="flex flex-row justify-center md:justify-between">
         <div class="lg:mt-24">
           <div>
-            <p class="font-bold text-xl md:text-start md:text-2xl lg:text-4xl">รวบรวมบริษัทไอทีชั้นนำ</p>
-            <p class="font-bold text-xl md:text-start md:text-2xl lg:text-4xl">ที่เปิดรับสมัครนักศึกษาฝึกงาน</p>
+            <p class="font-bold text-xl md:text-start md:text-2xl lg:text-4xl">
+              รวบรวมบริษัทไอทีชั้นนำ
+            </p>
+            <p class="font-bold text-xl md:text-start md:text-2xl lg:text-4xl">
+              ที่เปิดรับสมัครนักศึกษาฝึกงาน
+            </p>
           </div>
           <div class="mt-10">
-            <p class="font-normal md:text-start md:text-lg lg:text-2xl">บริษัทที่อยู่ในเว็บไซต์นี้รวบรวมมาจาก</p>
-            <p class="font-normal md:text-start md:text-lg lg:text-2xl">นักศึกษาเทคโนโลยีสารสนเทศ (SIT)</p>
-            <p class="font-normal md:text-start md:text-lg lg:text-2xl">ที่ได้รับประสบการณ์การฝึกงาน</p>
+            <p class="font-normal md:text-start md:text-lg lg:text-2xl">
+              บริษัทที่อยู่ในเว็บไซต์นี้รวบรวมมาจาก
+            </p>
+            <p class="font-normal md:text-start md:text-lg lg:text-2xl">
+              นักศึกษาเทคโนโลยีสารสนเทศ (SIT)
+            </p>
+            <p class="font-normal md:text-start md:text-lg lg:text-2xl">
+              ที่ได้รับประสบการณ์การฝึกงาน
+            </p>
           </div>
           <div class="mt-10 text-center md:text-left">
-            <NuxtLink to="/student/" class="btn btn-info text-white">เข้าสู่เว็บไซต์</NuxtLink>
+            <NuxtLink to="/student/" class="btn btn-info text-white"
+              >เข้าสู่เว็บไซต์</NuxtLink
+            >
             <!-- <button class="btn btn-info text-white">Go to website</button> -->
           </div>
         </div>
-        <div class="hidden md:flex md:h-[300px] md:w-[300px] lg:h-auto lg:w-auto">
-          <img src="@/static/undraw1.png" alt="##">
+        <div
+          class="hidden md:flex md:h-[300px] md:w-[300px] lg:h-auto lg:w-auto"
+        >
+          <!-- <img src="@/static/undraw1.png" alt="##"> -->
+          <lottie-player
+            autoplay
+            loop
+            mode="normal"
+            src="https://assets3.lottiefiles.com/packages/lf20_rycdh53q.json"
+            style="width: 500px"
+          ></lottie-player>
         </div>
       </div>
     </div>
-    <Footer class="mt-32 md:mt-28"/>
+    <Footer class="mt-32 md:mt-28" />
   </div>
 </template>
 
 <script>
-import HomeNavbar from '~/components/HomeNavbar.vue';
+import * as LottiePlayer from '@lottiefiles/lottie-player'
+import HomeNavbar from '~/components/HomeNavbar.vue'
 export default {
-    name: "IndexPage",
-    components: { HomeNavbar }
+  name: 'IndexPage',
+  components: { HomeNavbar },
 }
 </script>
 
 <style>
-.v-application{
+.v-application {
   font-family: 'Prompt', sans-serif !important;
 }
 </style>

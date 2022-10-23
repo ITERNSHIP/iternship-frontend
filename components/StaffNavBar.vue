@@ -67,7 +67,7 @@
           <li><nuxt-link to="/staff/seeopenjobs">ดูงานที่เปิดรับ</nuxt-link></li>
           <li><nuxt-link to="/staff/table">นักศึกษาที่ได้บริษัทฝึกงาน</nuxt-link></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
-          <li><a>ออกจากระบบ</a></li>
+          <li><a @click="logout()">ออกจากระบบ</a></li>
         </ul>
       </div>
   </div>
@@ -78,6 +78,7 @@ export default {
   methods: {
     logout() {
       this.$cookiz.remove('jwt')
+      localStorage.removeItem('accessToken')
       this.$router.push('/')
       alert('ออกจากระบบสำเร็จ')
     },
