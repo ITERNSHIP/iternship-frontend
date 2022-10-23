@@ -3,19 +3,19 @@
     <section
       class="w-full border-2 rounded-xl h-auto p-8 cursor-pointer hover:outline hover:outline-offset-2 hover:outline-black"
     >
-      <label for="view" class="modal-button cursor-pointer">
+      <label :for="register.regisId" class="modal-button cursor-pointer">
         <div class="flex justify-between">
           <div class="gap-2">
-            <p class="font-bold">จิรสิน ผะอบทอง</p>
-            <p>ตำแหน่ง: Front-End Developer</p>
+            <p class="font-bold">{{register.fName}}</p>
+            <p>ตำแหน่ง: {{register.position}}</p>
           </div>
         </div>
       </label>
-      <input type="checkbox" id="view" class="modal-toggle" />
+      <input type="checkbox" :id="register.regisId" class="modal-toggle" />
       <div class="modal">
         <div class="modal-box relative w-11/12 max-w-5xl">
           <label
-            for="view"
+            :for="register.regisId"
             class="btn btn-sm btn-circle absolute right-2 top-2"
             
             >✕</label
@@ -30,7 +30,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.fName"
             />
           </div>
 
@@ -42,7 +42,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.lName"
             />
           </div>
 
@@ -54,7 +54,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.gender"
             />
           </div>
 
@@ -66,7 +66,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.phoneNumber"
             />
           </div>
 
@@ -78,7 +78,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.grade"
             />
           </div>
 
@@ -90,7 +90,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.email"
             />
           </div>
 
@@ -102,7 +102,7 @@
             <textarea
               disabled
               class="mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.address"
             />
           </div>
 
@@ -114,7 +114,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.position"
             />
           </div>
 
@@ -127,7 +127,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.startDate"
             />
           </div>
 
@@ -139,7 +139,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.endDate"
             />
           </div>
 
@@ -151,17 +151,17 @@
             <input
               readonly
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="register.resume"
             />
           </div>
 
           <div class="modal-action flex items-center justify-end w-full">
-            <label
+            <label @click="approveRegisPass('pass')"
               class="btn btn-success text-white"
               >อนุมัติ</label
             >
-            <label class="btn btn-error text-white">ไม่อนุมัติ</label>
-            <label for="view" class="btn">กลับ</label>
+            <label @click="approveRegisNotPass('notPass')" class="btn btn-error text-white">ไม่อนุมัติ</label>
+            <label :for="register.regisId" class="btn">กลับ</label>
           </div>
 
           
@@ -172,7 +172,47 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['register'],
+   methods: {
+    async approveRegisPass(value) {
+      let regisId = this.register.regisId 
+      let body ={
+        status:value
+      }
+      await this.$axios.$post(`/company/updateRegisStatus?id=${regisId}`, body, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('อนุมัติสำเร็จ')
+        this.$router.push('/company')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    async approveRegisNotPass(value) {
+      let regisId = this.register.regisId 
+      let body ={
+        status:value
+      }
+      await this.$axios.$post(`/company/updateRegisStatus?id=${regisId}`, body, {
+        headers: {
+          Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+        },
+      }).then((res) => {
+        console.log(res)
+        alert('ปฏิเสธการฝึกงานของนักศึกษาแล้ว')
+        this.$router.push('/company')
+        location.reload()
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+   },
+}
 </script>
 
 <style></style>

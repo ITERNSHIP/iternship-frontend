@@ -3,19 +3,19 @@
     <section
       class="w-full border-2 rounded-xl h-auto p-8 cursor-pointer hover:outline hover:outline-offset-2 hover:outline-black"
     >
-      <label for="view" class="modal-button cursor-pointer">
+      <label :for="registerPass.regisId" class="modal-button cursor-pointer">
         <div class="flex justify-between">
           <div class="gap-2">
-            <p class="font-bold">เจเจ สุดหล่อที่หนึ่งในใจ</p>
-            <p>ตำแหน่ง: Front-End Developer</p>
+            <p class="font-bold">{{registerPass.fName}}</p>
+            <p>ตำแหน่ง: {{registerPass.position}}</p>
           </div>
         </div>
       </label>
-      <input type="checkbox" id="view" class="modal-toggle" />
+      <input type="checkbox" :id="registerPass.regisId" class="modal-toggle" />
       <div class="modal">
         <div class="modal-box relative w-11/12 max-w-5xl">
           <label
-            for="view"
+            :for="registerPass.regisId"
             class="btn btn-sm btn-circle absolute right-2 top-2"
             @click="closeModal"
             >✕</label
@@ -30,7 +30,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.fName"
             />
           </div>
 
@@ -42,7 +42,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.lName"
             />
           </div>
 
@@ -54,7 +54,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.gender"
             />
           </div>
 
@@ -66,7 +66,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.phoneNumber"
             />
           </div>
 
@@ -78,7 +78,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.grade"
             />
           </div>
 
@@ -90,7 +90,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.email"
             />
           </div>
 
@@ -102,7 +102,7 @@
             <textarea
               disabled
               class="mt-2 text-gray-600 min-h-[100px] focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.address"
             />
           </div>
 
@@ -114,7 +114,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.position"
             />
           </div>
 
@@ -127,7 +127,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.startDate"
             />
           </div>
 
@@ -139,7 +139,7 @@
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.endDate"
             />
           </div>
 
@@ -151,12 +151,12 @@
             <input
               readonly
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              placeholder=""
+              :placeholder="registerPass.resume"
             />
           </div>
 
           <div class="modal-action flex items-center justify-end w-full">
-            <label for="view" class="btn">กลับ</label>
+            <label :for="registerPass.regisId" class="btn">กลับ</label>
           </div>
 
         </div>
@@ -167,7 +167,12 @@
 
 <script>
 export default {
+ props: ['registerPass'],
+  methods: {
+    closeModal(){
 
+    }
+  },
 }
 </script>
 

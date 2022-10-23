@@ -206,7 +206,7 @@
               </div>
             </div> -->
             <p v-if="!this.positions">ไม่มีข้อมูล</p>
-            <ViewInternshipModal v-else></ViewInternshipModal>
+            <ViewInternshipModal v-else v-for="register in registers" :key="register.regisId" :register ="register"></ViewInternshipModal>
           </div>
 
           <div class="flex flex-col mt-4 gap-4 mb-8" v-if="toggleView">
@@ -223,7 +223,7 @@
                 </div>
               </div>
             </div> -->
-            <ApprovedModal></ApprovedModal>
+            <ApprovedModal v-for="registerPass in registersPass" :key="registerPass.regisId" :registerPass ="registerPass"></ApprovedModal>
           </div>
         </div>
       </section>
@@ -258,6 +258,8 @@ export default {
       toggleView: false,
       positions:[],
       companyInfo:{},
+      registers:[],
+      registersPass:[],
     }
   },
 
@@ -325,7 +327,6 @@ export default {
       location.reload()
     },
      async editCompanyDetail(value) {
-      // console.log("test",value)
       const data = {companyDetail:value}   
       await this.$axios.$post(`/company/updateCompanyDetailById/${localStorage.getItem('companyId')}`, data, {
         headers: {
@@ -363,6 +364,7 @@ export default {
   async mounted() {
     const accessToken = this.$cookiz.get('jwt')
     const companyId = localStorage.getItem('companyId')
+    const companyName = localStorage.getItem('companyName')
 
     let companyResult = await this.$axios.$get(`/company/getCompanyStaffById/${companyId}`, {
       headers: {
@@ -389,8 +391,27 @@ export default {
       position.showStartDate = dayjs(position.startDate).format('DD/MM/YYYY')
       position.showEndDate = dayjs(position.endDate).format('DD/MM/YYYY')
     })
-    console.log("🚀 ~ file: index.vue ~ line 315 ~ positionsResult.map ~ positionsResult", positionsResult)
+    // console.log("🚀 ~ file: index.vue ~ line 315 ~ positionsResult.map ~ positionsResult", positionsResult)
     this.positions = await positionsResult
+    let registersResult = await this.$axios.$get(`company/findregisByCompanyName?companyName=${companyName}`, {
+      params: {
+        companyId: companyId,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.registers = registersResult
+    // console.log("🚀 ~ file: index.vue ~ line 405 ~ mounted ~ this.registers", this.registers)
+    let registersPassResult = await this.$axios.$get(`company/findregisPass?companyName=${companyName}`, {
+      params: {
+        companyId: companyId,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.registersPass = registersPassResult
   },
 }
 </script>
