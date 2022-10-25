@@ -144,7 +144,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.welfare}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.welfare}}</p>
         </div>
       </section>
 
