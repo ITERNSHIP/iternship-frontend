@@ -235,7 +235,7 @@ export default {
           console.log(res)
           alert('ส่งฟอร์มยืนยันการฝึกงานสำเร็จ')
           this.$router.push('/student')
-          location.reload()
+          // location.reload()
         })
         .catch((err) => {
           console.log(err)
