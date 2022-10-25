@@ -100,7 +100,7 @@
               <img v-else
                 :src="companyInfo.imageName"
                 alt="##"
-                class="w-20 h-20 md:w-40 md:h-40 lg:w-60 lg:h-60 rounded-xl"
+                class="w-20 h-20 md:w-40 md:h-40 lg:w-60 lg:h-60 rounded-xl object-cover"
               />
               <div class="flex flex-col gap-2 md:justify-center lg:gap-4">
                 <p class="font-bold md:text-xl lg:text-2xl">{{ companyInfo.companyName }}</p>

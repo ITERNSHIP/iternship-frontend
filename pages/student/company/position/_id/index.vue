@@ -103,7 +103,7 @@
         <div class="mt-8 md:flex md:gap-x-24">
           <img :src="positionData.company.imageName"
             alt=""
-            class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[250px] md:w-[250px] lg:h-[360px] lg:w-[360px]"
+            class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[250px] md:w-[250px] lg:h-[360px] lg:w-[360px] object-cover"
           />
           <div class="mt-5 md:mt-0 md:self-center">
             <h1
@@ -195,14 +195,17 @@
         <section v-if="anotherPositions.length <= 0 " class="mt-2 md:mt-4">
           <h1 class="text-sm font-normal md:text-lg">ไม่มีข้อมูล</h1>
         </section>
-        <section v-else v-for="anotherPosition in anotherPositions" :key="anotherPosition.recruitId" class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
-          <nuxt-link
+        <section class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
+          <div v-for="anotherPosition in anotherPositions" :key="anotherPosition.recruitId">
+            <nuxt-link
             :to="`/student/company/position/${anotherPosition.recruitId}`"
             class="mt-2 md:mt-4 p-4 h-auto w-auto  rounded-lg flex flex-col  md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
           >
             <p class="text-white">{{anotherPosition.title}}</p>
             <p class="text-error">ปิดรับสมัคร: {{anotherPosition.endDate}}</p>
           </nuxt-link>
+          </div>
+          
         </section>
       </section>
 
