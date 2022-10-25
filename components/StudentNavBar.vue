@@ -78,6 +78,7 @@ export default {
   methods: {
     logout() {
       this.$cookiz.remove('jwt')
+      localStorage.clear()
       this.$router.push('/')
       alert('ออกจากระบบสำเร็จ')
     },
