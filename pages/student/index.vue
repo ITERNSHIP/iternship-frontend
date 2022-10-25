@@ -110,9 +110,9 @@
       <div class="min-h-screen">
         <div v-if="toggleView" class="grid lg:grid-cols-3 gap-4 mb-8">
         <nuxt-link  :to="`/student/company/position/${recruite.recruitId}`" v-for="recruite in listRecruite" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
-          <figure class="px-3 py-3 h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40 self-center">
+          <figure class="px-3 py-3 self-center">
             <img :src="recruite.company.imageName"
-              class="rounded-xl"
+              class="rounded-xl object-cover h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40"
             />
           </figure>
           <div class="card-body">
