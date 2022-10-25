@@ -24,8 +24,8 @@
             </p>
           </div>
           <div class="mt-10 text-center md:text-left">
-            <NuxtLink to="/student/" class="btn btn-info text-white"
-              >เข้าสู่เว็บไซต์</NuxtLink
+            <NuxtLink to="/login" class="btn btn-info text-white"
+              >เข้าสู่ระบบ</NuxtLink
             >
             <!-- <button class="btn btn-info text-white">Go to website</button> -->
           </div>
