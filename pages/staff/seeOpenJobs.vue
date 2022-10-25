@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <div class="space-y-2">
+        <!-- <div class="space-y-2">
           <div
             class="border-2 rounded-xl h-auto w-full bg-slate-200"
           >
@@ -71,6 +71,44 @@
               </div>
             </div>
           </div>
+        </div> -->
+
+        <div class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid">
+          <div
+            class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
+          >
+            <figure>
+              <img
+                src="https://placeimg.com/250/250/arch"
+                class="object-cover h-[250px] w-[250px]"
+              />
+            </figure>
+            <div class="card-body bg-black-gray">
+              <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
+              <label for="my-modal" class="btn modal-button"
+                >ดูงานทั้งหมด</label
+              >
+              <input type="checkbox" id="my-modal" class="modal-toggle" />
+              <div class="modal">
+                <div class="modal-box">
+                  <h3 class="font-bold text-lg" @click="fetchData">
+                    งานที่เปิดรับนักศึกษาฝึกงาน
+                  </h3>
+                  <div class="py-4">
+                    <div class="flex md:flex-row flex-col">
+                        <span class="mr-4 font-semibold">- ชื่อตำแหน่งงาน</span> <span class="text-error">ปิดรับสมัคร: dd-mm-yyy</span>
+                    </div>
+                    <div class="flex md:flex-row flex-col">
+                        <span class="mr-4 font-semibold">- ชื่อตำแหน่งงาน</span> <span class="text-error">ปิดรับสมัคร: dd-mm-yyy</span>
+                    </div>
+                  </div>
+                  <div class="modal-action">
+                    <label for="my-modal" class="btn">ปิด</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -80,9 +118,21 @@
 
 <script>
 import StaffNavBar from '~/components/StaffNavBar.vue'
-import Footer from '~/components/Footer.vue';
+import Footer from '~/components/Footer.vue'
 export default {
   components: { StaffNavBar, Footer },
+  data() {
+    return {
+      companyInfo:[],
+    }
+  },
+
+  mounted() {
+    let accessToken =  localStorage.getItem('accessToken')
+    if(accessToken == null){
+      this.$router.push('/login')
+    }
+  },
 }
 </script>
 
