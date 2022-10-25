@@ -100,7 +100,7 @@
       >
         <nuxt-link  :to="`/student/company/${company.companyId}`" v-for="company in listCompany" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure>
-            <img :src="company.imageName" />
+            <img :src="company.imageName" class="object-cover h-[250px] w-[250px]"/>
           </figure>
           <div class="card-body bg-black-gray">
             <h2 class="card-title text-white bg-black-gray">{{company.companyName}}</h2>

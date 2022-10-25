@@ -48,14 +48,15 @@
     <div class="flex flex-col px-8 pt-8 md:px-24">
       <section>
         <div class="mt-8 md:flex md:gap-x-24">
-          <img :src="oneCompany.imageName"
+          <img
+            :src="oneCompany.imageName"
             alt=""
-            class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[360px] md:w-[360px]"
+            class="block ml-auto mr-auto w-2/4 rounded-lg md:ml-0 md:mr-0 md:h-[360px] md:w-[360px] object-cover"
           />
           <h1
             class="text-center mt-5 md:mt-0 font-bold lg:text-4xl text-xl md:text-2xl md:self-center"
           >
-            {{oneCompany.companyName}}
+            {{ oneCompany.companyName }}
           </h1>
         </div>
       </section>
@@ -66,26 +67,30 @@
         </div>
 
         <div class="mt-2 md:mt-4">
-          <p class="text-sm font-normal md:text-lg">{{oneCompany.companyDetail}}</p>
+          <p class="text-sm font-normal md:text-lg">
+            {{ oneCompany.companyDetail }}
+          </p>
         </div>
       </section>
 
       <section>
-        <div  class="mt-4 md:mt-8">
+        <div class="mt-4 md:mt-8">
           <p class="text-lg font-medium md:text-2xl">ตำแหน่งที่เปิดรับ</p>
         </div>
-        <section v-if="positions.length <= 0 " class="mt-2 md:mt-4">
+        <section v-if="positions.length <= 0" class="mt-2 md:mt-4">
           <h1 class="text-sm font-normal md:text-lg">ไม่มีข้อมูล</h1>
         </section>
-        <section v-else v-for="position in positions" :key="position.recruitId" class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
-          <nuxt-link
-            :to="`/student/company/position/${position.recruitId}`"
-             class="mt-2 md:mt-4 p-4 h-auto w-auto  rounded-lg flex flex-col  md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
+        <section class="cursor-pointer grid grid-rows-1 lg:grid-cols-3 gap-x-4 gap-y-0">
+          <div v-for="position in positions" :key="position.recruitId"
           >
-            <p class="text-white">{{position.title}}</p>
-            <p class="text-error">ปิดรับสมัคร: {{position.endDate}}</p>
-          </nuxt-link>
-          
+            <nuxt-link
+              :to="`/student/company/position/${position.recruitId}`"
+              class="mt-2 md:mt-4 p-4 h-auto w-auto rounded-lg flex flex-col md:justify-start cursor-pointer bg-black shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
+            >
+              <p class="text-white">{{ position.title }}</p>
+              <p class="text-error">ปิดรับสมัคร: {{ position.endDate }}</p>
+            </nuxt-link>
+          </div>
         </section>
       </section>
     </div>
@@ -110,33 +115,40 @@ export default {
 
   async mounted() {
     // get route params
-      const accessToken = localStorage.getItem('accessToken')
-      console.log(this.$route.params.id)
-      const id = this.$route.params.id
-      let getThisCompany = await this.$axios.$get('/users/findCompanyDetailById', {
-        params:{
-          companyId: id
+    const accessToken = localStorage.getItem('accessToken')
+    console.log(this.$route.params.id)
+    const id = this.$route.params.id
+    let getThisCompany = await this.$axios.$get(
+      '/users/findCompanyDetailById',
+      {
+        params: {
+          companyId: id,
         },
         headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
-      if(getThisCompany){
-        this.oneCompany = getThisCompany[0]
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
-      // console.log("🚀 ~ file: index.vue ~ line 67 ~ mounted ~ getThisCompany", this.oneCompany)
-      let getPositionsInCompany = await this.$axios.$get('/users/findRecruitById', {
-        params:{
-          companyId: id
+    )
+    if (getThisCompany) {
+      this.oneCompany = getThisCompany[0]
+    }
+    // console.log("🚀 ~ file: index.vue ~ line 67 ~ mounted ~ getThisCompany", this.oneCompany)
+    let getPositionsInCompany = await this.$axios.$get(
+      '/users/findRecruitById',
+      {
+        params: {
+          companyId: id,
         },
         headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
-      this.positions = getPositionsInCompany
-      console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~  this.positions",  this.positions)
-      
-
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+    this.positions = getPositionsInCompany
+    console.log(
+      '🚀 ~ file: index.vue ~ line 138 ~ mounted ~  this.positions',
+      this.positions
+    )
   },
 }
 </script>

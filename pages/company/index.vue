@@ -372,6 +372,7 @@ export default {
       },
     })
     this.companyInfo = companyResult
+    console.log("🚀 ~ file: index.vue ~ line 375 ~ mounted ~ this.companyInfo", this.companyInfo)
     console.log(this.companyInfo.imageName)
     //แก้ hardcode ด้วย ไอ้หน้า หมี    
     // this.companyInfo.imageName = 'http://localhost:8081' + "/company/getpic/" + this.companyInfo.imageName
