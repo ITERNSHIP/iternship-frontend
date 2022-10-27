@@ -46,8 +46,7 @@
       <div class="mt-8 mb-8 bg-gray-200 h-1 w-auto rounded-lg"></div>
 
       <section v-if="statusName == 'pending'" class="mt-4 flex flex-col">
-        <div v-for="pendingInfo in pendingData"
-            :key="pendingInfo.regisId">
+        <div v-for="pendingInfo in pendingData" :key="pendingInfo.regisId">
           <div
             class="mb-3 p-4 h-auto w-auto border-2 border-gray-400 rounded-lg flex flex-col md:flex-row md:justify-between cursor-pointer"
           >
@@ -141,35 +140,42 @@ export default {
 
   async mounted() {
     let accessToken = localStorage.getItem('accessToken')
+    let userId = localStorage.getItem('userId')
     await this.$axios
       .$get('/users/findregisBystatusPending', {
+        params: {
+          userId: userId,
+        },
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((res) => {
         this.pendingData = res
-        
       })
     await this.$axios
       .$get('/users/findregisBystatusPass', {
+        params: {
+          userId: userId,
+        },
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((res) => {
         this.successData = res
-        
       })
     await this.$axios
       .$get('/users/findregisBystatusNotpass', {
+        params: {
+          userId: userId,
+        },
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((res) => {
         this.rejectData = res
-        
       })
   },
 }
