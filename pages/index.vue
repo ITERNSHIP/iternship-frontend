@@ -14,13 +14,13 @@
           </div>
           <div class="mt-10">
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              บริษัทที่อยู่ในเว็บไซต์นี้รวบรวมมาจาก
+              ช่วยแก้ปัญหาการหาบริษัทฝึกงาน
             </p>
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              นักศึกษาเทคโนโลยีสารสนเทศ (SIT)
+              ให้นักศึกษาเทคโนโลยีสารสนเทศ (SIT)
             </p>
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              ที่ได้รับประสบการณ์การฝึกงาน
+              เพื่อเป็นการเตรียมตัวสู่การทำงานจริง
             </p>
           </div>
           <div class="mt-10 text-center md:text-left">
