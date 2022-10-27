@@ -149,10 +149,7 @@ export default {
       })
       .then((res) => {
         this.pendingData = res
-        console.log(
-          '🚀 ~ file: index.vue ~ line 137 ~ mounted ~ this.pendindData',
-          this.pendindData
-        )
+        
       })
     await this.$axios
       .$get('/users/findregisBystatusPass', {
@@ -162,10 +159,7 @@ export default {
       })
       .then((res) => {
         this.successData = res
-        console.log(
-          '🚀 ~ file: index.vue ~ line 145 ~ mounted ~ this.successData',
-          this.successData
-        )
+        
       })
     await this.$axios
       .$get('/users/findregisBystatusNotpass', {
@@ -175,10 +169,7 @@ export default {
       })
       .then((res) => {
         this.rejectData = res
-        console.log(
-          '🚀 ~ file: index.vue ~ line 153 ~ mounted ~ this.rejectData',
-          this.rejectData
-        )
+        
       })
   },
 }

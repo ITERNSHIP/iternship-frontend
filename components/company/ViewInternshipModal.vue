@@ -185,12 +185,12 @@ export default {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
         },
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('อนุมัติสำเร็จ')
         this.$router.push('/company')
         location.reload()
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     },
     async approveRegisNotPass(value) {
@@ -203,12 +203,12 @@ export default {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
         },
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('ปฏิเสธการฝึกงานของนักศึกษาแล้ว')
         this.$router.push('/company')
         location.reload()
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     },
    },

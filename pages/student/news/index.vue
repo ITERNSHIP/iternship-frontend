@@ -68,7 +68,7 @@ export default {
       },
     })
     this.allNews = getAllNews
-    console.log("🚀 ~ file: index.vue ~ line 68 ~ mounted ~ this.allNews", this.allNews)
+    
     
   },
 }

@@ -145,10 +145,6 @@ export default {
       }
     )
     this.positions = getPositionsInCompany
-    console.log(
-      '🚀 ~ file: index.vue ~ line 138 ~ mounted ~  this.positions',
-      this.positions
-    )
   },
 }
 </script>

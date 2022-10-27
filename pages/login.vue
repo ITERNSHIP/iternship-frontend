@@ -408,26 +408,26 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
-          console.log(
-            '🚀 ~ file: login.vue ~ line 399 ~ .then ~ response',
-            response
-          )
-          console.log(
-            '🚀 ~ file: login.vue ~ line 402 ~ .then ~ response.message',
-            response.message
-          )
+          // console.log(
+          //   '🚀 ~ file: login.vue ~ line 399 ~ .then ~ response',
+          //   response
+          // )
+          // console.log(
+          //   '🚀 ~ file: login.vue ~ line 402 ~ .then ~ response.message',
+          //   response.message
+          // )
           if (response.message == 'success') {
             this.$cookiz.set('jwt', response.accessToken, {
               path: '/',
               maxAge: 60 * 60 * 24 * 7,
             })
             alert('เข้าสู่ระบบสำเร็จ')
-            console.log('Login success!!')
+            // console.log('Login success!!')
             this.$router.push('/student')
           }
         })
         .catch((error) => {
-          console.log('🚀 ~ file: login.vue ~ line 417 ~ .catch ~ error', error)
+          // console.log('🚀 ~ file: login.vue ~ line 417 ~ .catch ~ error', error)
           alert('รหัสนักศึกษาหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
         })
       // console.log("🚀 ~ file: login.vue ~ line 414 ~ userLogin ~ response", response)
@@ -460,7 +460,7 @@ export default {
           this.$router.push('/company')
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
           alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
         })
 
@@ -489,7 +489,7 @@ export default {
           this.$router.push('/staff')
         })
         .catch((err) => {
-          console.log(err.response.data.statusCode)
+          // console.log(err.response.data.statusCode)
           if (err.response.data.statusCode == '400'){
             alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
           }

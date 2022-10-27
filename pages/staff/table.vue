@@ -121,8 +121,6 @@ export default {
       }
     })
     this.studentInfo = studentConfirmResults
-    console.log("🚀 ~ file: table.vue ~ line 124 ~ mounted ~ this.studentInfo", this.studentInfo)
-    console.log(this.studentInfo.length);
   },
 }
 </script>

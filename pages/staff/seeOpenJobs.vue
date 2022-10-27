@@ -158,7 +158,7 @@ export default {
           },
         })
         .then((response) => {
-          console.log("🚀 ~ file: seeOpenJobs.vue ~ line 161 ~ .then ~ response", response)
+          // console.log("🚀 ~ file: seeOpenJobs.vue ~ line 161 ~ .then ~ response", response)
           this.openPosition = response
           this.openPosition.forEach((position) => {
             position.showEndDate = dayjs(position.endDate).format('DD-MM-YYYY')
@@ -180,10 +180,6 @@ export default {
       })
       .then((res) => {
         this.companyInfo = res
-        console.log(
-          '🚀 ~ file: seeOpenJobs.vue ~ line 141 ~ mounted ~ this.companyInfo',
-          this.companyInfo
-        )
       })
   },
 }

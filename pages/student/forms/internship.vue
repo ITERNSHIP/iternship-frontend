@@ -377,24 +377,24 @@ export default {
     },
     async sentitsform() {
       const data = this.sentInternshipForm
-          console.log(data)
+          
       await this.$axios.$post(`/users/createRegis`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
       }).then((res) => {
-        console.log(res)
+        
         alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
         this.$router.push('/student')
         // location.reload('/student')
       }).catch((err) => {
-        console.log(err)
+        
       })
     },
   },
   async mounted() {
     const accessToken = localStorage.getItem('accessToken')
-        console.log(accessToken)
+        
     let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -402,7 +402,7 @@ export default {
     })
     this.listCompanyName = allCompany
 
-    console.log(this.listCompanyName)
+    
   },
 }
 </script>

@@ -231,7 +231,6 @@ export default {
     },
     async sentconfirmedForm() {
       const data = this.confirmedForm
-      console.log(data)
       await this.$axios
         .$post(`/users/createconfirmationForm`, data, {
           headers: {
@@ -239,13 +238,11 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
           alert('ส่งฟอร์มยืนยันการฝึกงานสำเร็จ')
           this.$router.push('/student')
           // location.reload()
         })
         .catch((err) => {
-          console.log(err)
         })
     },
   },

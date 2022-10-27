@@ -267,7 +267,7 @@ computed: {
     let filterpos = getAnotherPosition.filter(pos =>pos.recruitId != id)
      this.anotherPositions = filterpos
     // this.anotherPositions = getAnotherPosition
-    console.log("🚀 ~ file: index.vue ~ line 138 ~ mounted ~ getAnotherPosition", getAnotherPosition)
+    
 //   },
 }
 }

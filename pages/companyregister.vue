@@ -146,7 +146,6 @@
         >
       </div>
     </div>
-    {{ companyRegisterForm }}
   </div>
 </template>
 
@@ -207,11 +206,11 @@ export default {
       await this.$axios.$post('/company/cnstaff', this.companyRegisterForm, {
         withCredentials: true,
       }).then((res) => {
-        console.log(res.message)
+        // console.log(res.message)
         alert('สมัครสมาชิกสำเร็จ')
         this.$router.push('/login')
       }).catch((err) => {
-        console.log(err.response.message)
+        // console.log(err.response.message)
         alert(err.response.message)
       })
       // alert('สมัครสมาชิกสำเร็จ')

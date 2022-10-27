@@ -76,10 +76,10 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
       alert('เพิ่มข่าวสำเร็จ')
       this.$router.push('/company/companyNewsManagement')
@@ -95,10 +95,10 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
       alert('แก้ไขข่าวสำเร็จ')
       this.$router.push('/company/companyNewsManagement')
@@ -115,10 +115,10 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
         alert('ลบข่าวสำเร็จ')
         this.$router.push('/company/companyNewsManagement')
@@ -137,7 +137,7 @@ export default {
       }
     })
     this.allNews = newsResult
-    console.log("🚀 ~ file: companyNewsManagement.vue ~ line 75 ~ mounted ~ this.allNews", this.allNews)
+    // console.log("🚀 ~ file: companyNewsManagement.vue ~ line 75 ~ mounted ~ this.allNews", this.allNews)
   },
 }
 </script>
