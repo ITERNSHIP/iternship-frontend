@@ -1,113 +1,186 @@
 <template>
   <div>
     <StudentNavBar />
-    <div class="container mx-auto px-6 mb-14">
-      <div class="mt-16">
-        <p class="font-bold text-6xl">Confirmed Internship Form</p>
-      </div>
+    <div
+      class="bg-slate-200 min-h-screen flex flex-col items-center justify-center"
+    >
+      <div
+        class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-xl w-full max-w-3xl my-8"
+      >
+        <div
+          class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800"
+        >
+          ฟอร์มยืนยันได้บริษัทฝึกงาน
+        </div>
+        <div class="mt-10">
+          <form action="#" @submit.prevent="onSubmit">
+            <div class="space-y-1 mb-2">
+              <span>ชื่อจริง</span>
+              <input
+                v-model.trim.lazy="$v.firstname.$model"
+                v-model="confirmedForm.fName"
+                type="text"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.firstname.required && $v.firstname.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อจริง
+              </p>
+            </div>
 
-      <div class="mt-10 relative">
-        <div class="bg-gray-200 h-[630px] w-full rounded-lg">
-          <!-- Row1 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2">
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Firstname</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>นามสกุล</span>
               <input
+                v-model.trim.lazy="$v.lastname.$model"
+                v-model="confirmedForm.lName"
                 type="text"
-                placeholder="Firstname"
-                class="input input-bordered w-full"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-            </div>
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Lastname</label
+              <p
+                v-if="!$v.lastname.required && $v.lastname.$dirty"
+                class="text-error mt-2 text-sm"
               >
-              <input
-                type="text"
-                placeholder="Lastname"
-                class="input input-bordered w-full"
-              />
+                กรุณาระบุนามสกุล
+              </p>
             </div>
-          </div>
 
-          <!-- Row2 -->
-          <div class="pt-5 pl-5 pr-5 pb-2">
-            <div class="w-[1425px] mx-3">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Email</label
-              >
+            <div class="space-y-1 mb-2">
+              <span>รหัสนักศึกษา</span>
               <input
-                type="text"
-                placeholder="Email"
-                class="input input-bordered w-full"
+                v-model.trim.lazy="$v.studentId.$model"
+                v-model="confirmedForm.studentId"
+                type="number"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
-            </div>
-          </div>
+              <p
+                v-if="!$v.studentId.required && $v.studentId.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสนักศึกษา
+              </p>
 
-          <!-- Row3 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2">
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Student ID</label
+              <p
+                v-if="!$v.studentId.numeric && $v.studentId.$dirty"
+                class="text-error mt-2 text-sm"
               >
-              <input
-                type="text"
-                placeholder="6xxxxxxxxxx"
-                class="input input-bordered w-full"
-              />
-            </div>
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Telephone</label
-              >
-              <input
-                type="text"
-                placeholder="0999999999"
-                class="input input-bordered w-full"
-              />
-            </div>
-          </div>
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
 
-          <!-- Row4 -->
-          <div class="flex mx-3 justify-between pt-5 pl-5 pr-5 pb-2">
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Company name</label
+              <p
+                v-if="!$v.studentId.minLength && $v.studentId.$dirty"
+                class="text-error mt-2 text-sm"
               >
-              <input
-                type="text"
-                placeholder="Company name"
-                class="input input-bordered w-full"
-              />
-            </div>
-            <div class="w-[700px]">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Position name</label
-              >
-              <input
-                type="text"
-                placeholder="Position name"
-                class="input input-bordered w-full"
-              />
-            </div>
-          </div>
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
 
-          <!-- Row5 -->
-          <div class="pt-5 pl-5 pr-5 pb-2">
-            <div class="w-[1425px] mx-3">
-              <label for="" class="block mb-2 text-sm font-bold text-gray-700"
-                >Duration of training</label
+              <p
+                v-if="!$v.studentId.maxLength && $v.studentId.$dirty"
+                class="text-error mt-2 text-sm"
               >
-              <input
-                type="text"
-                placeholder="2, 4, 6 month"
-                class="input input-bordered w-full"
-              />
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
             </div>
-          </div>
-          <button class="btn btn-info absolute bottom-0 right-8 text-white w-36 mb-5 hover:outline hover:outline-offset-2 hover:outline-black">Send</button>
+
+            <div class="space-y-1 mb-2">
+              <span>ชื่อบริษัทที่นักศึกษาไปฝึกงาน</span>
+              <input
+                v-model.trim.lazy="$v.companyName.$model"
+                v-model="confirmedForm.companyName"
+                type="text"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.companyName.required && $v.companyName.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุชื่อบริษัท
+              </p>
+            </div>
+
+            <div class="space-y-1 mb-2">
+              <span>ตำแหน่งงานที่นักศึกษาไปฝึกงาน</span>
+              <input
+                v-model.trim.lazy="$v.position.$model"
+                v-model="confirmedForm.position"
+                type="text"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.position.required && $v.position.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุตำแหน่งงาน
+              </p>
+            </div>
+
+            <div class="space-y-1 mb-2">
+              <span>ระยะเวลา</span>
+              <select 
+                v-model.trim.lazy="$v.longTerm.$model"
+                v-model="confirmedForm.longTerm"
+              class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                <option value="2 เดือน">2 เดือน</option>
+                <option value="4 เดือน">4 เดือน</option>
+                <option value="6 เดือน">6 เดือน</option>
+              </select>
+              <p
+                v-if="!$v.longTerm.required && $v.longTerm.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุระยะเวลาฝึกงาน
+              </p>
+            </div>
+
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่เริ่มต้นฝึกงาน</span>
+              <input
+                v-model.trim.lazy="$v.startMonth.$model"
+                v-model="confirmedForm.durationForm"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.startMonth.required && $v.startMonth.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเดือนที่เริ่มต้นฝึกงาน
+              </p>
+            </div>
+
+            <div class="space-y-1 mb-2">
+              <span>เดือนที่จบฝึกงาน</span>
+              <input
+                v-model.trim.lazy="$v.endMonth.$model"
+                v-model="confirmedForm.durationTo"
+                type="date"
+                placeholder=""
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              />
+              <p
+                v-if="!$v.endMonth.required && $v.endMonth.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุเดือนที่จบฝึกงาน
+              </p>
+            </div>
+
+            <div class="flex w-full mt-8">
+              <button
+                type="submit"
+                class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded-xl py-2 w-full transition duration-150 ease-in"
+              >
+                <span class="mr-2 uppercase">ส่งฟอร์ม</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -116,7 +189,106 @@
 </template>
 
 <script>
-export default {}
+import { required, numeric, minLength, maxLength } from 'vuelidate/lib/validators'
+import StudentNavBar from '~/components/StudentNavBar.vue'
+import Footer from '~/components/Footer.vue'
+export default {
+  components: { StudentNavBar, Footer },
+  data() {
+    return {
+      confirmedForm: {
+        fName: '',
+        lName: '',
+        studentId: '',
+        companyName: '',
+        position: '',
+        durationForm: '',
+        durationTo: '',
+        longTerm:'',
+        user: {
+          userId: `${localStorage.getItem('userId')}`,
+        },
+      },
+      firstname: '',
+      lastname: '',
+      studentId: '',
+      companyName: '',
+      position: '',
+      startMonth: '',
+      endMonth: '',
+      longTerm:'',
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // console.log(this.sentInternshipForm)
+        return
+      }
+      this.sentconfirmedForm()
+    },
+    async sentconfirmedForm() {
+      const data = this.confirmedForm
+      await this.$axios
+        .$post(`/users/createconfirmationForm`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((res) => {
+          alert('ส่งฟอร์มยืนยันการฝึกงานสำเร็จ')
+          this.$router.push('/student')
+          // location.reload()
+        })
+        .catch((err) => {
+        })
+    },
+  },
+
+  validations: {
+    firstname: {
+      required,
+    },
+    lastname: {
+      required,
+    },
+    studentId: {
+      required,
+      numeric,
+      minLength: minLength(11),
+      maxLength: maxLength(11),
+    },
+    companyName: {
+      required,
+    },
+    position: {
+      required,
+    },
+    startMonth: {
+      required,
+    },
+    endMonth: {
+      required,
+    },
+    longTerm:{
+      required,
+    }
+  },
+}
 </script>
 
-<style></style>
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+</style>

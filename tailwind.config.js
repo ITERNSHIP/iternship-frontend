@@ -1,5 +1,17 @@
 module.exports = {
   theme: {
+    screens: {
+      'se': '375px',
+      'xse': '466px',
+      'ssm': '500px',
+      'sm': '640px',
+      'md': '768px',
+      'xmd': '830px',
+      '2xmd': '850px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1440x',
+    },
     extend: {
       colors:{
         'blue-blue': '#2665E6',
