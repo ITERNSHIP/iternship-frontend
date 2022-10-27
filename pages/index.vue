@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeNavbar />
-    <div class="container mx-auto px-6 pt-14">
+    <div class="px-8 pt-8 md:px-24">
       <div class="flex flex-row justify-center md:justify-between">
         <div class="lg:mt-24">
           <div>
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <Footer class="mt-32 md:mt-28" />
+    <Footer class="w-full bottom-0 mt-36" />
   </div>
 </template>
 

@@ -10,7 +10,7 @@
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
           <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
-          <li><a>เกี่ยวกับเรา</a></li>
+          <!-- <li><a>เกี่ยวกับเรา</a></li> -->
         </ul>
       </div>
 
@@ -65,9 +65,9 @@
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
           <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
-          <li><a>เกี่ยวกับเรา</a></li>
+          <!-- <li><a>เกี่ยวกับเรา</a></li> -->
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
-          <li><a>ออกจากระบบ</a></li>
+          <li><a @click="logout">ออกจากระบบ</a></li>
         </ul>
       </div>
   </div>
