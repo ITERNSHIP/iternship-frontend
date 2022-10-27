@@ -130,11 +130,11 @@
 
       <section>
         <div class="mt-4 md:mt-8">
-          <p class="text-lg font-medium md:text-2xl whitespace-pre-wrap">รายละเอียดของงาน</p>
+          <p class="text-lg font-medium md:text-2xl">รายละเอียดของงาน</p>
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.jobDetail}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.jobDetail}}</p>
         </div>
       </section>
 
@@ -150,21 +150,21 @@
 
       <section>
         <div class="mt-4 md:mt-8">
-          <p class="text-lg font-medium md:text-2xl whitespace-pre-wrap">สถานที่ปฎิบัติงาน</p>
+          <p class="text-lg font-medium md:text-2xl">สถานที่ปฎิบัติงาน</p>
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.location}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.location}}</p>
         </div>
       </section>
 
       <section>
         <div class="mt-4 md:mt-8">
-          <p class="text-lg font-medium md:text-2xl whitespace-pre-wrap">ช่องทางติดต่อบริษัท</p>
+          <p class="text-lg font-medium md:text-2xl ">ช่องทางติดต่อบริษัท</p>
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.contact}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.contact}}</p>
         </div>
       </section>
 

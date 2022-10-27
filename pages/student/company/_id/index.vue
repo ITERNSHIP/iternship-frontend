@@ -63,11 +63,11 @@
 
       <section>
         <div class="mt-4 md:mt-8">
-          <p class="text-lg font-medium md:text-2xl whitespace-pre-wrap">ความเป็นมาของบริษัท</p>
+          <p class="text-lg font-medium md:text-2xl">ความเป็นมาของบริษัท</p>
         </div>
 
         <div class="mt-2 md:mt-4">
-          <p class="text-sm font-normal md:text-lg">
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">
             {{ oneCompany.companyDetail }}
           </p>
         </div>
