@@ -77,6 +77,13 @@
               >
                 กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
               </p>
+
+              <p
+                v-if="!$v.studentId.maxLength && $v.studentId.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุรหัสนักศึกษาให้ถูกต้อง
+              </p>
             </div>
 
             <div class="space-y-1 mb-2">
@@ -182,7 +189,7 @@
 </template>
 
 <script>
-import { required, numeric, minLength } from 'vuelidate/lib/validators'
+import { required, numeric, minLength, maxLength } from 'vuelidate/lib/validators'
 import StudentNavBar from '~/components/StudentNavBar.vue'
 import Footer from '~/components/Footer.vue'
 export default {
@@ -254,6 +261,7 @@ export default {
       required,
       numeric,
       minLength: minLength(11),
+      maxLength: maxLength(11),
     },
     companyName: {
       required,

@@ -85,6 +85,13 @@
               >
               กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
               </p>
+
+              <p
+                v-if="!$v.phoneNumber.maxLength && $v.phoneNumber.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+              กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
+              </p>
             </div>
             <div class="space-y-1 mb-2">
               <span>เกรดเฉลี่ย</span>
@@ -265,6 +272,7 @@ import {
   email,
   decimal,
   minLength,
+  maxLength,
   minValue,
   maxValue,
 } from 'vuelidate/lib/validators'
@@ -321,6 +329,7 @@ export default {
       required,
       numeric,
       minLength: minLength(10),
+      maxLength: maxLength(10),
     },
     grade: {
       required,

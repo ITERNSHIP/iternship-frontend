@@ -105,9 +105,12 @@
               >
                 กรุณาระบุโทรศัพท์
               </p>
-              <!-- <p 
-              v-if=" $v.phone.minLength && $v.phone.$dirty"
-              class="text-error mt-2 text-sm">กรุณาระบุโทรศัพท์ให้ถูกต้อง</p> -->
+              <p 
+              v-if=" !$v.phone.minLength && $v.phone.$dirty"
+              class="text-error mt-2 text-sm">กรุณาระบุโทรศัพท์ให้ถูกต้อง</p>
+              <p 
+              v-if=" !$v.phone.maxLength && $v.phone.$dirty"
+              class="text-error mt-2 text-sm">กรุณาระบุโทรศัพท์ให้ถูกต้อง</p>
             </div>
           </div>
 
@@ -148,7 +151,7 @@
 </template>
 
 <script>
-import { required, numeric, email, minLength } from 'vuelidate/lib/validators'
+import { required, numeric, email, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   data() {
     return {
@@ -185,7 +188,8 @@ export default {
     phone: {
       required,
       numeric,
-      // minLength: minLength(10),
+      minLength: minLength(10),
+      maxLength: maxLength(10),
     },
   },
 
