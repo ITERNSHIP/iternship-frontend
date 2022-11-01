@@ -160,7 +160,6 @@
             <label for="add" class="btn">ยกเลิก</label>
           </div>
 
-          {{ addPositionData }}
         </div>
       </div>
     </section>

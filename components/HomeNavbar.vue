@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="dropdown dropdown-end cursor-pointer lg:hidden pr-6">
+    <div class="dropdown dropdown-end cursor-pointer lg:hidden bg-blue-blue p-3 rounded-lg">
         <button tabindex="0">
           <img
             src="https://cdn-icons-png.flaticon.com/512/7711/7711100.png"
@@ -25,7 +25,7 @@
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li><nuxt-link to="/login">เข้าสู่ระบบ</nuxt-link></li>
-          <li><a>ออกจากระบบ</a></li>
+          <!-- <li><a>ออกจากระบบ</a></li> -->
         </ul>
       </div>
   </div>

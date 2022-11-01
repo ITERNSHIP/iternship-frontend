@@ -34,7 +34,7 @@ export default {
   },
   methods:{
     async addNews(value){
-      console.log("🚀 ~ file: news.vue ~ line 32 ~ addNews ~ value", value)
+      // console.log("🚀 ~ file: news.vue ~ line 32 ~ addNews ~ value", value)
       let accessToken = localStorage.getItem('accessToken')
       await this.$axios
         .post('/staff/addnews', value, {
@@ -43,13 +43,12 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           alert('เพิ่มข่าวประชามันพันธ์สำเร็จ')
           this.$router.push('/staff/news')
           location.reload()
         })
         .catch((err) => {
-          console.log(err)
         })
     },
     async editNews(value){
@@ -68,7 +67,7 @@ export default {
         }
       )
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('แก้ไขข่าวประชาสัมพันธ์สำเร็จ')
         this.$router.push('/staff/news')
         location.reload()
@@ -82,7 +81,7 @@ export default {
         },
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('ลบข่าวประชาสัมพันธ์สำเร็จ')
         this.$router.push('/staff/news')
         location.reload()
@@ -101,7 +100,7 @@ export default {
       },
     })
     this.newsInfo = newsResults
-    console.log("🚀 ~ file: news.vue ~ line 68 ~ mounted ~ this.newsInfo", this.newsInfo)
+    // console.log("🚀 ~ file: news.vue ~ line 68 ~ mounted ~ this.newsInfo", this.newsInfo)
   }
 }
 </script>

@@ -82,7 +82,6 @@
             ดูผู้สมัครฝึกงาน
           </div>
         </div>
-        {{ changePage }}
       </section>
 
       <section class="w-full">
@@ -279,13 +278,13 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           alert('เพิ่มงานสำเร็จ')
           this.$router.push('/company')
           location.reload()
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
     },
 
@@ -296,12 +295,12 @@ export default {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
         },
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('แก้ไขสำเร็จ')
         this.$router.push('/company')
         location.reload()
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     },
 
@@ -315,13 +314,13 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           alert('ลบสำเร็จ')
           this.$router.push('/company')
           location.reload()
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
       }
       location.reload()
@@ -333,16 +332,16 @@ export default {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
         },
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('แก้ไขประวัติของบริษัทสำเร็จ')
         this.$router.push('/company')
         location.reload()
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     },
     async changepic(value){
-      console.log(value.target.files[0])
+      // console.log(value.target.files[0])
       let data = new FormData()
       data.append("image",value.target.files[0])
       await this.$axios.$post(`/company/uploadOne/${localStorage.getItem('companyId')}`, data, {
@@ -350,12 +349,12 @@ export default {
           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
         },
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('แก้ไขรูปภาพสำเร็จ')
         this.$router.push('/company')
         location.reload()
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     }
 
@@ -372,8 +371,8 @@ export default {
       },
     })
     this.companyInfo = companyResult
-    console.log("🚀 ~ file: index.vue ~ line 375 ~ mounted ~ this.companyInfo", this.companyInfo)
-    console.log(this.companyInfo.imageName)
+    // console.log("🚀 ~ file: index.vue ~ line 375 ~ mounted ~ this.companyInfo", this.companyInfo)
+    // console.log(this.companyInfo.imageName)
     //แก้ hardcode ด้วย ไอ้หน้า หมี    
     // this.companyInfo.imageName = 'http://localhost:8081' + "/company/getpic/" + this.companyInfo.imageName
     // console.log("🚀 ~ file: index.vue ~ line 310 ~ mounted ~ companyResult", companyResult)

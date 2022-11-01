@@ -162,7 +162,7 @@ async mounted() {
       },
     })
      this.listRecruite =  allRecruite
-     console.log(this.listRecruite)
+
 }
 }
 </script>

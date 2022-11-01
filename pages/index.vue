@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeNavbar />
-    <div class="container mx-auto px-6 pt-14">
+    <div class="px-8 pt-8 md:px-24">
       <div class="flex flex-row justify-center md:justify-between">
         <div class="lg:mt-24">
           <div>
@@ -14,13 +14,13 @@
           </div>
           <div class="mt-10">
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              บริษัทที่อยู่ในเว็บไซต์นี้รวบรวมมาจาก
+              ช่วยแก้ปัญหาการหาบริษัทฝึกงาน
             </p>
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              นักศึกษาเทคโนโลยีสารสนเทศ (SIT)
+              ให้นักศึกษาเทคโนโลยีสารสนเทศ (SIT)
             </p>
             <p class="font-normal md:text-start md:text-lg lg:text-2xl">
-              ที่ได้รับประสบการณ์การฝึกงาน
+              เพื่อเป็นการเตรียมตัวสู่การทำงานจริง
             </p>
           </div>
           <div class="mt-10 text-center md:text-left">
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <Footer class="mt-32 md:mt-28" />
+    <Footer class="w-full bottom-0 mt-36" />
   </div>
 </template>
 

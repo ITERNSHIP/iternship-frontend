@@ -407,7 +407,7 @@ export default {
   async mounted() {
     const accessToken = localStorage.getItem('accessToken')
     console.log(accessToken)
-    let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
+    let allCompany = await this.$axios.$get(`/users/getAllrecruitebyendDate`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

@@ -75,35 +75,51 @@
 
         <div class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid">
           <div
+            v-for="company in companyInfo"
+            :key="company.companyId"
             class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
           >
             <figure>
               <img
-                src="https://placeimg.com/250/250/arch"
+                :src="company.imageName"
                 class="object-cover h-[250px] w-[250px]"
               />
             </figure>
             <div class="card-body bg-black-gray">
-              <h2 class="card-title text-white bg-black-gray">ชื่อบริษัท</h2>
-              <label for="my-modal" class="btn modal-button"
+              <h2 class="card-title text-white bg-black-gray">
+                {{ company.companyName }}
+              </h2>
+              <label
+                :for="company.companyId"
+                class="btn modal-button"
+                @click="fetchData(company.companyId)"
                 >ดูงานทั้งหมด</label
               >
-              <input type="checkbox" id="my-modal" class="modal-toggle" />
+              <input
+                type="checkbox"
+                :id="company.companyId"
+                class="modal-toggle"
+              />
               <div class="modal">
                 <div class="modal-box">
-                  <h3 class="font-bold text-lg" @click="fetchData">
-                    งานที่เปิดรับนักศึกษาฝึกงาน
-                  </h3>
-                  <div class="py-4">
-                    <div class="flex md:flex-row flex-col">
-                        <span class="mr-4 font-semibold">- ชื่อตำแหน่งงาน</span> <span class="text-error">ปิดรับสมัคร: dd-mm-yyy</span>
-                    </div>
-                    <div class="flex md:flex-row flex-col">
-                        <span class="mr-4 font-semibold">- ชื่อตำแหน่งงาน</span> <span class="text-error">ปิดรับสมัคร: dd-mm-yyy</span>
+                  <h3 class="font-bold text-lg">งานที่เปิดรับนักศึกษาฝึกงาน</h3>
+                  <div
+                    class="py-4"
+                    v-for="onePosition in openPosition"
+                    :key="onePosition.recruitId"
+                  >
+                    <div>
+                      <div class="flex md:flex-row flex-col">
+                        <span class="mr-4 font-semibold"
+                          >- {{ onePosition.title }}</span
+                        >
+                        <span class="text-error">ปิดรับสมัคร: {{ onePosition.showEndDate }}</span>
+                      </div>
                     </div>
                   </div>
+
                   <div class="modal-action">
-                    <label for="my-modal" class="btn">ปิด</label>
+                    <label :for="company.companyId" class="btn">ปิด</label>
                   </div>
                 </div>
               </div>
@@ -119,19 +135,52 @@
 <script>
 import StaffNavBar from '~/components/StaffNavBar.vue'
 import Footer from '~/components/Footer.vue'
+import dayjs from 'dayjs'
 export default {
   components: { StaffNavBar, Footer },
   data() {
     return {
-      companyInfo:[],
+      companyInfo: [],
+      openPosition: [],
     }
   },
 
-  mounted() {
-    let accessToken =  localStorage.getItem('accessToken')
-    if(accessToken == null){
+  methods: {
+    fetchData(companyId) {
+      let accessToken = localStorage.getItem('accessToken')
+      this.$axios
+        .$get('/staff/findInformbyCompanyId', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            companyId: companyId,
+          },
+        })
+        .then((response) => {
+          // console.log("🚀 ~ file: seeOpenJobs.vue ~ line 161 ~ .then ~ response", response)
+          this.openPosition = response
+          this.openPosition.forEach((position) => {
+            position.showEndDate = dayjs(position.endDate).format('DD-MM-YYYY')
+          })
+        })
+    },
+  },
+
+  async mounted() {
+    let accessToken = localStorage.getItem('accessToken')
+    if (accessToken == null) {
       this.$router.push('/login')
     }
+    await this.$axios
+      .$get('/staff/getAllCompany', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        this.companyInfo = res
+      })
   },
 }
 </script>

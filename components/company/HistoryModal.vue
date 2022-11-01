@@ -138,7 +138,7 @@ export default {
       let c = {
         companyDetail: this.editHistory.companyDetail,
       };
-      console.log("🚀 ~ file: HistoryModal.vue ~ line 141 ~ clickEditHistory ~ c", c)
+      // console.log("🚀 ~ file: HistoryModal.vue ~ line 141 ~ clickEditHistory ~ c", c)
       this.$emit("clickEditHistory", c);
       
 
