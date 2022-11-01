@@ -156,7 +156,7 @@
                 กรุณาระบุที่อยู่
               </p>
             </div>
-            <div class="space-y-1 mb-2">
+            <!-- <div class="space-y-1 mb-2">
               <span>บริษัทที่จะยื่นสมัคร</span>
               <select
                 v-model.trim.lazy="$v.companyName.$model"
@@ -183,6 +183,51 @@
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
+              <p
+                v-if="!$v.position.required && $v.position.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุงานที่จะยื่นสมัคร
+              </p>
+            </div> -->
+            <div class="space-y-1 mb-2">
+              <span>บริษัทที่จะยื่นสมัคร</span>
+              <select
+                v-if="listCompanyName"
+                v-model.trim.lazy="$v.companyName.$model"
+                v-model="sentInternshipForm.companyName"
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              >
+                <option
+                  v-for="(comName, index) in listCompanyName"
+                  :key="index"
+                  :value="index"
+                >
+                  {{ index }}
+                </option>
+              </select>
+              <p
+                v-if="!$v.companyName.required && $v.companyName.$dirty"
+                class="text-error mt-2 text-sm"
+              >
+                กรุณาระบุบริษัทที่จะยื่นสมัคร
+              </p>
+            </div>
+            <div class="space-y-1 mb-2">
+              <span>งานที่จะยื่นสมัคร</span>
+              <select
+                v-model.trim.lazy="$v.position.$model"
+                v-model="sentInternshipForm.position"
+                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+              >
+                <option
+                  v-for="com,index in getJobList"
+                  :key="index"
+                  :value="com.title"
+                >
+                  {{ com.title }}
+                </option>
+              </select>
               <p
                 v-if="!$v.position.required && $v.position.$dirty"
                 class="text-error mt-2 text-sm"
@@ -312,6 +357,12 @@ export default {
       resume: '',
       agree: false,
       listCompanyName:[],
+    }
+  },
+
+  computed: {
+    getJobList(){
+      return this.listCompanyName[this.companyName]
     }
   },
 
