@@ -12,7 +12,7 @@
     "lintfix": "prettier --write --list-different ."
   },
   "dependencies": {
-    "@lottiefiles/lottie-player": "^1.5.7",
+    "@lottiefiles/lottie-player": "^1.6.0",
     "@nuxtjs/auth-next": "5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
     "cookie-universal-nuxt": "^2.2.2",
