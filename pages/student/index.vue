@@ -161,7 +161,9 @@ async mounted() {
         Authorization: `Bearer ${accessToken}`,
       },
     })
+      console.log("🚀 ~ file: index.vue ~ line 164 ~ mounted ~ allRecruite", allRecruite)
      this.listRecruite =  allRecruite
+     
 
 }
 }

@@ -19,6 +19,9 @@ export default {
     changePage() {
       this.$router.push('/student')
     },
+    changeToProfilePage() {
+      this.$router.push('/student/profile')
+    },
   },
   async mounted() {
     // nuxt query string
@@ -34,12 +37,20 @@ export default {
     console.log('🚀 ~ file: index.vue ~ line 162 ~ mounted ~ res', res)
     localStorage.setItem('accessToken', res.accessToken)
     localStorage.setItem('userId', res.userId)
+    localStorage.setItem('role', 'STUDENT')
     const userRes = await this.$axios.$get('/users/get/' + res.userId, {
       headers: {
         Authorization: `Bearer ${res.accessToken}`,
       },
     })
     this.$store.dispatch('setStudentData', userRes)
+    console.log(this.$store.state.studentData.address);
+    if (this.$store.state.studentData.address == 'false') {
+      setTimeout(this.changeToProfilePage, 2000)
+    } else {
+      setTimeout(this.changePage, 2000)
+    }
+    // setTimeout(this.changePage, 2000)
 
     // .then(() => {
     //   setTimeout(this.changePage, 2000)

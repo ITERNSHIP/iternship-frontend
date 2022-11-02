@@ -9,7 +9,8 @@ export default {
     try {
       const token = localStorage.getItem('userId')
       const accessToken = localStorage.getItem('accessToken')
-      if (token && accessToken) {
+      const role = localStorage.getItem('role')
+      if (token && accessToken && role) {
         const userRes = await this.$axios.$get('/users/get/' + token, {
           headers: {
             Authorization: `Bearer ${accessToken}`,

@@ -83,14 +83,7 @@
                 v-if="!$v.phoneNumber.minLength && $v.phoneNumber.$dirty"
                 class="text-error mt-2 text-sm"
               >
-              กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
-              </p>
-
-              <p
-                v-if="!$v.phoneNumber.maxLength && $v.phoneNumber.$dirty"
-                class="text-error mt-2 text-sm"
-              >
-              กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
+                กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
               </p>
             </div>
             <div class="space-y-1 mb-2">
@@ -110,8 +103,11 @@
               </p>
               <p
                 v-if="
-                  !($v.grade.maxValue && $v.grade.minValue && $v.grade.required) &&
-                  $v.grade.$dirty
+                  !(
+                    $v.grade.maxValue &&
+                    $v.grade.minValue &&
+                    $v.grade.required
+                  ) && $v.grade.$dirty
                 "
                 class="text-error mt-2 text-sm"
               >
@@ -159,13 +155,18 @@
             <!-- <div class="space-y-1 mb-2">
               <span>บริษัทที่จะยื่นสมัคร</span>
               <select
+                v-if="listCompanyName"
                 v-model.trim.lazy="$v.companyName.$model"
                 v-model="sentInternshipForm.companyName"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
-                <option  v-for="comName in listCompanyName" :key="comName.companyName" :value="comName.companyName">
-                  {{comName.companyName}}
-                  </option>
+                <option
+                  v-for="(comName, index) in listCompanyName"
+                  :key="index"
+                  :value="index"
+                >
+                  {{ index }}
+                </option>
               </select>
               <p
                 v-if="!$v.companyName.required && $v.companyName.$dirty"
@@ -176,13 +177,19 @@
             </div>
             <div class="space-y-1 mb-2">
               <span>งานที่จะยื่นสมัคร</span>
-              <input
+              <select
                 v-model.trim.lazy="$v.position.$model"
                 v-model="sentInternshipForm.position"
-                type="text"
-                placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-              />
+              >
+                <option
+                  v-for="com,index in getJobList"
+                  :key="index"
+                  :value="com.title"
+                >
+                  {{ com.title }}
+                </option>
+              </select>
               <p
                 v-if="!$v.position.required && $v.position.$dirty"
                 class="text-error mt-2 text-sm"
@@ -317,7 +324,6 @@ import {
   email,
   decimal,
   minLength,
-  maxLength,
   minValue,
   maxValue,
 } from 'vuelidate/lib/validators'
@@ -339,9 +345,9 @@ export default {
         startDate: '',
         endDate: '',
         resume: '',
-        user:{
-          userId: `${localStorage.getItem('userId')}`
-        }
+        user: {
+          userId: `${localStorage.getItem('userId')}`,
+        },
       },
       fName: '',
       lName: '',
@@ -356,10 +362,9 @@ export default {
       endDate: '',
       resume: '',
       agree: false,
-      listCompanyName:[],
+      listCompanyName: [],
     }
   },
-
   computed: {
     getJobList(){
       return this.listCompanyName[this.companyName]
@@ -380,7 +385,6 @@ export default {
       required,
       numeric,
       minLength: minLength(10),
-      maxLength: maxLength(10),
     },
     grade: {
       required,
@@ -388,26 +392,26 @@ export default {
       minValue: minValue(0),
       maxValue: maxValue(4),
     },
-    email:{
+    email: {
       required,
       email,
     },
-    address:{
+    address: {
       required,
     },
-    companyName:{
+    companyName: {
       required,
     },
-    position:{
+    position: {
       required,
     },
-    startDate:{
+    startDate: {
       required,
     },
-    endDate:{
+    endDate: {
       required,
     },
-    resume:{
+    resume: {
       required,
     },
   },
@@ -428,32 +432,35 @@ export default {
     },
     async sentitsform() {
       const data = this.sentInternshipForm
-          
-      await this.$axios.$post(`/users/createRegis`, data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      }).then((res) => {
-        
-        alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
-        this.$router.push('/student')
-        // location.reload('/student')
-      }).catch((err) => {
-        
-      })
+      console.log(data)
+      await this.$axios
+        .$post(`/users/createRegis`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((res) => {
+          console.log(res)
+          alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+          this.$router.push('/student')
+          location.reload('/student')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
   async mounted() {
     const accessToken = localStorage.getItem('accessToken')
-        
-    let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
+    console.log(accessToken)
+    let allCompany = await this.$axios.$get(`/users/getAllrecruitebyendDate`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     })
     this.listCompanyName = allCompany
 
-    
+    console.log(this.listCompanyName)
   },
 }
 </script>
@@ -467,7 +474,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 </style>
