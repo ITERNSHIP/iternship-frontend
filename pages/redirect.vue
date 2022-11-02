@@ -34,6 +34,7 @@ export default {
         code: code,
       },
     })
+    console.log('***********res***********');
     console.log('🚀 ~ file: index.vue ~ line 162 ~ mounted ~ res', res)
     localStorage.setItem('accessToken', res.accessToken)
     localStorage.setItem('userId', res.userId)
@@ -45,16 +46,11 @@ export default {
     })
     this.$store.dispatch('setStudentData', userRes)
     console.log(this.$store.state.studentData.address);
-    if (this.$store.state.studentData.address == 'false') {
+    if (this.$store.state.studentData.address == null) {
       setTimeout(this.changeToProfilePage, 2000)
     } else {
       setTimeout(this.changePage, 2000)
     }
-    // setTimeout(this.changePage, 2000)
-
-    // .then(() => {
-    //   setTimeout(this.changePage, 2000)
-    // })
   },
 }
 </script>

@@ -26,7 +26,7 @@
             <span>รหัสนักศึกษา</span>
             <span class="text-error">***ไม่สามารถแก้ไขได้***</span>
             <input
-              v-model="userData.studentId"
+              v-model="userData.userId"
               type="text"
               disabled
               class="bg-gray-200 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
@@ -89,12 +89,11 @@
             <button class="btn w-28" @click="editToggle" v-if="!isEdit">
               แก้ไข
             </button>
-            <button class="btn btn-info w-28 text-white" @click="editToggle" v-if="isEdit">
+            <button class="btn btn-info w-28 text-white" @click="editProfile" v-if="isEdit">
               บันทึก
             </button>
           </div>
         </div>
-        {{ userData }}
       </section>
     </div>
   </div>
@@ -108,13 +107,14 @@ export default {
     return {
       isEdit: false,
       userData: {
-        fullName: 'John Doe',
-        studentId: 'B6110000',
-        address: '123/456 หมู่บ้าน อาคาร ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์',
-        phone: '0123456789',
-        email: 'test@test.com',
-        gender: 'หญิง',
-        resumeLink: 'sdfdsgdsgslsdfksdfpsfkpsdfdspf',
+        fullName: '',
+        userId: '',
+        address: '',
+        phone: '',
+        email: '',
+        gender: '',
+        status: '',
+        resumeLink: '',
       },
     }
   },
@@ -123,6 +123,31 @@ export default {
     editToggle() {
       this.isEdit = true
     },
+    async editProfile(){
+      let accessToken = localStorage.getItem('accessToken')
+      let studentId = localStorage.getItem('userId')
+      await this.$axios.$put(`/users/update/${studentId}`, this.userData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      this.$store.dispatch('setStudentData', this.userData)
+      this.isEdit = false
+      alert('แก้ไขข้อมูลสำเร็จ')
+    }
+  },
+
+  async mounted() {
+    let studentId = localStorage.getItem('userId')
+    let accessToken = localStorage.getItem('accessToken')
+    let res = await this.$axios.$get(`/users/get/${studentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+    this.userData = res
   },
 }
 </script>
