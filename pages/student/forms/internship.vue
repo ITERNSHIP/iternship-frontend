@@ -267,22 +267,22 @@ export default {
     getJobList() {
       return this.listCompanyName[this.companyName]
     },
-    // getStudentData() {
-    //   return this.$store.state.studentData
-    // },
+    getStudentData() {
+      return this.$store.state.studentData
+    },
   },
 
-  // watch: {
-  //   getStudentData(newData) {
-  //     this.fullName = newData.fullName
-  //     this.gender = newData.gender
-  //     this.phoneNumber = newData.phone
-  //     this.grade = newData.GPA
-  //     this.email = newData.email
-  //     this.address = newData.address
-  //     this.resume = newData.resumeLink
-  //   },
-  // },
+  watch: {
+    getStudentData(newData) {
+      this.fullName = newData.fullName
+      this.gender = newData.gender
+      this.phoneNumber = newData.phone
+      this.grade = newData.GPA
+      this.email = newData.email
+      this.address = newData.address
+      this.resume = newData.resumeLink
+    },
+  },
   validations: {
     fullName: {
       required,
