@@ -144,13 +144,13 @@
                   scope="col"
                   class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                 >
-                  เบอร์โทรศัพท์
+                  ชื่อบริษัท
                 </th>
                 <th
                   scope="col"
                   class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                 >
-                  ชื่อบริษัท
+                  เบอร์โทรศัพท์
                 </th>
                 <th
                   scope="col"
@@ -164,12 +164,12 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <tr v-for="person in people" :key="person.email">
+              <tr v-for="person in hrCompany" :key="person.companyId">
                 <td
                   class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6"
                 >
-                  {{ person.name }}
-                  <dl class="font-normal lg:hidden">
+                  {{ person.contactName }}
+                  <!-- <dl class="font-normal lg:hidden">
                     <dt class="sr-only">Title</dt>
                     <dd class="mt-1 truncate text-gray-700">
                       {{ person.title }}
@@ -178,27 +178,31 @@
                     <dd class="mt-1 truncate text-gray-500 sm:hidden">
                       {{ person.email }}
                     </dd>
-                  </dl>
+                  </dl> -->
                 </td>
                 <td
                   class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
                 >
-                  {{ person.title }}
+                  {{ person.companyName }}
                 </td>
                 <td
                   class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                 >
-                  {{ person.email }}
+                  {{ person.phoneNumber }}
                 </td>
-                <td class="px-3 py-4 text-sm text-gray-500"
-                :class="[ person.status == 'ปกติ' ? 'text-info' : 'text-red-500' ] ">
-                  {{ person.status }}
+                <td
+                  class="px-3 py-4 text-sm text-gray-500"
+                  :class="[
+                    person.status == false ? 'text-info' : 'text-red-500',
+                  ]"
+                >
+                  {{ person.status == false ? 'ปกติ' : 'ระงับการใช้งาน' }}
                 </td>
                 <td
                   class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
                 >
                   <p
-                    @click="changeCompanyStatus()"
+                    @click="changeCompanyStatus(person, person.companyId)"
                     class="text-blue-600 hover:text-blue-900"
                   >
                     เปลี่ยนสถานะ
@@ -220,54 +224,79 @@ export default {
   components: { AdminNavBar },
   data() {
     return {
-      people: [
-        {
-          name: 'เจเจ เจเจ',
-          title: 'Co-Founder / CEO',
-          email: 'test@tet.com',
-          status: 'ปกติ',
-        },
-        {
-          name: 'เจเจ เจเจ',
-          title: 'Co-Founder / CEO',
-          email: 'test@tet.com',
-          status: 'ระงับการใช้งาน',
-        },
-      ],
+      hrCompany: [],
       firstName: '',
       lastName: '',
       staffEmail: '',
       password: '',
     }
   },
+  async mounted() {
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      this.$router.push('/admin/login')
+    }
+    let res = await this.$axios.$get('/admin/getAllCompany', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    console.log(res)
+    this.hrCompany = res
+  },
   methods: {
-    createStaffAccount() {
+    async createStaffAccount() {
       this.$v.$touch()
       if (this.$v.$invalid) {
         return
       } else {
         const data = {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          staffEmail: this.staffEmail,
+          staffFName: this.firstName,
+          staffLName: this.lastName,
+          email: this.staffEmail,
           password: this.password,
         }
         console.log(
           '🚀 ~ file: management.vue ~ line 264 ~ createStaffAccount ~ data',
           data
         )
-        // this.$axios
-        //   .$post('/api/staff/create', data)
-        //   .then((res) => {
-        //     console.log(res)
-        //   })
-        //   .catch((err) => {
-        //     console.log(err)
-        //   })
+        await this.$axios.$post('/admin/createStaff', data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        alert('สร้างบัญชีสำเร็จ')
+        this.$router.push('/admin/management')
+        location.reload()
       }
     },
-    changeCompanyStatus() {
-      console.log('change status')
+    async changeCompanyStatus(person, companyId) {
+      const accessToken = localStorage.getItem('accessToken')
+      if (person.status == false) {
+        await this.$axios.$post(
+          `/admin/limitAccount/${companyId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        alert('เปลี่ยนสถานะเป็น ระงับการใช้งาน')
+        person.status = true
+      } else {
+        await this.$axios.$post(
+          `/admin/unSuspendAccount/${companyId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        alert('เปลี่ยนสถานะเป็น ปกติ')
+        person.status = false
+      }
     },
   },
   validations: {
