@@ -66,7 +66,7 @@
             </div>
             <input
               type="text"
-              v-model="searchCom"
+              v-model="search"
               id="table-search"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="ค้นหาบริษัท"
@@ -94,6 +94,7 @@
             </div>
             <input
               type="text"
+              v-model="searchRec"
               id="table-search"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="ค้นหางาน"
@@ -137,7 +138,7 @@
       </div>
       <div class="min-h-screen">
         <div v-if="toggleView" class="grid lg:grid-cols-3 gap-4 mb-8">
-        <nuxt-link  :to="`/student/company/position/${recruite.recruitId}`" v-for="recruite in listRecruite" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <nuxt-link  :to="`/student/company/position/${recruite.recruitId}`" v-for="recruite in filteredListRec" :key="recruite.recruitId"  class="card card-side bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure class="px-3 py-3 self-center">
             <img :src="recruite.company.imageName"
               class="rounded-xl object-cover h-20 w-20 se:h-28 se:w-28 md:h-40 md:w-40"
@@ -168,7 +169,9 @@ export default {
     return {
       toggleView: false,
       listCompany:[],
-      listRecruite:[]
+      listRecruite:[],
+      search: '',
+      searchRec: '',
     }
   },
 
@@ -196,7 +199,12 @@ async mounted() {
   computed: {
     filteredList() {
       return this.listCompany.filter(company => {
-        return company.companyName.toLowerCase().includes(this.searchCom.toLowerCase())
+        return company.companyName.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
+    filteredListRec() {
+      return this.listRecruite.filter(recruite => {
+        return recruite.title.toLowerCase().includes(this.searchRec.toLowerCase())
       })
     }
   }
