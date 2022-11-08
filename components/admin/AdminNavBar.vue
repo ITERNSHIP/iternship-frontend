@@ -1,22 +1,14 @@
 <template>
-  <div class="navbar bg-black-gray rounded-none justify-between">
+  <div>
+    <div class="navbar bg-black-gray rounded-none justify-between">
     <div class="px-4 w-full">
       <div class="flex cursor-pointer ">
         <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
         <img src="@/static/logo.png" alt="##" class="w-16">
       </div>
-      <div class="lg:flex mx-12 hidden">
-        <ul class="menu menu-horizontal space-x-6 text-white">
-          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
-          <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
-          <!-- <li><a>เกี่ยวกับเรา</a></li> -->
-        </ul>
-      </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-2">
-        <nuxt-link to="/login" v-if="!`${this.$cookiz.get('jwt')}`" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
+        
         <button v-if="`${this.$cookiz.get('jwt')}`" class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
 
@@ -63,24 +55,21 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
-          <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
-          <!-- <li><a>เกี่ยวกับเรา</a></li> -->
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
-          <li><a @click="logout">ออกจากระบบ</a></li>
+          <li><a @click="logout()">ออกจากระบบ</a></li>
         </ul>
       </div>
   </div>
+  </div>
 </template>
 
-<script scoped>
+<script>
 export default {
-  methods: {
+    methods: {
     logout() {
       this.$cookiz.remove('jwt')
-      localStorage.clear()
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('role')
       this.$router.push('/')
       alert('ออกจากระบบสำเร็จ')
     },
@@ -88,4 +77,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+
+</style>

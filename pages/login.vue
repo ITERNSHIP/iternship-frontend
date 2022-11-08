@@ -461,7 +461,12 @@ export default {
         })
         .catch((err) => {
           // console.log(err)
-          alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+          if (err.response.data.statusCode == '400'){
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+          }
+          if (err.response.data.statusCode == '401'){
+            alert('บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ')
+          }
         })
 
       // this.$cookiz.set('jwt', response.accessToken, {
