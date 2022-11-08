@@ -66,6 +66,7 @@
             </div>
             <input
               type="text"
+              v-model="searchCom"
               id="table-search"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="ค้นหาบริษัท"
@@ -125,7 +126,7 @@
         v-if="!toggleView"
         class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid"
       >
-        <nuxt-link  :to="`/student/company/${company.companyId}`" v-for="company in listCompany" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
+        <nuxt-link  :to="`/student/company/${company.companyId}`" v-for="company in filteredList" :key="company.companyId" class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black">
           <figure>
             <img :src="company.imageName" class="object-cover h-[250px] w-[250px]"/>
           </figure>
@@ -159,6 +160,7 @@
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
 import Footer from '~/components/Footer.vue'
+import company from '~/store/company'
 export default {
   components: { StudentNavBar, Footer },
 
@@ -190,7 +192,14 @@ async mounted() {
     })
      this.listRecruite =  allRecruite
 
-}
+},
+  computed: {
+    filteredList() {
+      return this.listCompany.filter(company => {
+        return company.companyName.toLowerCase().includes(this.searchCom.toLowerCase())
+      })
+    }
+  }
 }
 </script>
 
