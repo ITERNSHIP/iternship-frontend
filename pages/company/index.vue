@@ -186,7 +186,7 @@
                 toggleView ? 'bg-blue-blue text-white' : 'bg-white text-black',
               ]"
             >
-              <p>ผ่านการประเมิน</p>
+              <p>เรียกผู้สมัครเข้าสัมภาษณ์งาน</p>
             </div>
           </div>
 
