@@ -355,7 +355,6 @@ export default {
       })
       alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
       this.$router.push('/student')
-      location.reload('/student')
       // await this.$axios
       //   .$post(`/users/createRegis`, data, {
       //     headers: {

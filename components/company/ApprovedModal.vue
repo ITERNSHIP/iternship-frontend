@@ -25,16 +25,16 @@
           <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
-              >ชื่อจริง</label
+              >ชื่อจริง-นามสกุล</label
             >
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              :placeholder="registerPass.fName"
+              :placeholder="registerPass.fullName"
             />
           </div>
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >นามสกุล</label
@@ -44,7 +44,7 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="registerPass.lName"
             />
-          </div>
+          </div> -->
 
           <div class="mb-4">
             <label
@@ -119,7 +119,7 @@
           </div>
 
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >วันที่เริ่มต้นฝึกงาน</label
@@ -129,9 +129,9 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="registerPass.startDate"
             />
-          </div>
+          </div> -->
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >วันที่จบการฝึกงาน</label
@@ -141,7 +141,7 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="registerPass.endDate"
             />
-          </div>
+          </div> -->
 
           <div class="mb-4">
             <label
