@@ -454,6 +454,7 @@ export default {
           })
           localStorage.setItem('companyId', companyId)
           localStorage.setItem('companyName', companyName)
+          localStorage.setItem('role', 'COMPANY')
           //   console.log(localStorage.getItem('companyId'))
           //  console.log(localStorage.getItem('companyName'))
           alert('เข้าสู่ระบบสำเร็จ')
@@ -490,6 +491,7 @@ export default {
           // console.log(res)
           let { accessToken } = res
           localStorage.setItem('accessToken', accessToken)
+          localStorage.setItem('role', 'STAFF')
           alert('เข้าสู่ระบบสำเร็จ')
           this.$router.push('/staff')
         })
