@@ -45,6 +45,7 @@
                 </div>
                 <input
                   type="text"
+                  v-model="search"
                   id="table-search"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="ค้นหารหัสนักศึกษา"
@@ -71,7 +72,7 @@
               </tr>
             </thead>
             <tbody
-              v-for="(student, i) in studentInfo"
+              v-for="(student, i) in filteredList"
               :key="student.confirmationId"
             >
               <tr>
@@ -129,6 +130,7 @@ export default {
   data() {
     return {
       studentInfo: [],
+      search: '',
     }
   },
   async mounted() {
@@ -147,6 +149,13 @@ export default {
     this.studentInfo = studentConfirmResults
     console.log(this.studentInfo);
   },
+  computed: {
+    filteredList() {
+      return this.studentInfo.filter(student => {
+        return student.studentId.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+    }
 }
 </script>
 
