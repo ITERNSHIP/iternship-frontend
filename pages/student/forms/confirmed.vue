@@ -87,7 +87,7 @@
             </div>
 
             <div class="space-y-1 mb-2">
-              <span>ปีการศึกษา</span>
+              <span>นักศึกษาปีการศึกษา</span>
               <select
                 v-model.trim.lazy="$v.year.$model"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
