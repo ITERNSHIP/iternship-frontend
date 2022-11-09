@@ -12,6 +12,18 @@
           <div
             class="flex xse:flex-row flex-col items-center gap-2 justify-between"
           >
+            <div
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <select>
+                <option value="" selected disabled hidden>นักศึกษาปีการศึกษา</option>
+                <option value="2562">2562</option>
+                <option value="2563">2563</option>
+                <option value="2564">2564</option>
+                <option value="2565">2565</option>
+                <option value="2566">2566</option>
+              </select>
+            </div>
             <div class="xse:w-96 w-full">
               <label for="table-search" class="sr-only">Search</label>
               <div class="relative mt-1">
@@ -49,6 +61,8 @@
                 <th></th>
                 <th>รหัสนักศึกษา</th>
                 <th>ชื่อ - นามสกุล</th>
+                <th>นักศึกษาปีการศึกษา</th>
+                <th>สาขาวิชา</th>
                 <th>ชื่อบริษัท</th>
                 <th>ตำแหน่งงาน</th>
                 <th>ระยะเวลาในการฝึก</th>
@@ -56,11 +70,16 @@
                 <th>จบฝึกงาน</th>
               </tr>
             </thead>
-            <tbody v-for="(student, i) in studentInfo" :key="student.confirmationId">
+            <tbody
+              v-for="(student, i) in studentInfo"
+              :key="student.confirmationId"
+            >
               <tr>
-                <th>{{ i+1 }}</th>
+                <th>{{ i + 1 }}</th>
                 <td>{{ student.studentId }}</td>
-                <td>{{ student.fName }} {{ student.lName }}</td>
+                <td>{{ student.fullName }}</td>
+                <td>{{ student.year }}</td>
+                <td>{{ student.faculty }}</td>
                 <td>{{ student.companyName }}</td>
                 <td>{{ student.position }}</td>
                 <td>{{ student.longTerm }}</td>
@@ -73,6 +92,8 @@
                 <th></th>
                 <th>รหัสนักศึกษา</th>
                 <th>ชื่อ - นามสกุล</th>
+                <th>นักศึกษาปีการศึกษา</th>
+                <th>สาขาวิชา</th>
                 <th>ชื่อบริษัท</th>
                 <th>ตำแหน่งงาน</th>
                 <th>ระยะเวลาในการฝึก</th>
@@ -115,12 +136,16 @@ export default {
     if (accessToken == null) {
       this.$router.push('/staff/login')
     }
-    let studentConfirmResults = await this.$axios.$get('/staff/getAllconfirmation', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+    let studentConfirmResults = await this.$axios.$get(
+      '/staff/getAllconfirmation',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
-    })
+    )
     this.studentInfo = studentConfirmResults
+    console.log(this.studentInfo);
   },
 }
 </script>
