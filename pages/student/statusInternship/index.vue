@@ -108,7 +108,7 @@
 
             <div>
               <div
-                class="border-2 rounded-lg border-red-400 h-auto w-28 text-center p-1"
+                class="border-2 rounded-lg border-red-400 h-auto w-auto text-center p-1"
               >
                 <p class="text-red-400">ไม่เชิญสัมภาษณ์งาน</p>
               </div>
