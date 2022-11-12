@@ -161,7 +161,7 @@
 import StudentNavBar from '~/components/StudentNavBar.vue'
 import company from '~/store/company'
 export default {
-  components: { StudentNavBar, Footer },
+  components: { StudentNavBar },
 
   data() {
     return {
