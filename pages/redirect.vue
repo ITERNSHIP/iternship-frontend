@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  layout: 'nowrap',
   methods: {
     changePage() {
       this.$router.push('/student')
