@@ -370,6 +370,8 @@ export default {
       }
     }
   },
+
+  layout: 'nowrap',
   validations: {
     studentNum: {
       required,

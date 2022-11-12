@@ -339,7 +339,6 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -474,7 +473,7 @@ export default {
       })
       alert('ส่งฟอร์มสำเร็จ')
       this.$router.push('/student')
-      location.reload('/student')
+      // location.reload('/student')
       // const data = this.confirmedForm
       // await this.$axios
       //   .$post(`/users/createconfirmationForm`, data, {

@@ -91,6 +91,8 @@ export default {
     }
   },
 
+  layout: 'nowrap',
+
   methods: {
     sentLoginData() {
       this.$v.$touch()

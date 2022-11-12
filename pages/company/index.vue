@@ -227,13 +227,11 @@
         </div>
       </section>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import CompanyNavBar from '~/components/CompanyNavBar.vue'
-import Footer from '~/components/Footer.vue'
 import AddPositionModal from '../../components/company/AddPositionModal.vue'
 import ViewPositionModal from '~/components/company/ViewPositionModal.vue'
 import ViewInternshipModal from '~/components/company/ViewInternshipModal.vue'
@@ -243,7 +241,6 @@ import dayjs from 'dayjs'
 export default {
   components: {
     CompanyNavBar,
-    Footer,
     AddPositionModal,
     ViewPositionModal,
     ViewInternshipModal,

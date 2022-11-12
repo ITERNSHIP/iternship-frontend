@@ -15,7 +15,7 @@
             <div
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <select>
+              <select v-model="yearFilter">
                 <option value="" selected disabled hidden>นักศึกษาปีการศึกษา</option>
                 <option value="2562">2562</option>
                 <option value="2563">2563</option>
@@ -55,7 +55,11 @@
           </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div v-if="filteredList.length == 0" class="text-xl font-bold">
+          <p>ไม่มีข้อมูล</p>
+        </div>
+
+        <div class="overflow-x-auto" v-else>
           <table class="table table-compact w-full">
             <thead>
               <tr>
@@ -106,7 +110,6 @@
         </div>
       </div>
     </section>
-    <Footer class="mt-16" />
   </div>
 </template>
 
@@ -124,13 +127,13 @@ async asyncData({ $axios  }) {
 </script> -->
 <script>
 import StaffNavBar from '../../components/StaffNavBar.vue'
-import Footer from '~/components/Footer.vue'
 export default {
-  components: { StaffNavBar, Footer },
+  components: { StaffNavBar },
   data() {
     return {
       studentInfo: [],
       search: '',
+      yearFilter: '2562',
     }
   },
   async mounted() {
@@ -153,8 +156,15 @@ export default {
     filteredList() {
       return this.studentInfo.filter(student => {
         return student.studentId.toLowerCase().includes(this.search.toLowerCase())
+      }).filter(student => {
+        return student.year === this.yearFilter
       })
-    }
+    },
+    // filteredYear(){
+    //   return this.studentInfo.filter(student => {
+    //     return student.year === this.yearFilter
+    //   })
+    // },
     }
 }
 </script>

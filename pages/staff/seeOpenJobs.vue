@@ -129,13 +129,11 @@
         </div>
       </div>
     </section>
-    <Footer class="mt-16" />
   </div>
 </template>
 
 <script>
 import StaffNavBar from '~/components/StaffNavBar.vue'
-import Footer from '~/components/Footer.vue'
 import dayjs from 'dayjs'
 export default {
   components: { StaffNavBar, Footer },

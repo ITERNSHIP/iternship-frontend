@@ -128,7 +128,6 @@
         </div>
       </div>
     </div>
-    <Footer class="mt-4 lg:mt-40" />
   </div>
 </template>
 

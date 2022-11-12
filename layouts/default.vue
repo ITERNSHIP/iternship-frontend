@@ -1,9 +1,18 @@
 <template>
-  <Nuxt />
+  <div>
+    <div class="pb-[104px]">
+      <Nuxt />
+    </div>
+    <Footer />
+  </div>
 </template>
 
 <script>
+import Footer from '~/components/Footer.vue';
 export default {
+  components: {
+    Footer
+  },
   async created() {
     console.log('************FROM LAYOUT*********')
     try {

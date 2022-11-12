@@ -154,13 +154,11 @@
       
     </div>
 
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
-import Footer from '~/components/Footer.vue'
 import company from '~/store/company'
 export default {
   components: { StudentNavBar, Footer },

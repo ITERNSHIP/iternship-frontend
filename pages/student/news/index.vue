@@ -41,17 +41,14 @@
         </section>
       </div>
     </section>
-    <Footer class="mt-8" />
   </div>
 </template>
 
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
-import Footer from '~/components/Footer.vue';
 export default {
   components: {
     StudentNavBar,
-    Footer,
   },
 
   data() {

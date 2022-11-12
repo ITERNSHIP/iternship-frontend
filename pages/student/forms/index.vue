@@ -63,7 +63,6 @@
       </div>
     </div>
 
-    <Footer class="mt-40" />
   </div>
 </template>
 

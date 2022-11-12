@@ -211,17 +211,13 @@
 
 
     </div>
-    <Footer class="mt-8" />
   </div>
 </template>
 
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
-import Footer from '~/components/Footer.vue';
-// export default {
-//   components: { StudentNavBar },
 export default {
-  components: { StudentNavBar, Footer },
+  components: { StudentNavBar },
 
   data() {
     return {
