@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="pb-[104px]">
-      <Nuxt />
-    </div>
+  <div class="h-[100vh] flex flex-col justify-between" id="outer_layout">
+    <Nuxt />
     <Footer />
   </div>
 </template>

@@ -134,7 +134,13 @@
 <script>
 import * as LottiePlayer from '@lottiefiles/lottie-player'
 import StaffNavBar from '~/components/StaffNavBar.vue'
-export default { components: { StaffNavBar } }
+export default { components: { StaffNavBar },
+  mounted() {
+    if(localStorage.getItem('role') != 'STAFF'){
+      this.$router.push('/')
+      
+    }
+  }}
 </script>
 
 <style></style>

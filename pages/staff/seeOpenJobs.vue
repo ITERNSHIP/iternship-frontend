@@ -136,7 +136,7 @@
 import StaffNavBar from '~/components/StaffNavBar.vue'
 import dayjs from 'dayjs'
 export default {
-  components: { StaffNavBar, Footer },
+  components: { StaffNavBar },
   data() {
     return {
       companyInfo: [],

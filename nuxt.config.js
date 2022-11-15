@@ -42,6 +42,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    "vue-sweetalert2/nuxt",
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
   
