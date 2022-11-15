@@ -50,7 +50,7 @@
                 autoplay
                 loop
                 mode="normal"
-                src="https://assets10.lottiefiles.com/packages/lf20_WWifl0Qmyq.json"
+                src="https://assets1.lottiefiles.com/packages/lf20_gckvznnm.json"
                 style="width: 120px"
                 class="absolute bottom-0 right-0 hidden xl:flex"
               ></lottie-player>
