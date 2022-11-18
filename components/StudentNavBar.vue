@@ -9,7 +9,7 @@
         <ul class="menu menu-horizontal space-x-6 text-white">
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">สมัครฝึกงาน</nuxt-link></li>
           <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
           <!-- <li><a>เกี่ยวกับเรา</a></li> -->
         </ul>
@@ -65,7 +65,7 @@
         >
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">สมัครฝึกงาน</nuxt-link></li>
           <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
           <!-- <li><a>เกี่ยวกับเรา</a></li> -->
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
