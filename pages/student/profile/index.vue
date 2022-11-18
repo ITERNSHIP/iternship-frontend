@@ -8,7 +8,7 @@
         </p>
       </div>
 
-      <section>
+      <section class="mb-8">
         <div
           class="w-full h-auto rounded-xl bg-slate-100 px-4 sm:px-6 md:px-8 lg:px-10 py-8"
         >
@@ -273,7 +273,12 @@ export default {
       let studentId = localStorage.getItem('userId')
       this.$v.$touch()
       if (this.$v.$invalid) {
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        this.$swal({
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          icon: 'warning',
+          confirmButtonText: 'ตกลง',
+        })
         console.log('invalid')
         return
       }
@@ -288,7 +293,12 @@ export default {
       })
       this.$store.dispatch('setStudentData', this.userData)
       this.isEdit = false
-      alert('แก้ไขข้อมูลสำเร็จ')
+      // alert('แก้ไขข้อมูลสำเร็จ')
+      await this.$swal({
+        title: 'แก้ไขข้อมูลสำเร็จ',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+      })
       location.reload('/student/profile')
     },
   },

@@ -73,7 +73,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="mb-8">
         <div class="mt-4 md:mt-8">
           <p class="text-lg font-medium md:text-2xl">ตำแหน่งที่เปิดรับ</p>
         </div>
