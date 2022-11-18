@@ -1,10 +1,10 @@
 <template>
   <div class="navbar bg-black-gray rounded-none justify-between">
     <div class="px-4 w-full">
-      <div class="flex cursor-pointer ">
+      <nuxt-link to="/staff" class="flex cursor-pointer ">
         <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
         <img src="@/static/logo.png" alt="##" class="w-16">
-      </div>
+      </nuxt-link>
       <div class="lg:flex mx-12 hidden">
         <ul class="menu menu-horizontal space-x-6 text-white">
           <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
@@ -76,11 +76,19 @@
 <script>
 export default {
   methods: {
-    logout() {
+    async logout() {
       this.$cookiz.remove('jwt')
       localStorage.removeItem('accessToken')
+      localStorage.clear()
+      await this.$swal({
+        title: 'ออกจากระบบสำเร็จ',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false,
+      })
       this.$router.push('/')
-      alert('ออกจากระบบสำเร็จ')
+      // alert('ออกจากระบบสำเร็จ')
+      
     },
   },
 }

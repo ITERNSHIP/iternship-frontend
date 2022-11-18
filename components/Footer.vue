@@ -3,8 +3,8 @@
     <div class="container mx-auto p-10">
       <footer class="footer flex justify-between bg-gray-300">
         <p class="text-black font-bold text-base">ITERNSHIP</p>
-        <p class="text-black font-normal text-base">Senoir Project</p>
-        <p class="text-black font-normal text-base">Patrick-Tech Co.</p>
+        <p class="text-black font-normal text-base">Capstone Project</p>
+        <p class="text-black font-normal text-base">IT28-BU42</p>
       </footer>
     </div>
   </div>
