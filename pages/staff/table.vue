@@ -12,10 +12,8 @@
           <div
             class="flex xse:flex-row flex-col items-center gap-2 justify-between"
           >
-            <div
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <select v-model="yearFilter">
+            
+              <select v-model="yearFilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="" selected disabled hidden>นักศึกษาปีการศึกษา</option>
                 <option value="2562">2562</option>
                 <option value="2563">2563</option>
@@ -23,7 +21,7 @@
                 <option value="2565">2565</option>
                 <option value="2566">2566</option>
               </select>
-            </div>
+            
             <div class="xse:w-96 w-full">
               <label for="table-search" class="sr-only">Search</label>
               <div class="relative mt-1">

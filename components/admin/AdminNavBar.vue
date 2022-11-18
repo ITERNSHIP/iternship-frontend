@@ -66,12 +66,18 @@
 <script>
 export default {
     methods: {
-    logout() {
+    async logout() {
       this.$cookiz.remove('jwt')
       localStorage.removeItem('accessToken')
       localStorage.removeItem('role')
+      await this.$swal({
+        title: 'ออกจากระบบสำเร็จ',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false,
+      })
       this.$router.push('/')
-      alert('ออกจากระบบสำเร็จ')
+      // alert('ออกจากระบบสำเร็จ')
     },
   },
 }
