@@ -3,9 +3,11 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 COPY package.json ./
+COPY . .
+
 RUN npm install
 
-COPY . .
+#COPY . .
 COPY .env .
 
 RUN npm run build
