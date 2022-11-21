@@ -450,35 +450,36 @@ export default {
           localStorage.setItem('role', 'COMPANY')
           //   console.log(localStorage.getItem('companyId'))
           //  console.log(localStorage.getItem('companyName'))
-          // alert('เข้าสู่ระบบสำเร็จ')
-          this.$swal.fire({
-            icon: 'success',
-            title: 'เข้าสู่ระบบสำเร็จ',
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(() => {
-            this.$router.push('/company')
-          })
+          alert('เข้าสู่ระบบสำเร็จ')
+          this.$router.push('/company')
+          // this.$swal.fire({
+          //   icon: 'success',
+          //   title: 'เข้าสู่ระบบสำเร็จ',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // }).then(() => {
+          //   this.$router.push('/company')
+          // })
         })
         .catch((err) => {
           // console.log(err)
           if (err.response.data.statusCode == '400'){
-            // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
-            this.$swal.fire({
-              icon: 'error',
-              title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
-              showConfirmButton: false,
-              timer: 1500,
-            })
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
           }
           if (err.response.data.statusCode == '401'){
-            // alert('บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ')
-            this.$swal.fire({
-              icon: 'error',
-              title: 'บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
-              showConfirmButton: false,
-              timer: 1500,
-            })
+            alert('บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
           }
         })
 
@@ -504,27 +505,28 @@ export default {
           let { accessToken } = res
           localStorage.setItem('accessToken', accessToken)
           localStorage.setItem('role', 'STAFF')
-          // alert('เข้าสู่ระบบสำเร็จ')
-          this.$swal.fire({
-            icon: 'success',
-            title: 'เข้าสู่ระบบสำเร็จ',
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(() => {
-            this.$router.push('/staff')
-          })
+          alert('เข้าสู่ระบบสำเร็จ')
+          this.$router.push('/staff')
+          // this.$swal.fire({
+          //   icon: 'success',
+          //   title: 'เข้าสู่ระบบสำเร็จ',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // }).then(() => {
+          //   this.$router.push('/staff')
+          // })
           // this.$router.push('/staff')
         })
         .catch((err) => {
           // console.log(err.response.data.statusCode)
           if (err.response.data.statusCode == '400'){
-            // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
-            this.$swal.fire({
-              icon: 'error',
-              title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
-              showConfirmButton: false,
-              timer: 1500,
-            })
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
           }
           // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
         })

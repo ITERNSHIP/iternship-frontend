@@ -110,24 +110,25 @@ export default {
       await this.$axios.$post('/admin/login', data).then((res) => {
         localStorage.setItem('accessToken', res.accessToken)
         localStorage.setItem('role', 'ADMIN')
-        this.$swal({
-          title: 'เข้าสู่ระบบสำเร็จ',
-          icon: 'success',
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
-          this.$router.push('/admin/management')
-        })
-        // this.$router.push('/admin/management')
+        // this.$swal({
+        //   title: 'เข้าสู่ระบบสำเร็จ',
+        //   icon: 'success',
+        //   timer: 2000,
+        //   showConfirmButton: false,
+        // }).then(() => {
+        //   this.$router.push('/admin/management')
+        // })
+        alert('เข้าสู่ระบบสำเร็จ')
+        this.$router.push('/admin/management')
       }).catch((err) => {
         if (err.response.data.statusCode == '400'){
-            // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
-            this.$swal({
-              title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
-              icon: 'error',
-              timer: 2000,
-              showConfirmButton: false,
-            })
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+            // this.$swal({
+            //   title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+            //   icon: 'error',
+            //   timer: 2000,
+            //   showConfirmButton: false,
+            // })
         }
       })
     },

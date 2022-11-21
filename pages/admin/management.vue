@@ -265,18 +265,18 @@ export default {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         })
-        // alert('สร้างบัญชีสำเร็จ')
-        this.$swal({
-          title: 'สร้างบัญชีสำเร็จ',
-          icon: 'success',
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
-          this.$router.push('/admin/management')
-          location.reload()
-        })
-        // this.$router.push('/admin/management')
-        // location.reload()
+        alert('สร้างบัญชีสำเร็จ')
+        // this.$swal({
+        //   title: 'สร้างบัญชีสำเร็จ',
+        //   icon: 'success',
+        //   timer: 2000,
+        //   showConfirmButton: false,
+        // }).then(() => {
+        //   this.$router.push('/admin/management')
+        //   location.reload()
+        // })
+        this.$router.push('/admin/management')
+        location.reload()
       }
     },
     async changeCompanyStatus(person, companyId) {
@@ -291,16 +291,16 @@ export default {
             },
           }
         )
-        // alert('เปลี่ยนสถานะเป็น ระงับการใช้งาน')
-        this.$swal({
-          title: 'เปลี่ยนสถานะเป็น ระงับการใช้งาน',
-          icon: 'success',
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
-          person.status = true
-        })
-        // person.status = true
+        alert('เปลี่ยนสถานะเป็น ระงับการใช้งาน')
+        // this.$swal({
+        //   title: 'เปลี่ยนสถานะเป็น ระงับการใช้งาน',
+        //   icon: 'success',
+        //   timer: 2000,
+        //   showConfirmButton: false,
+        // }).then(() => {
+        //   person.status = true
+        // })
+        person.status = true
       } else {
         await this.$axios.$post(
           `/admin/unSuspendAccount/${companyId}`,
@@ -311,16 +311,16 @@ export default {
             },
           }
         )
-        // alert('เปลี่ยนสถานะเป็น ปกติ')
-        this.$swal({
-          title: 'เปลี่ยนสถานะเป็น ปกติ',
-          icon: 'success',
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
-          person.status = false
-        })
-        // person.status = false
+        alert('เปลี่ยนสถานะเป็น ปกติ')
+        // this.$swal({
+        //   title: 'เปลี่ยนสถานะเป็น ปกติ',
+        //   icon: 'success',
+        //   timer: 2000,
+        //   showConfirmButton: false,
+        // }).then(() => {
+        //   person.status = false
+        // })
+        person.status = false
       }
     },
   },

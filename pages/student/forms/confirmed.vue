@@ -383,7 +383,7 @@ export default {
   },
 
   async mounted() {
-    console.log('ftfftutufjtfgtfjgjjtftj')
+    // console.log('ftfftutufjtfgtfjgjjtftj')
     const newData = this.$store.state.studentData
     this.fullName = newData.fullName
     this.studentId = newData.userId
