@@ -250,7 +250,13 @@ export default {
     editPosition() {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        this.$swal({
+          icon: 'error',
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+        // alert('กรุณากรอกข้อมูลให้ครบถ้วน')
         return
       }
       delete this.Position.showOpeningDate

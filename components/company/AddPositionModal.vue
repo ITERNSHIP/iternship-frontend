@@ -223,7 +223,12 @@ export default {
     clickAddPosition() {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        this.$swal({
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          icon: 'warning',
+          confirmButtonText: 'ตกลง',
+        })
         // let opening = new Date().toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'})// 08/19/2020 (month and day with two digits)
         // this.addPositionData.openingDate = dayjs().format('DD/MM/YYYY')
         return
