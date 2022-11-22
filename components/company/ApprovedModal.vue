@@ -6,7 +6,7 @@
       <label :for="registerPass.regisId" class="modal-button cursor-pointer">
         <div class="flex justify-between">
           <div class="gap-2">
-            <p class="font-bold">{{registerPass.fName}}  {{registerPass.lName}}</p>
+            <p class="font-bold">{{registerPass.fullName}}</p>
             <p>ตำแหน่ง: {{registerPass.position}}</p>
           </div>
         </div>

@@ -276,17 +276,17 @@ export default {
         })
         .then((res) => {
           // console.log(res)
-          alert('เพิ่มงานสำเร็จ')
-          this.$router.push('/company')
-          location.reload()
-          // this.$swal({
-          //   title: 'เพิ่มงานสำเร็จ',
-          //   icon: 'success',
-          //   confirmButtonText: 'ตกลง',
-          // }).then(() => {
-          //   this.$router.push('/company')
-          //   location.reload()
-          // })
+          // alert('เพิ่มงานสำเร็จ')
+          // this.$router.push('/company')
+          // location.reload()
+          this.$swal({
+            title: 'เพิ่มงานสำเร็จ',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+          }).then(() => {
+            this.$router.push('/company')
+            location.reload()
+          })
         })
         .catch((err) => {
           // console.log(err)
@@ -301,17 +301,17 @@ export default {
         },
       }).then((res) => {
         // console.log(res)
-        alert('แก้ไขสำเร็จ')
-        this.$router.push('/company')
-        location.reload()
-        // this.$swal({
-        //   title: 'แก้ไขสำเร็จ',
-        //   icon: 'success',
-        //   confirmButtonText: 'ตกลง',
-        // }).then(() => {
-        //   this.$router.push('/company')
-        //   location.reload()
-        // })
+        // alert('แก้ไขสำเร็จ')
+        // this.$router.push('/company')
+        // location.reload()
+        this.$swal({
+          title: 'แก้ไขสำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/company')
+          location.reload()
+        })
         // this.$router.push('/company')
         // location.reload()
       }).catch((err) => {
@@ -320,54 +320,54 @@ export default {
     },
 
     deletePosition(id) {
-      // this.$swal.fire({
-      //   title: 'คุณต้องการลบงานนี้ใช่หรือไม่?',
-      //   icon: 'warning',
-      //   showCancelButton: true,
-      //   confirmButtonColor: '#3085d6',
-      //   cancelButtonColor: '#d33',
-      //   confirmButtonText: 'ใช่',
-      //   cancelButtonText: 'ไม่',
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     this.$axios
-      //       .$delete(`/company/deleteRecru/${id}`, {
-      //         headers: {
-      //           Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
-      //         },
-      //       })
-      //       .then((res) => {
-      //         // console.log(res)
-      //         // alert('ลบสำเร็จ')
-      //         this.$swal({
-      //           title: 'ลบสำเร็จ',
-      //           icon: 'success',
-      //           confirmButtonText: 'ตกลง',
-      //         }).then(() => {
-      //           this.$router.push('/company')
-      //           location.reload()
-      //         })
-      //       })
-      //       .catch((err) => {
-      //         // console.log(err)
-      //       })
-      //   }
-      // })
-      var r = confirm('ต้องการลบตำแหน่งนี้ใช่หรือไม่')
-      if (r == true) {
-        this.$axios.$delete(`/company/deleteRecru/${id}`, {
-          headers: {
-            Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
-          },
-        }).then((res) => {
-          // console.log(res)
-          alert('ลบสำเร็จ')
-          this.$router.push('/company')
-          location.reload()
-        }).catch((err) => {
-          // console.log(err)
-        })
-      }
+      this.$swal.fire({
+        title: 'คุณต้องการลบงานนี้ใช่หรือไม่?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ใช่',
+        cancelButtonText: 'ไม่',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$axios
+            .$delete(`/company/deleteRecru/${id}`, {
+              headers: {
+                Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+              },
+            })
+            .then((res) => {
+              // console.log(res)
+              // alert('ลบสำเร็จ')
+              this.$swal({
+                title: 'ลบสำเร็จ',
+                icon: 'success',
+                confirmButtonText: 'ตกลง',
+              }).then(() => {
+                this.$router.push('/company')
+                location.reload()
+              })
+            })
+            .catch((err) => {
+              // console.log(err)
+            })
+        }
+      })
+      // var r = confirm('ต้องการลบตำแหน่งนี้ใช่หรือไม่')
+      // if (r == true) {
+      //   this.$axios.$delete(`/company/deleteRecru/${id}`, {
+      //     headers: {
+      //       Authorization: `Bearer ${this.$cookiz.get('jwt')}`,
+      //     },
+      //   }).then((res) => {
+      //     // console.log(res)
+      //     alert('ลบสำเร็จ')
+      //     this.$router.push('/company')
+      //     location.reload()
+      //   }).catch((err) => {
+      //     // console.log(err)
+      //   })
+      // }
       // if (r == true) {
       //   this.$axios
       //   .$delete(`/company/deleteRecru/${id}`, {
@@ -403,17 +403,17 @@ export default {
         },
       }).then((res) => {
         // console.log(res)
-        alert('แก้ไขประวัติของบริษัทสำเร็จ')
-        // this.$swal({
-        //   title: 'แก้ไขประวัติของบริษัทสำเร็จ',
-        //   icon: 'success',
-        //   confirmButtonText: 'ตกลง',
-        // }).then(() => {
-        //   this.$router.push('/company')
-        //   location.reload()
-        // })
-        this.$router.push('/company')
-        location.reload()
+        // alert('แก้ไขประวัติของบริษัทสำเร็จ')
+        this.$swal({
+          title: 'แก้ไขประวัติของบริษัทสำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/company')
+          location.reload()
+        })
+        // this.$router.push('/company')
+        // location.reload()
       }).catch((err) => {
         // console.log(err)
       })
@@ -428,17 +428,17 @@ export default {
         },
       }).then((res) => {
         // console.log(res)
-        alert('แก้ไขรูปภาพสำเร็จ')
-        this.$router.push('/company')
-        location.reload()
-        // this.$swal({
-        //   title: 'แก้ไขรูปภาพสำเร็จ',
-        //   icon: 'success',
-        //   confirmButtonText: 'ตกลง',
-        // }).then(() => {
-        //   this.$router.push('/company')
-        //   location.reload()
-        // })
+        // alert('แก้ไขรูปภาพสำเร็จ')
+        // this.$router.push('/company')
+        // location.reload()
+        this.$swal({
+          title: 'แก้ไขรูปภาพสำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/company')
+          location.reload()
+        })
       }).catch((err) => {
         // console.log(err)
       })
