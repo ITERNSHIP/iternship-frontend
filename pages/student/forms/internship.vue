@@ -348,28 +348,37 @@ export default {
           userId: localStorage.getItem('userId')
         }
       }
-      await this.$axios.$post(`/users/createRegis`, data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
-      this.$router.push('/student')
-      // await this.$axios
-      //   .$post(`/users/createRegis`, data, {
-      //     headers: {
-      //       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      //     },
-      //   })
-      //   .then((res) => {
-      //     console.log(res)
-      //     alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
-      //     this.$router.push('/student')
-      //     location.reload('/student')
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
+      // await this.$axios.$post(`/users/createRegis`, data, {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      //   },
+      // })
+      // alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+      // this.$router.push('/student')
+      await this.$axios
+        .$post(`/users/createRegis`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((res) => {
+          this.$swal({
+            title: 'ส่งฟอร์มสมัครฝึกงานสำเร็จ',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.$router.push('/student')
+            }
+          })
+          // console.log(res)
+          // alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+          // this.$router.push('/student')
+          // location.reload('/student')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 }
