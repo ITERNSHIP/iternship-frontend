@@ -77,7 +77,7 @@ export default {
         showConfirmButton: false,
       })
       // alert('ออกจากระบบสำเร็จ')
-      // this.$router.push('/')
+      this.$router.push('/')
     },
   },
 }
