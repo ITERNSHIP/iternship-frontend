@@ -434,12 +434,16 @@ export default {
       // }
     },
     async companyLogin() {
-      await this.$axios
+      this.$v.$touch()
+      if (this.$v.companyEmail.$invalid && this.$v.companyPass.$invalid) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        return
+      }else{
+        await this.$axios
         .$post('/company/login', this.login, {
           withCredentials: true,
         })
         .then((res) => {
-          // console.log(res)
           let { companyId, companyName } = res
           this.$cookiz.set('jwt', res.accessToken, {
             path: '/',
@@ -448,10 +452,6 @@ export default {
           localStorage.setItem('companyId', companyId)
           localStorage.setItem('companyName', companyName)
           localStorage.setItem('role', 'COMPANY')
-          //   console.log(localStorage.getItem('companyId'))
-          //  console.log(localStorage.getItem('companyName'))
-          // alert('เข้าสู่ระบบสำเร็จ')
-          // this.$router.push('/company')
           this.$swal.fire({
             icon: 'success',
             title: 'เข้าสู่ระบบสำเร็จ',
@@ -462,9 +462,7 @@ export default {
           })
         })
         .catch((err) => {
-          // console.log(err)
           if (err.response.data.statusCode == '400'){
-            // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
             this.$swal.fire({
               icon: 'error',
               title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
@@ -473,7 +471,6 @@ export default {
             })
           }
           if (err.response.data.statusCode == '401'){
-            // alert('บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ')
             this.$swal.fire({
               icon: 'error',
               title: 'บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
@@ -482,6 +479,8 @@ export default {
             })
           }
         })
+      }
+      
 
       // this.$cookiz.set('jwt', response.accessToken, {
       //   path: '/',
