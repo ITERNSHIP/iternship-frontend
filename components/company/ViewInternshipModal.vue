@@ -21,7 +21,7 @@
             >✕</label
           >
           <h3 class="text-lg font-bold mb-4">ดูข้อมูลผู้สมัครฝึกงาน</h3>
-          {{register}}
+          <!-- {{register}} -->
           <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
@@ -186,9 +186,18 @@ export default {
         },
       }).then((res) => {
         // console.log(res)
-        alert('อนุมัติสำเร็จ')
-        this.$router.push('/company')
-        location.reload()
+        this.$swal({
+          title: 'เรียกสัมภาษณ์งานสำเร็จ',
+          // text: 'เรียกสัมภาษณ์งานสำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/company')
+          location.reload()
+        })
+        // alert('อนุมัติสำเร็จ')
+        // this.$router.push('/company')
+        // location.reload()
       }).catch((err) => {
         // console.log(err)
       })
@@ -204,9 +213,18 @@ export default {
         },
       }).then((res) => {
         // console.log(res)
-        alert('ปฏิเสธการฝึกงานของนักศึกษาแล้ว')
-        this.$router.push('/company')
-        location.reload()
+        this.$swal({
+          title: 'ไม่เรียกสัมภาษณ์งานสำเร็จ',
+          // text: 'ไม่เรียกสัมภาษณ์งานสำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/company')
+          location.reload()
+        })
+        // alert('ปฏิเสธการฝึกงานของนักศึกษาแล้ว')
+        // this.$router.push('/company')
+        // location.reload()
       }).catch((err) => {
         // console.log(err)
       })

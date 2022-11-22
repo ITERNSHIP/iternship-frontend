@@ -81,13 +81,13 @@ export default {
     async logout() {
       this.$cookiz.remove('jwt')
       localStorage.clear()
-      // await this.$swal({
-      //   title: 'ออกจากระบบสำเร็จ',
-      //   icon: 'success',
-      //   timer: 2000,
-      //   showConfirmButton: false,
-      // })
-      alert('ออกจากระบบสำเร็จ')
+      await this.$swal({
+        title: 'ออกจากระบบสำเร็จ',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false,
+      })
+      // alert('ออกจากระบบสำเร็จ')
       this.$router.push('/')
       
     },

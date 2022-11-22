@@ -140,6 +140,9 @@ export default {
 
   async mounted() {
     let accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     let userId = localStorage.getItem('userId')
     await this.$axios
       .$get('/users/findregisBystatusPending', {

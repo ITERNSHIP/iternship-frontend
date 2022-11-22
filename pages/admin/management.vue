@@ -129,7 +129,7 @@
           </div>
         </div>
         <div
-          class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg"
+          class="-mx-4 mt-8 mb-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg"
         >
           <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
@@ -265,18 +265,18 @@ export default {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         })
-        alert('สร้างบัญชีสำเร็จ')
-        // this.$swal({
-        //   title: 'สร้างบัญชีสำเร็จ',
-        //   icon: 'success',
-        //   timer: 2000,
-        //   showConfirmButton: false,
-        // }).then(() => {
-        //   this.$router.push('/admin/management')
-        //   location.reload()
-        // })
-        this.$router.push('/admin/management')
-        location.reload()
+        // alert('สร้างบัญชีสำเร็จ')
+        this.$swal({
+          title: 'สร้างบัญชีสำเร็จ',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          this.$router.push('/admin/management')
+          location.reload()
+        })
+        // this.$router.push('/admin/management')
+        // location.reload()
       }
     },
     async changeCompanyStatus(person, companyId) {
@@ -291,16 +291,16 @@ export default {
             },
           }
         )
-        alert('เปลี่ยนสถานะเป็น ระงับการใช้งาน')
-        // this.$swal({
-        //   title: 'เปลี่ยนสถานะเป็น ระงับการใช้งาน',
-        //   icon: 'success',
-        //   timer: 2000,
-        //   showConfirmButton: false,
-        // }).then(() => {
-        //   person.status = true
-        // })
-        person.status = true
+        // alert('เปลี่ยนสถานะเป็น ระงับการใช้งาน')
+        this.$swal({
+          title: 'เปลี่ยนสถานะเป็น ระงับการใช้งาน',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          person.status = true
+        })
+        // person.status = true
       } else {
         await this.$axios.$post(
           `/admin/unSuspendAccount/${companyId}`,
@@ -311,16 +311,16 @@ export default {
             },
           }
         )
-        alert('เปลี่ยนสถานะเป็น ปกติ')
-        // this.$swal({
-        //   title: 'เปลี่ยนสถานะเป็น ปกติ',
-        //   icon: 'success',
-        //   timer: 2000,
-        //   showConfirmButton: false,
-        // }).then(() => {
-        //   person.status = false
-        // })
-        person.status = false
+        // alert('เปลี่ยนสถานะเป็น ปกติ')
+        this.$swal({
+          title: 'เปลี่ยนสถานะเป็น ปกติ',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          person.status = false
+        })
+        // person.status = false
       }
     },
   },

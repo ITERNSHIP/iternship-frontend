@@ -236,6 +236,10 @@ computed: {
 },
   async mounted() {
       const accessToken = localStorage.getItem('accessToken')
+      
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     const id = this.$route.params.id
 //     // const companyId = '1ac111aa-dfc8-49b7-af39-d103522080e1'
 

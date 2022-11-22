@@ -137,7 +137,10 @@ export default {
   async mounted() {
     let accessToken = localStorage.getItem('accessToken')
     if (accessToken == null) {
-      this.$router.push('/staff/login')
+      this.$router.push('/login')
+    }
+    if(localStorage.getItem('role') != 'STAFF'){
+      this.$router.push('/login')
     }
     let studentConfirmResults = await this.$axios.$get(
       '/staff/getAllconfirmation',

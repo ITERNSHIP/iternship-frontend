@@ -54,6 +54,10 @@ export default {
   async mounted() {
     const id = this.$route.params.id
       const accessToken = localStorage.getItem('accessToken')
+      
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     let getThisnew = await this.$axios.$get(`/users/getNewsById/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

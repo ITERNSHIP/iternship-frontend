@@ -273,13 +273,13 @@ export default {
       let studentId = localStorage.getItem('userId')
       this.$v.$touch()
       if (this.$v.$invalid) {
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
-        // this.$swal({
-        //   title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-        //   icon: 'warning',
-        //   confirmButtonText: 'ตกลง',
-        // })
-        // console.log('invalid')
+        // alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        this.$swal({
+          title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          icon: 'warning',
+          confirmButtonText: 'ตกลง',
+        })
+        console.log('invalid')
         return
       }
       // console.log('************* EDIT PROFILE *************')
@@ -293,12 +293,12 @@ export default {
       })
       this.$store.dispatch('setStudentData', this.userData)
       this.isEdit = false
-      alert('แก้ไขข้อมูลสำเร็จ')
-      // await this.$swal({
-      //   title: 'แก้ไขข้อมูลสำเร็จ',
-      //   icon: 'success',
-      //   confirmButtonText: 'ตกลง',
-      // })
+      // alert('แก้ไขข้อมูลสำเร็จ')
+      await this.$swal({
+        title: 'แก้ไขข้อมูลสำเร็จ',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+      })
       location.reload('/student/profile')
     },
   },
@@ -306,6 +306,9 @@ export default {
   async mounted() {
     let studentId = localStorage.getItem('userId')
     let accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     let res = await this.$axios.$get(`/users/get/${studentId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

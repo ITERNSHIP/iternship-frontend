@@ -42,17 +42,17 @@ export default {
         })
         .then((res) => {
           // console.log(res)
-          alert('เพิ่มข่าวประชามันพันธ์สำเร็จ')
-          // this.$swal({
-          //   title: 'เพิ่มข่าวประชามันพันธ์สำเร็จ',
-          //   icon: 'success',
-          //   confirmButtonText: 'ตกลง',
-          // }).then(() => {
-          //   this.$router.push('/staff/news')
-          //   location.reload()
-          // })
-          this.$router.push('/staff/news')
-          location.reload()
+          // alert('เพิ่มข่าวประชามันพันธ์สำเร็จ')
+          this.$swal({
+            title: 'เพิ่มข่าวประชามันพันธ์สำเร็จ',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+          }).then(() => {
+            this.$router.push('/staff/news')
+            location.reload()
+          })
+          // this.$router.push('/staff/news')
+          // location.reload()
         })
         .catch((err) => {
         })
@@ -74,17 +74,17 @@ export default {
       )
       .then((res) => {
         // console.log(res)
-        alert('แก้ไขข่าวประชาสัมพันธ์สำเร็จ')
-        // this.$swal({
-        //   title: 'แก้ไขข่าวประชาสัมพันธ์สำเร็จ',
-        //   icon: 'success',
-        //   confirmButtonText: 'ตกลง',
-        // }).then(() => {
-        //   this.$router.push('/staff/news')
-        //   location.reload()
-        // })
-        this.$router.push('/staff/news')
-        location.reload()
+        // alert('แก้ไขข่าวประชาสัมพันธ์สำเร็จ')
+        this.$swal({
+          title: 'แก้ไขข่าวประชาสัมพันธ์สำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/staff/news')
+          location.reload()
+        })
+        // this.$router.push('/staff/news')
+        // location.reload()
       })
     },
     deleteNews(id){
@@ -96,24 +96,27 @@ export default {
       })
       .then((res) => {
         // console.log(res)
-        alert('ลบข่าวประชาสัมพันธ์สำเร็จ')
-        // this.$swal({
-        //   title: 'ลบข่าวประชาสัมพันธ์สำเร็จ',
-        //   icon: 'success',
-        //   confirmButtonText: 'ตกลง',
-        // }).then(() => {
-        //   this.$router.push('/staff/news')
-        //   location.reload()
-        // })
-        this.$router.push('/staff/news')
-        location.reload()
+        // alert('ลบข่าวประชาสัมพันธ์สำเร็จ')
+        this.$swal({
+          title: 'ลบข่าวประชาสัมพันธ์สำเร็จ',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
+          this.$router.push('/staff/news')
+          location.reload()
+        })
+        // this.$router.push('/staff/news')
+        // location.reload()
       })
     }
   },
   async mounted(){
     let accessToken = localStorage.getItem('accessToken')
     if (accessToken == null) {
-      this.$router.push('/staff/login')
+      this.$router.push('/login')
+    }
+    if(localStorage.getItem('role') != 'STAFF'){
+      this.$router.push('/login')
     }
 
     let newsResults = await this.$axios.$get('/staff/getAllNews', {
