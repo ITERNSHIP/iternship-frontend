@@ -233,6 +233,18 @@ export default {
         // this.addPositionData.openingDate = dayjs().format('DD/MM/YYYY')
         return
       }
+      let a = this.addPositionData.startDate
+      let b = this.addPositionData.endDate
+      let aTime = new Date(a)
+      let bTime = new Date(b)
+      if (bTime <= aTime) {
+        this.$swal({
+          title: 'วันรับสมัครไม่ถูกต้อง',
+          icon: 'warning',
+          confirmButtonText: 'ตกลง',
+        })
+        return
+      }
       this.addPositionData.openingDate = dayjs().format('YYYY-MM-DD')
       this.$emit('addPosition', this.addPositionData)
     },

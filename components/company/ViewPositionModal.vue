@@ -259,6 +259,18 @@ export default {
         // alert('กรุณากรอกข้อมูลให้ครบถ้วน')
         return
       }
+      let a = this.positionForEdit.startDate
+      let b = this.positionForEdit.endDate
+      let aTime = new Date(a)
+      let bTime = new Date(b)
+      if (bTime <= aTime) {
+        this.$swal({
+          title: 'วันรับสมัครไม่ถูกต้อง',
+          icon: 'warning',
+          confirmButtonText: 'ตกลง',
+        })
+        return
+      }
       delete this.Position.showOpeningDate
       delete this.Position.showStartDate
       delete this.Position.showEndDate
