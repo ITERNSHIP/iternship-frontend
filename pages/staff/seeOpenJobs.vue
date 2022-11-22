@@ -171,6 +171,9 @@ export default {
     if (accessToken == null) {
       this.$router.push('/login')
     }
+    if(localStorage.getItem('role') != 'STAFF'){
+      this.$router.push('/login')
+    }
     await this.$axios
       .$get('/staff/getAllCompany', {
         headers: {

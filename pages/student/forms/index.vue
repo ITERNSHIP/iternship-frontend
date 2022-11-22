@@ -68,7 +68,14 @@
 
 <script>
 import * as LottiePlayer from '@lottiefiles/lottie-player'
-export default {}
+export default {
+  mounted(){
+    const accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
+  }
+}
 </script>
 
 <style></style>

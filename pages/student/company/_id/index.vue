@@ -115,7 +115,11 @@ export default {
   async mounted() {
     // get route params
     const accessToken = localStorage.getItem('accessToken')
-    console.log(this.$route.params.id)
+    
+    if(!accessToken){
+      this.$router.push('/login')
+    }
+    // console.log(this.$route.params.id)
     const id = this.$route.params.id
     let getThisCompany = await this.$axios.$get(
       '/users/findCompanyDetailById',

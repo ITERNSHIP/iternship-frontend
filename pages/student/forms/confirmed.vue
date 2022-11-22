@@ -244,6 +244,10 @@ export default {
 
   async mounted() {
     // console.log('ftfftutufjtfgtfjgjjtftj')
+    const accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     const newData = this.$store.state.studentData
     this.fullName = newData.fullName
     this.studentId = newData.userId

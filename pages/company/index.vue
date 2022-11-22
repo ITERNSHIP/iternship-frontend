@@ -450,6 +450,11 @@ export default {
     const accessToken = this.$cookiz.get('jwt')
     const companyId = localStorage.getItem('companyId')
     const companyName = localStorage.getItem('companyName')
+    const role = localStorage.getItem('role')
+
+    if (!accessToken && !companyId && !companyName && role != 'COMPANY') {
+      this.$router.push('/login')
+    }
 
     let companyResult = await this.$axios.$get(`/company/getCompanyStaffById/${companyId}`, {
       headers: {

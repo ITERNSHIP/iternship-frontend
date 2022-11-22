@@ -180,6 +180,9 @@ export default {
   },
 async mounted() {
       const accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
       let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

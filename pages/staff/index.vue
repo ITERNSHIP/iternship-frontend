@@ -137,7 +137,7 @@ import StaffNavBar from '~/components/StaffNavBar.vue'
 export default { components: { StaffNavBar },
   mounted() {
     if(localStorage.getItem('role') != 'STAFF'){
-      this.$router.push('/')
+      this.$router.push('/login')
       
     }
   }}

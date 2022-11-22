@@ -306,6 +306,9 @@ export default {
   async mounted() {
     let studentId = localStorage.getItem('userId')
     let accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      this.$router.push('/login')
+    }
     let res = await this.$axios.$get(`/users/get/${studentId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
