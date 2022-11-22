@@ -32,7 +32,7 @@
       </div>
 
       <div class="mt-2">
-        <p class="text-sm font-normal md:text-lg">{{oneNews.newsDetail}}</p>
+        <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{oneNews.newsDetail}}</p>
       </div>
 
       <nuxt-link to="/student/news" class="btn lg:w-1/12 mt-4 lg:mt-8 w-1/5 rounded-xl">กลับ</nuxt-link>
@@ -42,9 +42,8 @@
 
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
-import Footer from '~/components/Footer.vue'
 export default {
-  components: { StudentNavBar, Footer },
+  components: { StudentNavBar },
 
   data() {
     return {

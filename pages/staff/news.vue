@@ -16,7 +16,6 @@
         </div>
       </div>
     </section>
-    <Footer class="mt-16" />
   </div>
 </template>
 
@@ -24,9 +23,8 @@
 import StaffNavBar from '~/components/StaffNavBar.vue'
 import AddNews from '../../components/staff/AddNews.vue'
 import ViewNews from '../../components/staff/ViewNews.vue'
-import Footer from '~/components/Footer.vue';
 export default {
-  components: { StaffNavBar, AddNews, ViewNews, Footer },
+  components: { StaffNavBar, AddNews, ViewNews },
   data(){
     return {
       newsInfo: []
@@ -45,6 +43,14 @@ export default {
         .then((res) => {
           // console.log(res)
           alert('เพิ่มข่าวประชามันพันธ์สำเร็จ')
+          // this.$swal({
+          //   title: 'เพิ่มข่าวประชามันพันธ์สำเร็จ',
+          //   icon: 'success',
+          //   confirmButtonText: 'ตกลง',
+          // }).then(() => {
+          //   this.$router.push('/staff/news')
+          //   location.reload()
+          // })
           this.$router.push('/staff/news')
           location.reload()
         })
@@ -69,6 +75,14 @@ export default {
       .then((res) => {
         // console.log(res)
         alert('แก้ไขข่าวประชาสัมพันธ์สำเร็จ')
+        // this.$swal({
+        //   title: 'แก้ไขข่าวประชาสัมพันธ์สำเร็จ',
+        //   icon: 'success',
+        //   confirmButtonText: 'ตกลง',
+        // }).then(() => {
+        //   this.$router.push('/staff/news')
+        //   location.reload()
+        // })
         this.$router.push('/staff/news')
         location.reload()
       })
@@ -83,6 +97,14 @@ export default {
       .then((res) => {
         // console.log(res)
         alert('ลบข่าวประชาสัมพันธ์สำเร็จ')
+        // this.$swal({
+        //   title: 'ลบข่าวประชาสัมพันธ์สำเร็จ',
+        //   icon: 'success',
+        //   confirmButtonText: 'ตกลง',
+        // }).then(() => {
+        //   this.$router.push('/staff/news')
+        //   location.reload()
+        // })
         this.$router.push('/staff/news')
         location.reload()
       })

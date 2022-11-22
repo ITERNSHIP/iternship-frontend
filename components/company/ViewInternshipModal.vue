@@ -6,7 +6,7 @@
       <label :for="register.regisId" class="modal-button cursor-pointer">
         <div class="flex justify-between">
           <div class="gap-2">
-            <p class="font-bold">{{register.fName}}  {{register.lName}}</p>
+            <p class="font-bold">{{register.fullName}}</p>
             <p>ตำแหน่ง: {{register.position}}</p>
           </div>
         </div>
@@ -21,20 +21,20 @@
             >✕</label
           >
           <h3 class="text-lg font-bold mb-4">ดูข้อมูลผู้สมัครฝึกงาน</h3>
-
+          {{register}}
           <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
-              >ชื่อจริง</label
+              >ชื่อจริง-นามสกุล</label
             >
             <input
               disabled
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
-              :placeholder="register.fName"
+              :placeholder="register.fullName"
             />
           </div>
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >นามสกุล</label
@@ -44,7 +44,7 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="register.lName"
             />
-          </div>
+          </div> -->
 
           <div class="mb-4">
             <label
@@ -119,7 +119,7 @@
           </div>
 
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >วันที่เริ่มต้นฝึกงาน</label
@@ -129,9 +129,9 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="register.startDate"
             />
-          </div>
+          </div> -->
 
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label
               class="text-gray-800 text-sm font-normal leading-tight tracking-normal"
               >วันที่จบการฝึกงาน</label
@@ -141,7 +141,7 @@
               class="mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-blue font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border bg-slate-200"
               :placeholder="register.endDate"
             />
-          </div>
+          </div> -->
 
           <div class="mb-4">
             <label
@@ -158,9 +158,9 @@
           <div class="modal-action flex items-center justify-end w-full">
             <label @click="approveRegisPass('pass')"
               class="btn btn-success text-white"
-              >อนุมัติ</label
+              >เรียกสัมภาษณ์งาน</label
             >
-            <label @click="approveRegisNotPass('notPass')" class="btn btn-error text-white">ไม่อนุมัติ</label>
+            <label @click="approveRegisNotPass('notPass')" class="btn btn-error text-white">ไม่เรียกสัมภาษณ์งาน</label>
             <label :for="register.regisId" class="btn">กลับ</label>
           </div>
 

@@ -15,39 +15,43 @@
 
 <script>
 export default {
+  layout: 'nowrap',
   methods: {
     changePage() {
       this.$router.push('/student')
+    },
+    changeToProfilePage() {
+      this.$router.push('/student/profile')
     },
   },
   async mounted() {
     // nuxt query string
     const { query } = this.$route
-    // console.log('🚀 ~ file: redirect.vue ~ line 12 ~ mounted ~ query', query)
     const queryString = window.location.search
-    // console.log(
-    //   '🚀 ~ file: index.vue ~ line 154 ~ mounted ~ queryString',
-    //   queryString
-    // )
     const urlParams = new URLSearchParams(queryString)
     const code = urlParams.get('code')
-    // console.log('🚀 ~ file: index.vue ~ line 157 ~ mounted ~ code', code)
-    await this.$axios
-      .$get('/users/authcode', {
-        params: {
-          code: code,
-        },
-      })
-      .then((res) => {
-        // console.log('🚀 ~ file: index.vue ~ line 162 ~ mounted ~ res', res)
-        localStorage.setItem('accessToken', res.accessToken)
-        localStorage.setItem('userId', res.userId)
-        // console.log(localStorage.getItem('accessToken'))
-        // console.log(localStorage.getItem('userId'))
-      })
-      .then(() => {
-        setTimeout(this.changePage, 2000)
-      })
+    const res = await this.$axios.$get('/users/authcode', {
+      params: {
+        code: code,
+      },
+    })
+    console.log('***********res***********');
+    console.log('🚀 ~ file: index.vue ~ line 162 ~ mounted ~ res', res)
+    localStorage.setItem('accessToken', res.accessToken)
+    localStorage.setItem('userId', res.userId)
+    localStorage.setItem('role', 'STUDENT')
+    const userRes = await this.$axios.$get('/users/get/' + res.userId, {
+      headers: {
+        Authorization: `Bearer ${res.accessToken}`,
+      },
+    })
+    this.$store.dispatch('setStudentData', userRes)
+    console.log(this.$store.state.studentData.address);
+    if (this.$store.state.studentData.address == null) {
+      setTimeout(this.changeToProfilePage, 2000)
+    } else {
+      setTimeout(this.changePage, 2000)
+    }
   },
 }
 </script>

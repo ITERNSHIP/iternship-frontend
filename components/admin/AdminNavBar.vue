@@ -1,21 +1,14 @@
 <template>
-  <div class="navbar bg-black-gray rounded-none justify-between">
+  <div>
+    <div class="navbar bg-black-gray rounded-none justify-between">
     <div class="px-4 w-full">
-      <nuxt-link to="/staff" class="flex cursor-pointer ">
+      <div class="flex cursor-pointer ">
         <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
         <img src="@/static/logo.png" alt="##" class="w-16">
-      </nuxt-link>
-      <div class="lg:flex mx-12 hidden">
-        <ul class="menu menu-horizontal space-x-6 text-white">
-          <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/staff/seeopenjobs">ดูงานที่เปิดรับ</nuxt-link></li>
-          <li><nuxt-link to="/staff/table">นักศึกษาที่ได้บริษัทฝึกงาน</nuxt-link></li>
-        </ul>
       </div>
 
       <div class="lg:flex ml-auto space-x-6 hidden pr-2">
-        <nuxt-link to="/login" v-if="!`${this.$cookiz.get('jwt')}`" class="btn btn-info text-white w-32">เข้าสู่ระบบ</nuxt-link>
+        
         <button v-if="`${this.$cookiz.get('jwt')}`" class="btn text-white w-32" @click="logout">ออกจากระบบ</button>
       </div>
 
@@ -62,24 +55,21 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li><nuxt-link to="/staff">หน้าหลัก</nuxt-link></li>
-          <li><nuxt-link to="/staff/news">จัดการข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/staff/seeopenjobs">ดูงานที่เปิดรับ</nuxt-link></li>
-          <li><nuxt-link to="/staff/table">นักศึกษาที่ได้บริษัทฝึกงาน</nuxt-link></li>
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
           <li><a @click="logout()">ออกจากระบบ</a></li>
         </ul>
       </div>
   </div>
+  </div>
 </template>
 
 <script>
 export default {
-  methods: {
+    methods: {
     async logout() {
       this.$cookiz.remove('jwt')
       localStorage.removeItem('accessToken')
-      localStorage.clear()
+      localStorage.removeItem('role')
       // await this.$swal({
       //   title: 'ออกจากระบบสำเร็จ',
       //   icon: 'success',
@@ -93,4 +83,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+
+</style>

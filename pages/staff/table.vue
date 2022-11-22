@@ -12,6 +12,16 @@
           <div
             class="flex xse:flex-row flex-col items-center gap-2 justify-between"
           >
+            
+              <select v-model="yearFilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" selected disabled hidden>นักศึกษาปีการศึกษา</option>
+                <option value="2562">2562</option>
+                <option value="2563">2563</option>
+                <option value="2564">2564</option>
+                <option value="2565">2565</option>
+                <option value="2566">2566</option>
+              </select>
+            
             <div class="xse:w-96 w-full">
               <label for="table-search" class="sr-only">Search</label>
               <div class="relative mt-1">
@@ -33,6 +43,7 @@
                 </div>
                 <input
                   type="text"
+                  v-model="search"
                   id="table-search"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="ค้นหารหัสนักศึกษา"
@@ -42,13 +53,19 @@
           </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div v-if="filteredList.length == 0" class="text-xl font-bold">
+          <p>ไม่มีข้อมูล</p>
+        </div>
+
+        <div class="overflow-x-auto" v-else>
           <table class="table table-compact w-full">
             <thead>
               <tr>
                 <th></th>
                 <th>รหัสนักศึกษา</th>
                 <th>ชื่อ - นามสกุล</th>
+                <th>นักศึกษาปีการศึกษา</th>
+                <th>สาขาวิชา</th>
                 <th>ชื่อบริษัท</th>
                 <th>ตำแหน่งงาน</th>
                 <th>ระยะเวลาในการฝึก</th>
@@ -56,11 +73,16 @@
                 <th>จบฝึกงาน</th>
               </tr>
             </thead>
-            <tbody v-for="(student, i) in studentInfo" :key="student.confirmationId">
+            <tbody
+              v-for="(student, i) in filteredList"
+              :key="student.confirmationId"
+            >
               <tr>
-                <th>{{ i+1 }}</th>
+                <th>{{ i + 1 }}</th>
                 <td>{{ student.studentId }}</td>
-                <td>{{ student.fName }} {{ student.lName }}</td>
+                <td>{{ student.fullName }}</td>
+                <td>{{ student.year }}</td>
+                <td>{{ student.faculty }}</td>
                 <td>{{ student.companyName }}</td>
                 <td>{{ student.position }}</td>
                 <td>{{ student.longTerm }}</td>
@@ -73,6 +95,8 @@
                 <th></th>
                 <th>รหัสนักศึกษา</th>
                 <th>ชื่อ - นามสกุล</th>
+                <th>นักศึกษาปีการศึกษา</th>
+                <th>สาขาวิชา</th>
                 <th>ชื่อบริษัท</th>
                 <th>ตำแหน่งงาน</th>
                 <th>ระยะเวลาในการฝึก</th>
@@ -84,7 +108,6 @@
         </div>
       </div>
     </section>
-    <Footer class="mt-16" />
   </div>
 </template>
 
@@ -102,12 +125,13 @@ async asyncData({ $axios  }) {
 </script> -->
 <script>
 import StaffNavBar from '../../components/StaffNavBar.vue'
-import Footer from '~/components/Footer.vue'
 export default {
-  components: { StaffNavBar, Footer },
+  components: { StaffNavBar },
   data() {
     return {
       studentInfo: [],
+      search: '',
+      yearFilter: '2562',
     }
   },
   async mounted() {
@@ -115,13 +139,31 @@ export default {
     if (accessToken == null) {
       this.$router.push('/staff/login')
     }
-    let studentConfirmResults = await this.$axios.$get('/staff/getAllconfirmation', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+    let studentConfirmResults = await this.$axios.$get(
+      '/staff/getAllconfirmation',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
-    })
+    )
     this.studentInfo = studentConfirmResults
+    console.log(this.studentInfo);
   },
+  computed: {
+    filteredList() {
+      return this.studentInfo.filter(student => {
+        return student.studentId.toLowerCase().includes(this.search.toLowerCase())
+      }).filter(student => {
+        return student.year === this.yearFilter
+      })
+    },
+    // filteredYear(){
+    //   return this.studentInfo.filter(student => {
+    //     return student.year === this.yearFilter
+    //   })
+    // },
+    }
 }
 </script>
 

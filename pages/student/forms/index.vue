@@ -3,9 +3,9 @@
     <StudentNavBar />
     <div class="flex flex-col px-8 pt-8">
       <div class="">
-        <p class="font-bold lg:text-3xl text-xl md:text-2xl mb-4">ฟอร์ม</p>
+        <p class="font-bold lg:text-3xl text-xl md:text-2xl mb-4">สมัครฝึกงาน</p>
         <div class="mt-4">
-          <p class="text-lg font-normal md:text-2xl">เลือกฟอร์มของคุณ</p>
+          <p class="text-lg font-normal md:text-2xl">เมนูของคุณ</p>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
                 autoplay
                 loop
                 mode="normal"
-                src="https://assets10.lottiefiles.com/packages/lf20_WWifl0Qmyq.json"
+                src="https://assets1.lottiefiles.com/packages/lf20_gckvznnm.json"
                 style="width: 120px"
                 class="absolute bottom-0 right-0 hidden xl:flex"
               ></lottie-player>
@@ -63,7 +63,6 @@
       </div>
     </div>
 
-    <Footer class="mt-40" />
   </div>
 </template>
 

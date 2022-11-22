@@ -370,6 +370,8 @@ export default {
       }
     }
   },
+
+  layout: 'nowrap',
   validations: {
     studentNum: {
       required,
@@ -408,21 +410,12 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
-          // console.log(
-          //   '🚀 ~ file: login.vue ~ line 399 ~ .then ~ response',
-          //   response
-          // )
-          // console.log(
-          //   '🚀 ~ file: login.vue ~ line 402 ~ .then ~ response.message',
-          //   response.message
-          // )
           if (response.message == 'success') {
             this.$cookiz.set('jwt', response.accessToken, {
               path: '/',
               maxAge: 60 * 60 * 24 * 7,
             })
             alert('เข้าสู่ระบบสำเร็จ')
-            // console.log('Login success!!')
             this.$router.push('/student')
           }
         })
@@ -454,14 +447,40 @@ export default {
           })
           localStorage.setItem('companyId', companyId)
           localStorage.setItem('companyName', companyName)
+          localStorage.setItem('role', 'COMPANY')
           //   console.log(localStorage.getItem('companyId'))
           //  console.log(localStorage.getItem('companyName'))
           alert('เข้าสู่ระบบสำเร็จ')
           this.$router.push('/company')
+          // this.$swal.fire({
+          //   icon: 'success',
+          //   title: 'เข้าสู่ระบบสำเร็จ',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // }).then(() => {
+          //   this.$router.push('/company')
+          // })
         })
         .catch((err) => {
           // console.log(err)
-          alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+          if (err.response.data.statusCode == '400'){
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
+          }
+          if (err.response.data.statusCode == '401'){
+            alert('บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'บัชญีของคุณถูกระงับการใช้งาน กรุณาติดต่อผู้ดูแลระบบ',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
+          }
         })
 
       // this.$cookiz.set('jwt', response.accessToken, {
@@ -485,13 +504,29 @@ export default {
           // console.log(res)
           let { accessToken } = res
           localStorage.setItem('accessToken', accessToken)
+          localStorage.setItem('role', 'STAFF')
           alert('เข้าสู่ระบบสำเร็จ')
           this.$router.push('/staff')
+          // this.$swal.fire({
+          //   icon: 'success',
+          //   title: 'เข้าสู่ระบบสำเร็จ',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // }).then(() => {
+          //   this.$router.push('/staff')
+          // })
+          // this.$router.push('/staff')
         })
         .catch((err) => {
           // console.log(err.response.data.statusCode)
           if (err.response.data.statusCode == '400'){
             alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+            // this.$swal.fire({
+            //   icon: 'error',
+            //   title: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
           }
           // alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
         })

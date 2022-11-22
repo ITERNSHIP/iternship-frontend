@@ -23,6 +23,7 @@
               เพื่อเป็นการเตรียมตัวสู่การทำงานจริง
             </p>
           </div>
+      
           <div class="mt-10 text-center md:text-left">
             <NuxtLink to="/login" class="btn btn-info text-white"
               >เข้าสู่ระบบ</NuxtLink
@@ -44,7 +45,7 @@
         </div>
       </div>
     </div>
-    <Footer class="w-full bottom-0 mt-36" />
+    <!-- <Footer class="w-full bottom-0 mt-36" /> -->
   </div>
 </template>
 

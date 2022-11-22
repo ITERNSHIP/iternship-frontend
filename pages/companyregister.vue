@@ -197,10 +197,20 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
         alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        // this.$swal({
+        //   title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+        //   icon: 'warning',
+        //   confirmButtonText: 'ตกลง',
+        // })
         return
       }
       if (this.agree === false) {
         alert('กรุณายอมรับนโยบายความเป็นส่วนตัว')
+        // this.$swal({
+        //   title: 'กรุณายอมรับนโยบายความเป็นส่วนตัว',
+        //   icon: 'warning',
+        //   confirmButtonText: 'ตกลง',
+        // })
         return
       }
       await this.$axios.$post('/company/cnstaff', this.companyRegisterForm, {
@@ -208,10 +218,26 @@ export default {
       }).then((res) => {
         // console.log(res.message)
         alert('สมัครสมาชิกสำเร็จ')
-        this.$router.push('/login')
-      }).catch((err) => {
+        // this.$swal({
+        //   title: 'สมัครสมาชิกสำเร็จ',
+        //   text: 'กรุณายืนยันอีเมลเพื่อเข้าสู่ระบบ',
+        //   icon: 'success',
+        //   confirmButtonText: 'ตกลง',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push('/login')
+          }
+        })
+        // this.$router.push('/login')
+      .catch((err) => {
         // console.log(err.response.message)
         alert(err.response.message)
+        // this.$swal({
+        //   title: 'สมัครสมาชิกไม่สำเร็จ',
+        //   text: err.response.data.message,
+        //   icon: 'error',
+        //   confirmButtonText: 'ตกลง',
+        // })
       })
       // alert('สมัครสมาชิกสำเร็จ')
     },

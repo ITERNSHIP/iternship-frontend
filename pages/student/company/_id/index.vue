@@ -67,13 +67,13 @@
         </div>
 
         <div class="mt-2 md:mt-4">
-          <p class="text-sm font-normal md:text-lg">
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">
             {{ oneCompany.companyDetail }}
           </p>
         </div>
       </section>
 
-      <section>
+      <section class="mb-8">
         <div class="mt-4 md:mt-8">
           <p class="text-lg font-medium md:text-2xl">ตำแหน่งที่เปิดรับ</p>
         </div>
@@ -95,16 +95,15 @@
       </section>
     </div>
 
-    <Footer class="mt-8" />
+
   </div>
 </template>
 
 <script>
 import StudentNavBar from '@/components/StudentNavBar'
-import Footer from '~/components/Footer.vue'
 
 export default {
-  components: { StudentNavBar, Footer },
+  components: { StudentNavBar },
 
   data() {
     return {

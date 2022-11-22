@@ -1,15 +1,16 @@
 <template>
   <div class="navbar bg-black-gray rounded-none justify-between">
     <div class="px-4 w-full">
-      <div class="flex cursor-pointer ">
+      <nuxt-link to="/student" class="flex cursor-pointer ">
         <!-- <a class="btn btn-ghost normal-case text-xl text-cheese">ITERNSHIP</a> -->
         <img src="@/static/logo.png" alt="##" class="w-16">
-      </div>
+      </nuxt-link>
       <div class="lg:flex mx-12 hidden">
         <ul class="menu menu-horizontal space-x-6 text-white">
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">สมัครฝึกงาน</nuxt-link></li>
+          <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
           <!-- <li><a>เกี่ยวกับเรา</a></li> -->
         </ul>
       </div>
@@ -64,7 +65,8 @@
         >
           <li><nuxt-link to="/student">หน้าหลัก</nuxt-link></li>
           <li><nuxt-link to="/student/news">ข่าวสาร</nuxt-link></li>
-          <li><nuxt-link to="/student/forms">ฟอร์ม</nuxt-link></li>
+          <li><nuxt-link to="/student/forms">สมัครฝึกงาน</nuxt-link></li>
+          <li><nuxt-link to="/student/profile">ข้อมูลส่วนตัว</nuxt-link></li>
           <!-- <li><a>เกี่ยวกับเรา</a></li> -->
           <!-- <li><a>เข้าสู่ระบบ</a></li> -->
           <li><a @click="logout">ออกจากระบบ</a></li>
@@ -76,11 +78,18 @@
 <script scoped>
 export default {
   methods: {
-    logout() {
+    async logout() {
       this.$cookiz.remove('jwt')
       localStorage.clear()
-      this.$router.push('/')
+      // await this.$swal({
+      //   title: 'ออกจากระบบสำเร็จ',
+      //   icon: 'success',
+      //   timer: 2000,
+      //   showConfirmButton: false,
+      // })
       alert('ออกจากระบบสำเร็จ')
+      this.$router.push('/')
+      
     },
   },
 }

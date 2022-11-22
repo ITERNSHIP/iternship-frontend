@@ -134,7 +134,7 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.jobDetail}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.jobDetail}}</p>
         </div>
       </section>
 
@@ -154,17 +154,17 @@
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.location}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.location}}</p>
         </div>
       </section>
 
       <section>
         <div class="mt-4 md:mt-8">
-          <p class="text-lg font-medium md:text-2xl">ช่องทางติดต่อบริษัท</p>
+          <p class="text-lg font-medium md:text-2xl ">ช่องทางติดต่อบริษัท</p>
         </div>
 
         <div class="mt-1 md:mt-2">
-          <p class="text-sm font-normal md:text-lg">{{position.contact}}</p>
+          <p class="text-sm font-normal md:text-lg whitespace-pre-wrap">{{position.contact}}</p>
         </div>
       </section>
 
@@ -188,7 +188,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="mb-8">
         <div class="mt-4 md:mt-8">
           <p class="text-lg font-medium md:text-2xl">ตำแหน่งอื่นๆ ที่เปิดรับในบริษัทนี้</p>
         </div>
@@ -211,17 +211,13 @@
 
 
     </div>
-    <Footer class="mt-8" />
   </div>
 </template>
 
 <script>
 import StudentNavBar from '~/components/StudentNavBar.vue'
-import Footer from '~/components/Footer.vue';
-// export default {
-//   components: { StudentNavBar },
 export default {
-  components: { StudentNavBar, Footer },
+  components: { StudentNavBar },
 
   data() {
     return {

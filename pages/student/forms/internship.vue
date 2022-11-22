@@ -15,42 +15,24 @@
         <div class="mt-10">
           <form action="#" @submit.prevent="onSubmit">
             <div class="space-y-1 mb-2">
-              <span>ชื่อจริง</span>
+              <span>ชื่อ-นามสกุล</span>
               <input
-                v-model.trim.lazy="$v.fName.$model"
-                v-model="sentInternshipForm.fName"
+                v-model.trim.lazy="$v.fullName.$model"
                 type="text"
-                placeholder=""
+                placeholder="ชื่อ-นามสกุล"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               />
               <p
-                v-if="!$v.fName.required && $v.fName.$dirty"
+                v-if="!$v.fullName.required && $v.fullName.$dirty"
                 class="text-error mt-2 text-sm"
               >
-                กรุณาระบุชื่อจริง
-              </p>
-            </div>
-            <div class="space-y-1 mb-2">
-              <span>นามสกุล</span>
-              <input
-                v-model.trim.lazy="$v.lName.$model"
-                v-model="sentInternshipForm.lName"
-                type="text"
-                placeholder=""
-                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-              />
-              <p
-                v-if="!$v.lName.required && $v.lName.$dirty"
-                class="text-error mt-2 text-sm"
-              >
-                กรุณาระบุนามสกุล
+                กรุณาระบุชื่อ-นามสกุล
               </p>
             </div>
             <div class="space-y-1 mb-2">
               <span>เพศ</span>
               <select
                 v-model.trim.lazy="$v.gender.$model"
-                v-model="sentInternshipForm.gender"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
                 <option value="ชาย">ชาย</option>
@@ -63,11 +45,10 @@
                 กรุณาระบุเพศ
               </p>
             </div>
-            <div class="space-y-1 mb-2">
+            <div>
               <span>โทรศัพท์</span>
               <input
                 v-model.trim.lazy="$v.phoneNumber.$model"
-                v-model="sentInternshipForm.phoneNumber"
                 type="number"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -83,21 +64,13 @@
                 v-if="!$v.phoneNumber.minLength && $v.phoneNumber.$dirty"
                 class="text-error mt-2 text-sm"
               >
-              กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
-              </p>
-
-              <p
-                v-if="!$v.phoneNumber.maxLength && $v.phoneNumber.$dirty"
-                class="text-error mt-2 text-sm"
-              >
-              กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
+                กรุณาระบุโทรศัพท์ให้ครบ 10 หลัก
               </p>
             </div>
             <div class="space-y-1 mb-2">
               <span>เกรดเฉลี่ย</span>
               <input
                 v-model.trim.lazy="$v.grade.$model"
-                v-model="sentInternshipForm.grade"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -110,8 +83,11 @@
               </p>
               <p
                 v-if="
-                  !($v.grade.maxValue && $v.grade.minValue && $v.grade.required) &&
-                  $v.grade.$dirty
+                  !(
+                    $v.grade.maxValue &&
+                    $v.grade.minValue &&
+                    $v.grade.required
+                  ) && $v.grade.$dirty
                 "
                 class="text-error mt-2 text-sm"
               >
@@ -122,7 +98,6 @@
               <span>อีเมล</span>
               <input
                 v-model.trim.lazy="$v.email.$model"
-                v-model="sentInternshipForm.email"
                 type="email"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -144,7 +119,6 @@
               <span>ที่อยู่</span>
               <textarea
                 v-model.trim.lazy="$v.address.$model"
-                v-model="sentInternshipForm.address"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base min-h-[100px] placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -159,13 +133,17 @@
             <div class="space-y-1 mb-2">
               <span>บริษัทที่จะยื่นสมัคร</span>
               <select
+                v-if="listCompanyName"
                 v-model.trim.lazy="$v.companyName.$model"
-                v-model="sentInternshipForm.companyName"
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
               >
-                <option  v-for="comName in listCompanyName" :key="comName.companyName" :value="comName.companyName">
-                  {{comName.companyName}}
-                  </option>
+                <option
+                  v-for="(comName, index) in listCompanyName"
+                  :key="index"
+                  :value="index"
+                >
+                  {{ index }}
+                </option>
               </select>
               <p
                 v-if="!$v.companyName.required && $v.companyName.$dirty"
@@ -176,13 +154,18 @@
             </div>
             <div class="space-y-1 mb-2">
               <span>งานที่จะยื่นสมัคร</span>
-              <input
+              <select
                 v-model.trim.lazy="$v.position.$model"
-                v-model="sentInternshipForm.position"
-                type="text"
-                placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-              />
+              >
+                <option
+                  v-for="(com, index) in getJobList"
+                  :key="index"
+                  :value="com.title"
+                >
+                  {{ com.title }}
+                </option>
+              </select>
               <p
                 v-if="!$v.position.required && $v.position.$dirty"
                 class="text-error mt-2 text-sm"
@@ -190,43 +173,11 @@
                 กรุณาระบุงานที่จะยื่นสมัคร
               </p>
             </div>
-            <div class="space-y-1 mb-2">
-              <span>เดือนที่ต้องการเริ่มต้นฝึกงาน</span>
-              <input
-                v-model.trim.lazy="$v.startDate.$model"
-                v-model="sentInternshipForm.startDate"
-                type="date"
-                placeholder=""
-                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-              />
-              <p
-                v-if="!$v.startDate.required && $v.startDate.$dirty"
-                class="text-error mt-2 text-sm"
-              >
-                กรุณาระบุเดือนที่ต้องการเริ่มต้นฝึกงาน
-              </p>
-            </div>
-            <div class="space-y-1 mb-2">
-              <span>เดือนที่ต้องการจบฝึกงาน</span>
-              <input
-                v-model.trim.lazy="$v.endDate.$model"
-                v-model="sentInternshipForm.endDate"
-                type="date"
-                placeholder=""
-                class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-              />
-              <p
-                v-if="!$v.endDate.required && $v.endDate.$dirty"
-                class="text-error mt-2 text-sm"
-              >
-                กรุณาระบุเดือนที่ต้องการจบฝึกงาน
-              </p>
-            </div>
+            
             <div class="space-y-1 mb-2">
               <span>ผลงาน (Link Google Drive)</span>
               <input
                 v-model.trim.lazy="$v.resume.$model"
-                v-model="sentInternshipForm.resume"
                 type="text"
                 placeholder=""
                 class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
@@ -272,34 +223,34 @@ import {
   email,
   decimal,
   minLength,
-  maxLength,
   minValue,
   maxValue,
 } from 'vuelidate/lib/validators'
 import StudentNavBar from '~/components/StudentNavBar.vue'
 export default {
   components: { StudentNavBar },
+  async mounted() {
+    const accessToken = localStorage.getItem('accessToken')
+    console.log(accessToken)
+    let allCompany = await this.$axios.$get(`/users/getAllrecruitebyendDate`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    this.listCompanyName = allCompany
+
+    const newData = this.$store.state.studentData
+    this.fullName = newData.fullName
+    this.gender = newData.gender
+    this.phoneNumber = newData.phone
+    this.grade = newData.GPA
+    this.email = newData.email
+    this.address = newData.address
+    this.resume = newData.resumeLink
+  },
   data() {
     return {
-      sentInternshipForm: {
-        fName: '',
-        lName: '',
-        gender: '',
-        phoneNumber: '',
-        grade: '',
-        email: '',
-        address: '',
-        companyName: '',
-        position: '',
-        startDate: '',
-        endDate: '',
-        resume: '',
-        user:{
-          userId: `${localStorage.getItem('userId')}`
-        }
-      },
-      fName: '',
-      lName: '',
+      fullName: '',
       gender: '',
       phoneNumber: '',
       grade: '',
@@ -307,19 +258,33 @@ export default {
       address: '',
       companyName: '',
       position: '',
-      startDate: '',
-      endDate: '',
       resume: '',
       agree: false,
-      listCompanyName:[],
+      listCompanyName: [],
     }
   },
-
-  validations: {
-    fName: {
-      required,
+  computed: {
+    getJobList() {
+      return this.listCompanyName[this.companyName]
     },
-    lName: {
+    getStudentData() {
+      return this.$store.state.studentData
+    },
+  },
+
+  watch: {
+    getStudentData(newData) {
+      this.fullName = newData.fullName
+      this.gender = newData.gender
+      this.phoneNumber = newData.phone
+      this.grade = newData.GPA
+      this.email = newData.email
+      this.address = newData.address
+      this.resume = newData.resumeLink
+    },
+  },
+  validations: {
+    fullName: {
       required,
     },
     gender: {
@@ -329,7 +294,6 @@ export default {
       required,
       numeric,
       minLength: minLength(10),
-      maxLength: maxLength(10),
     },
     grade: {
       required,
@@ -337,26 +301,20 @@ export default {
       minValue: minValue(0),
       maxValue: maxValue(4),
     },
-    email:{
+    email: {
       required,
       email,
     },
-    address:{
+    address: {
       required,
     },
-    companyName:{
+    companyName: {
       required,
     },
-    position:{
+    position: {
       required,
     },
-    startDate:{
-      required,
-    },
-    endDate:{
-      required,
-    },
-    resume:{
+    resume: {
       required,
     },
   },
@@ -376,33 +334,43 @@ export default {
       this.sentitsform()
     },
     async sentitsform() {
-      const data = this.sentInternshipForm
-          
+      const data = {
+        fullName: this.fullName,
+        gender: this.gender,
+        phoneNumber: this.phoneNumber,
+        grade: this.grade,
+        email: this.email,
+        address: this.address,
+        companyName: this.companyName,
+        position: this.position,
+        resume: this.resume,
+        user:{
+          userId: localStorage.getItem('userId')
+        }
+      }
       await this.$axios.$post(`/users/createRegis`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
-      }).then((res) => {
-        
-        alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
-        this.$router.push('/student')
-        // location.reload('/student')
-      }).catch((err) => {
-        
       })
+      alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+      this.$router.push('/student')
+      // await this.$axios
+      //   .$post(`/users/createRegis`, data, {
+      //     headers: {
+      //       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log(res)
+      //     alert('ส่งฟอร์มสมัครฝึกงานสำเร็จ')
+      //     this.$router.push('/student')
+      //     location.reload('/student')
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
     },
-  },
-  async mounted() {
-    const accessToken = localStorage.getItem('accessToken')
-        
-    let allCompany = await this.$axios.$get(`/users/getAllCompany`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    this.listCompanyName = allCompany
-
-    
   },
 }
 </script>
@@ -416,7 +384,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 </style>

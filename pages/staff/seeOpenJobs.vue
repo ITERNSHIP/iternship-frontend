@@ -33,6 +33,7 @@
                 </div>
                 <input
                   type="text"
+                  v-model="search"
                   id="table-search"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="ค้นหาบริษัท"
@@ -75,7 +76,7 @@
 
         <div class="md:grid-cols-3 xl:grid-cols-5 grid-cols-1 gap-4 grid">
           <div
-            v-for="company in companyInfo"
+            v-for="company in filteredList"
             :key="company.companyId"
             class="card w-auto bg-base-100 shadow-xl hover:outline hover:outline-offset-2 hover:outline-black"
           >
@@ -128,23 +129,21 @@
         </div>
       </div>
     </section>
-    <Footer class="mt-16" />
   </div>
 </template>
 
 <script>
 import StaffNavBar from '~/components/StaffNavBar.vue'
-import Footer from '~/components/Footer.vue'
 import dayjs from 'dayjs'
 export default {
-  components: { StaffNavBar, Footer },
+  components: { StaffNavBar },
   data() {
     return {
       companyInfo: [],
       openPosition: [],
+      search: '',
     }
   },
-
   methods: {
     fetchData(companyId) {
       let accessToken = localStorage.getItem('accessToken')
@@ -182,6 +181,13 @@ export default {
         this.companyInfo = res
       })
   },
+  computed: {
+    filteredList() {
+      return this.companyInfo.filter(company => {
+        return company.companyName.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+    }
 }
 </script>
 
