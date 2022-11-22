@@ -70,14 +70,14 @@ export default {
       this.$cookiz.remove('jwt')
       localStorage.removeItem('accessToken')
       localStorage.removeItem('role')
-      // await this.$swal({
-      //   title: 'ออกจากระบบสำเร็จ',
-      //   icon: 'success',
-      //   timer: 2000,
-      //   showConfirmButton: false,
-      // })
-      alert('ออกจากระบบสำเร็จ')
-      this.$router.push('/')
+      await this.$swal({
+        title: 'ออกจากระบบสำเร็จ',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false,
+      })
+      // alert('ออกจากระบบสำเร็จ')
+      // this.$router.push('/')
     },
   },
 }
