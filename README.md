@@ -1,4 +1,4 @@
-# Iternship Web Front-end
+# Iternship Front-end
 
 ## Build Setup
 
